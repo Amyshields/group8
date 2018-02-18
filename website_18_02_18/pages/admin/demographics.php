@@ -1,0 +1,42 @@
+<!doctype html> <!--Max and Noah-->
+<html>
+	<head>
+		<title>Demographics</title>
+		    <link href="../../css/demographics.css" rel="stylesheet" type="text/css">
+	</head>
+			
+	<body>
+		<h1>Voting Demographics</h1>
+		
+		<p>Here are the demographics for the Local 2018 Election (voluntary data for gender/age/ect):</p>
+		
+		<h2>Result</h2>
+		<img src="../../images/pie.png" width="570" height="320" alt="">
+		
+		<h2>Turnout</h2>
+		<img src="../../images/pie.png" width="570" height="320" alt="">
+		
+		<p>All the following data is given by volunteers</p>
+		
+		<h2>Vote by age</h2>
+		<img src="../../images/stacked.png" width="570" height="320" alt="">
+		<p>https://canvasjs.com/javascript-charts/stacked-bar-chart/</p>
+		
+		<h2>Vote by gender</h2>
+		<img src="../../images/column.png" width="570" height="320" alt="">
+		
+		<h2>Vote by employment status</h2>
+		<img src="../../images/stacked.png" width="570" height="320" alt="">
+		<p>Split by number of hours worked (https://yougov.co.uk/news/2017/06/13/how-britain-voted-2017-general-election/)</p>
+		
+		<h2>Vote by Ethnicity</h2>
+		<img src="../../images/multi.png" width="570" height="320" alt="">
+		
+		
+		<h2>Vote compared to previous years</h2>
+		<img src="../../images/column.png" width="570" height="320" alt="">
+		<p>We can make data negative to create a swing graph</p>
+	</body>
+
+	<footer>Local Election 2018</footer>
+</html>
