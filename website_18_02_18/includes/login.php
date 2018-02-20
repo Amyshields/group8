@@ -13,6 +13,7 @@ function login($username,$password){
     $dbname = "";
 	$dbusername = "";
 	$dbpassword = "";
+	$table = "Voter";
 	
 	if ($local == true){ //Setting up variables for local connection
 		global $lservername;	
@@ -22,7 +23,8 @@ function login($username,$password){
 		$servername = $lservername;
 		$dbname = $ldbname;
 		$dbusername = $ldbusername;
-		$dbpassword = $ldbpassword;
+		$dbpassword = $ldbpassword;		
+		$table = "voter"; //Fix for wamp server importing tables names as all lowercase
 	}
 	else{ //Setting up variables for online connection
 		global $oservername;	
@@ -34,7 +36,9 @@ function login($username,$password){
 		$dbusername = $odbusername;
 		$dbpassword = $odbpassword;
 	}
-		
+	
+	echo $servername.' '.$dbname.' '.$dbusername.' '.$dbpassword;
+	
 	try{
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 		if (!$conn){
@@ -44,8 +48,8 @@ function login($username,$password){
 
 		$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
-		$sql_select = "SELECT * FROM voter WHERE username=:username";
+				
+		$sql_select = "SELECT * FROM ".$table." WHERE username=:username";
 		$query = $conn->prepare($sql_select);
 		
 		$query->execute(array(':username' => $username));
@@ -77,7 +81,7 @@ function login($username,$password){
 			}
 		}
 		else{
-			$_SESSION['error'] = "Your National Insurance Number or Password is incorrect";
+			$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
 			redirect('../index.php');		
 		}
 	}
