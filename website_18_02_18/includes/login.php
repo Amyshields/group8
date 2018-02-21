@@ -37,8 +37,6 @@ function login($username,$password){
 		$dbpassword = $odbpassword;
 	}
 	
-	echo $servername.' '.$dbname.' '.$dbusername.' '.$dbpassword;
-	
 	try{
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 		if (!$conn){
