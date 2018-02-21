@@ -1,3 +1,13 @@
+<?php
+require_once('../../includes/functions.php'); 
+
+session_start();
+
+if(!isset($_SESSION['admin'])){
+	redirect("../../index.php");  
+}
+?>
+
 <!doctype html> <!--Max and Noah-->
 <html>
 	<head>
