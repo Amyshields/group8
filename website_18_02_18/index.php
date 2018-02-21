@@ -1,7 +1,14 @@
 <?php
+require_once('includes/functions.php'); 
+
 session_start();
+
+if(isset($_SESSION['admin'])){
+	redirect("pages/admin/index.php");  
+}
+
 if(isset($_SESSION['logged_in'])){
-   header("Location: pages/voting.php");  
+   redirect("pages/voting.php");  
 }
 ?>
 
@@ -72,7 +79,7 @@ if(isset($_SESSION['logged_in'])){
 		<ul>
 			<li><a href="#">Help</a></li>
 			<li><p>Other links</p></li>
-			<li><a href="#">Login as admin</a></li>
+			<li><a href="pages/admin-login.php">Login as admin</a></li>
 			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 		</ul>
 	</footer>
