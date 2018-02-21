@@ -1,5 +1,12 @@
 <?php
+require_once('../includes/functions.php'); 
+
 session_start();
+
+if (isset($_SESSION['admin'])){
+	redirect("../index.php");  	
+}
+
 if(!isset($_SESSION['logged_in'])){
    $_SESSION['error'] = "Please enter your National Insurance Number and Password";
    header("Location: ../index.php");  
