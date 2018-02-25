@@ -9,3 +9,9 @@ html,body{
 	padding-bottom: 25px;
 }
 
+#small_logo {
+	float: right;
+	padding-right: 20px;
+}
+
+

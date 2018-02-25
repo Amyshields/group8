@@ -88,6 +88,10 @@ if(isset($_SESSION['logged_in'])){
 		</ul>
 	</footer>
 
+	<div id="small_logo">
+		<img src="images/small_logo.png" width="100" height="35" alt="">
+	</div>
+
 <script>
 function showPass() {
     var x = document.getElementById("myInput");
