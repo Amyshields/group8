@@ -15,7 +15,8 @@ if(isset($_SESSION['logged_in'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	 <meta charset="utf-8">
+	<meta charset="utf-8">
+	<link href="css/index.css" rel="stylesheet" type="text/css">
 	<title>Home Page</title>
 
 	<!--For Bootstrap, to make page responsive on mobile-->
@@ -27,6 +28,9 @@ if(isset($_SESSION['logged_in'])){
 </head>
 <body>
 	<header class="container-fluid text-center">
+		<div id="logo">
+			<img src="images/logo.png" width="300" height="100" alt="">
+		</div>
 		<h1>Voting System Home Page</h1>
 		<!--should we have an official name?-->
 		<!--header image here-->
