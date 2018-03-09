@@ -11,6 +11,50 @@ if(!isset($_SESSION['logged_in'])){
    $_SESSION['error'] = "Please enter your National Insurance Number and Password";
    header("Location: ../index.php");  
 }
+
+$userConstituency = $_SESSION['constituency'];
+$table = 'candidate';
+try{
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
+    if (!$conn){
+        $_SESSION['error'] = "Couldn't connect to the database";
+        redirect('../index.php');
+    }
+
+    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql_select = "SELECT * FROM ".$table." WHERE candidateArea=$userConstituency";
+    $query = $conn->prepare($sql_select);
+
+    $query->execute(array(':candidateArea' => $userConstituency));
+
+    $num_rows = $query->rowCount();
+
+
+    if ($num_rows > 0){
+
+        $candidates = array();
+
+        foreach ($query as $row) {
+            $candidateID = $row['candidateID'];
+            $candidateName = $row['candidateName'];
+            $candidateParty = $row['candidateParty'];
+
+            $thisCandidate = array($candidateID, $candidateName, $candidateParty);
+            array_push($candidates, $thisCandidate);
+        }
+    }
+    else{
+        $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
+        redirect('../index.php');
+    }
+}
+catch(PDOException $e){
+    echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +81,7 @@ if(!isset($_SESSION['logged_in'])){
 	<form action="#.php">
 		<h2>Local Election</h2>
 		<p> Please select who you wish to vote for, for your constituency Cardiff North </p>
-		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Joe Bloggs </label><p><p>
+		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> <?php echo$candidates[0][1]; ?></label><p><p>
 		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Jane Smith </label><p>
 		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Dan Scott </label><p>
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
