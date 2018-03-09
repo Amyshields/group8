@@ -24,6 +24,7 @@ if(isset($_SESSION['logged_in'])){
 	<!--For Bootstrap, to load the css information from a CDN-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -69,7 +70,7 @@ if(isset($_SESSION['logged_in'])){
 				</div>
 			</div>
 		</div>
-		
+		<div class="g-recaptcha" data-sitekeys=<!--blank-->></div>
 		<?php
 			if (isset($_SESSION['error'])){
 				echo $_SESSION['error'];
