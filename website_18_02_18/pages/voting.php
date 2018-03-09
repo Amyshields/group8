@@ -13,7 +13,36 @@ if(!isset($_SESSION['logged_in'])){
 }
 
 $userConstituency = $_SESSION['constituency'];
-$table = 'candidate';
+
+    global $local; //Setting up database based on local variable
+    $servername = ""; //Set up connection variables
+    $dbname = "";
+    $dbusername = "";
+    $dbpassword = "";
+    $table = 'Candidate';
+
+    if ($local == true){ //Setting up variables for local connection
+        global $lservername;
+        global $ldbname;
+        global $ldbusername;
+        global $ldbpassword;
+        $servername = $lservername;
+        $dbname = $ldbname;
+        $dbusername = $ldbusername;
+        $dbpassword = $ldbpassword;
+        $table = "voter"; //Fix for wamp server importing tables names as all lowercase
+    }
+    else{ //Setting up variables for online connection
+        global $oservername;
+        global $odbname;
+        global $odbusername;
+        global $odbpassword;
+        $servername = $oservername;
+        $dbname = $odbname;
+        $dbusername = $odbusername;
+        $dbpassword = $odbpassword;
+    }
+    
 try{
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
     if (!$conn){
