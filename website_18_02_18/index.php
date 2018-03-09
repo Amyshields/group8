@@ -16,15 +16,14 @@ if(isset($_SESSION['logged_in'])){
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<link href="css/index.css" rel="stylesheet" type="text/css">
 	<title>Home Page</title>
-
 	<!--For Bootstrap, to make page responsive on mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Bootstrap, to load the css information from a CDN-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="css/electago.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -32,15 +31,12 @@ if(isset($_SESSION['logged_in'])){
 		<div id="logo">
 			<img src="images/logo.png" width="300" height="100" alt="">
 		</div>
-		<h1>Voting System Home Page</h1>
-		<!--should we have an official name?-->
-		<!--header image here-->
-		<!---->
 	</header>
 	<!--container class used in bootstrap to make a dynamic container of a fixed size-->
 	<div class="container">
 		<div class="container-fluid">    
-		<h3><small> Login to Vote</small></h3>
+		<h3>Welcome to electago, where you can elect on the go.</h3>
+
 		<p>Use this service to login and vote.<br /> You can use this service to vote for local and national elections. If you make a voting choice you can also login here again to change that vote as long as it is before the election's closing deadline. <br /> To use this service you must have first registered to vote. When you register you can expect to be sent a private letter containing the password you should use here. If you have not recieved this letter please contact your local electoral office.</p>
 
 		<div class="col-sm-2">
@@ -53,6 +49,7 @@ if(isset($_SESSION['logged_in'])){
 				<label for="email"> National Insurance Number: </label>
 				<input type="text" name="username" class="form-control col-sm-6" value="QQ123456C" onfocus="if (this.value=='QQ123456C') this.value='';"><br>
 			</div>
+
 			<div class="form-group">
 				<!--Password example formatted like the sample passwords we will produce-->
 				<label for="password"> Password: </label>
@@ -64,13 +61,15 @@ if(isset($_SESSION['logged_in'])){
 		</form>
 		<p> Or click <a href="https://www.gov.uk/register-to-vote">here</a> to register to vote. </p>
 		</div>
+
+		<!--
 			<div class="col-sm-2 sidenav">
 				<div class="well">
 					<p></p>
 				</div>
 			</div>
-		</div>
-		<div class="g-recaptcha" data-sitekeys=<!--blank-->></div>
+		</div> -->
+		
 		<?php
 			if (isset($_SESSION['error'])){
 				echo $_SESSION['error'];

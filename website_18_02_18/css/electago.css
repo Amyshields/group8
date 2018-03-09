@@ -3,10 +3,11 @@
 
 html,body{
 	margin: 0;
-	padding: 0;	
+	padding: 0;
+	background-color: #CCCCCC;
 }
 
-p{
+label,p{
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -17,6 +18,15 @@ body{
 h1{
 	text-align: center;
 	font-family: 'Montserrat';
+}
+
+h2{
+	font-family: 'Montserrat';
+}
+
+h3{
+	font-family: 'Montserrat';
+
 }
 
 footer{

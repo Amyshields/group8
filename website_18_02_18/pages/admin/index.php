@@ -8,27 +8,41 @@ if(!isset($_SESSION['admin'])){
 }
 ?>
 
-
-<!doctype html> <!--Max and Noah-->
+<!doctype html> 
 <html>
 	<head>
-		<title>Admin Home Page</title>
-		    <link href="../../css/admin.css" rel="stylesheet" type="text/css">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>Admin Home Page</title>
+	<!--For Bootstrap, to make page responsive on mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--For Bootstrap, to load the css information from a CDN-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="../../css/electago.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 			
 	<body>
-		<h1>Admin Home</h1>
-		
-		<h2>Election Demographics</h2>
-		<p>Click on the election you wish to view the demographics for:</p>
-		<p><a href="demographics.php">Local Election</a></p>
-		<a href="demographics.php"><img src="../../images/local.gif" width="640" height="313" alt=""></a>
-		
-		<p><a href="demographics.php">National Election</a></p>
-		<a href="demographics.php"><img src="../../images/national.png" width="320.25" height="427" alt=""></a>		
+		<h1>Admin Home Page</h1>
+		<h3>Welcome to electago Admin Home Page</h3>
+		<button type="button" class="btn btn-secondary">Create a new election</button><p><p>
+		<button type="button" class="btn btn-secondary">Modify an existing election</button><p><p>
+		<button type="button" class="btn btn-secondary">Delete an existing election</button><p><p>
+		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>	
 	
 		<a href="../../includes/logout.php"><p>Log out</p></a>
 	</body>
 	
-	<footer>Voting System 2018</footer>
+
+	<footer class="container-fluid text-left">
+		<!--info here: logo, copyright, links, login as admin-->
+		<ul>
+			<li><a href="#">Help</a></li>
+			<li><p>Other links</p></li>
+			<li><a href="pages/admin-login.php">Login as admin</a></li>
+			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+		</ul>
+	</footer>
 </html>
