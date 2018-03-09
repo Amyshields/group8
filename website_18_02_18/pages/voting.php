@@ -11,50 +11,6 @@ if(!isset($_SESSION['logged_in'])){
    $_SESSION['error'] = "Please enter your National Insurance Number and Password";
    header("Location: ../index.php");  
 }
-
-$userConstituency = $_SESSION['constituency'];
-$table = 'candidate';
-try{
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
-    if (!$conn){
-        $_SESSION['error'] = "Couldn't connect to the database";
-        redirect('../index.php');
-    }
-
-    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql_select = "SELECT * FROM ".$table." WHERE candidateArea=$userConstituency";
-    $query = $conn->prepare($sql_select);
-
-    $query->execute(array(':candidateArea' => $userConstituency));
-
-    $num_rows = $query->rowCount();
-
-
-    if ($num_rows > 0){
-
-        $candidates = array();
-
-        foreach ($query as $row) {
-            $candidateID = $row['candidateID'];
-            $candidateName = $row['candidateName'];
-            $candidateParty = $row['candidateParty'];
-
-            $thisCandidate = array($candidateID, $candidateName, $candidateParty);
-            array_push($candidates, $thisCandidate);
-        }
-    }
-    else{
-        $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
-        redirect('../index.php');
-    }
-}
-catch(PDOException $e){
-    echo $sql . "<br>" . $e->getMessage();
-}
-
-$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -66,22 +22,26 @@ $conn = null;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Bootstrap, to load the css information from a CDN-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="../css/electago.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 	<div class="container-fluid">    
 	<header class="container-fluid text-center">
-	<h1>Electago - Voting Page</h1>
-		<!--header image here-->
-		<!---->
+	<div id="logo">
+		<img src="../images/logo.png" width="300" height="100" alt="wtf">
+	</div>
 	</header>
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
 <div class="container">
 	<form action="#.php">
+		<h3>Below are the Elections in which you are registered to vote in, please select your choice(s) and select the button 'Vote' to cast your vote.</h3>
 		<h2>Local Election</h2>
 		<p> Please select who you wish to vote for, for your constituency Cardiff North </p>
-		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> <?php echo$candidates[0][1]; ?></label><p><p>
+		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Joe Bloggs </label><p><p>
 		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Jane Smith </label><p>
 		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Dan Scott </label><p>
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
@@ -100,6 +60,8 @@ $conn = null;
 	<a href="../includes/logout.php"><p>Log out</p></a>
 </div>
 
+</body>
+
 <footer class="container-fluid text-left">
 	<!--info here: logo, copyright, links, login as admin-->
 	<ul>
@@ -109,5 +71,9 @@ $conn = null;
 		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 	</ul>
 </footer>
+
+<div id="small_logo">
+	<img src="../images/small_logo.png" width="100" height="35" alt="">
+</div>
 
 </html>
