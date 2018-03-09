@@ -23,7 +23,8 @@ if(isset($_SESSION['logged_in'])){
 </head>
 <body>
 	<header class="container-fluid text-center">
-		<h1>Voting System Admin Section</h1>
+		<img src="../logo.png">
+		<h2>Voting System Admin Section</h2>
 		<!--should we have an official name?-->
 		<!--header image here-->
 		<!---->
