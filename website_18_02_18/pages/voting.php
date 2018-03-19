@@ -1,5 +1,6 @@
 <?php
 require_once('../includes/functions.php'); 
+include('../includes/settings.php');
 
 session_start();
 
@@ -12,13 +13,13 @@ if(!isset($_SESSION['logged_in'])){
    header("Location: ../index.php");  
 }
 
-    global $local; //Setting up database based on local variable
-    $servername = ""; //Set up connection variables
-    $dbname = "";
-    $dbusername = "";
-    $dbpassword = "";
-    $table = "Candidate";
-    $userConstituency = $_SESSION['constituency'];
+global $local; //Setting up database based on local variable
+$servername = ""; //Set up connection variables
+$dbname = "";
+$dbusername = "";
+$dbpassword = "";
+$table = "Candidate";
+$userConstituency = $_SESSION['constituency'];
 
 if ($local == true){ //Setting up variables for local connection
     global $lservername;
@@ -31,6 +32,7 @@ if ($local == true){ //Setting up variables for local connection
     $dbpassword = $ldbpassword;
     $table = "candidate"; //Fix for wamp server importing tables names as all lowercase
 }
+
 else{ //Setting up variables for online connection
     global $oservername;
     global $odbname;
@@ -44,10 +46,7 @@ else{ //Setting up variables for online connection
 }
 
 try{
-    echo "tried";
-    echo "serverName= :".$servername;
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
-    echo "fferf";
     if (!$conn){
         $_SESSION['error'] = "Couldn't connect to the database";
         redirect('../index.php');
@@ -55,17 +54,15 @@ try{
 
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "past jeuirfn";
     $sql_select = "SELECT * FROM ".$table." WHERE candidateArea=:userConstituency";
-    echo "past checkpoint Alpha";
     $query = $conn->prepare($sql_select);
 
     $query->execute(array(':userConstituency' => $userConstituency));
 
     $num_rows = $query->rowCount();
 
-    if (1 == 1){
-        echo 'this is true';
+    if (1 == 1){ //2+2=4-1=3 QUICK MATHS
+        echo 'this is true'; //YA DUN KNO EY
         $candidates = array();
 
         foreach ($query as $row) {
@@ -86,7 +83,6 @@ try{
 }
 catch(PDOException $e){
     echo $sql . "<br>" . $e->getMessage();
-    echo "error FROM HERE";
 }
 
 $conn = null;
