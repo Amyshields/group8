@@ -12,10 +12,42 @@ if(!isset($_SESSION['logged_in'])){
    header("Location: ../index.php");  
 }
 
-$userConstituency = $_SESSION['constituency'];
-$table = 'candidate';
+    global $local; //Setting up database based on local variable
+    $servername = ""; //Set up connection variables
+    $dbname = "";
+    $dbusername = "";
+    $dbpassword = "";
+    $table = "Candidate";
+    $userConstituency = $_SESSION['constituency'];
+
+if ($local == true){ //Setting up variables for local connection
+    global $lservername;
+    global $ldbname;
+    global $ldbusername;
+    global $ldbpassword;
+    $servername = $lservername;
+    $dbname = $ldbname;
+    $dbusername = $ldbusername;
+    $dbpassword = $ldbpassword;
+    $table = "candidate"; //Fix for wamp server importing tables names as all lowercase
+}
+else{ //Setting up variables for online connection
+    global $oservername;
+    global $odbname;
+    global $odbusername;
+    global $odbpassword;
+    echo $oservername;
+    $servername = $oservername;
+    $dbname = $odbname;
+    $dbusername = $odbusername;
+    $dbpassword = $odbpassword;
+}
+
 try{
+    echo "tried";
+    echo "serverName= :".$servername;
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
+    echo "fferf";
     if (!$conn){
         $_SESSION['error'] = "Couldn't connect to the database";
         redirect('../index.php');
@@ -23,17 +55,17 @@ try{
 
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql_select = "SELECT * FROM ".$table." WHERE candidateArea=$userConstituency";
+    echo "past jeuirfn";
+    $sql_select = "SELECT * FROM ".$table." WHERE candidateArea=:userConstituency";
+    echo "past checkpoint Alpha";
     $query = $conn->prepare($sql_select);
 
-    $query->execute(array(':candidateArea' => $userConstituency));
+    $query->execute(array(':userConstituency' => $userConstituency));
 
     $num_rows = $query->rowCount();
 
-
-    if ($num_rows > 0){
-
+    if (1 == 1){
+        echo 'this is true';
         $candidates = array();
 
         foreach ($query as $row) {
@@ -44,14 +76,17 @@ try{
             $thisCandidate = array($candidateID, $candidateName, $candidateParty);
             array_push($candidates, $thisCandidate);
         }
+        echo "there are rows";
     }
     else{
         $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
         redirect('../index.php');
+        echo "no rows.";
     }
 }
 catch(PDOException $e){
     echo $sql . "<br>" . $e->getMessage();
+    echo "error FROM HERE";
 }
 
 $conn = null;
