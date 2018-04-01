@@ -38,7 +38,7 @@ else{ //Setting up variables for online connection
     global $odbname;
     global $odbusername;
     global $odbpassword;
-    echo $oservername;
+
     $servername = $oservername;
     $dbname = $odbname;
     $dbusername = $odbusername;
@@ -61,8 +61,7 @@ try{
 
     $num_rows = $query->rowCount();
 
-    if (1 == 1){ //2+2=4-1=3 QUICK MATHS
-        echo 'this is true'; //YA DUN KNO EY
+    if ($num_rows > 0){
         $candidates = array();
 
         foreach ($query as $row) {
@@ -73,12 +72,10 @@ try{
             $thisCandidate = array($candidateID, $candidateName, $candidateParty);
             array_push($candidates, $thisCandidate);
         }
-        echo "there are rows";
     }
     else{
         $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
         redirect('../index.php');
-        echo "no rows.";
     }
 }
 catch(PDOException $e){
@@ -109,15 +106,27 @@ $conn = null;
 	</header>
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
 <div class="container">
-	<form action="#.php">
+	<form action="voted.php" method="post">
 		<h2>Local Election</h2>
-		<p> Please select who you wish to vote for, for your constituency Cardiff North </p>
-		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> <?php echo$candidates[0][1]; ?></label><p><p>
-		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Jane Smith </label><p>
-		<input type="radio" id="Choice1" name="choice"> <label for="Choice1"> Dan Scott </label><p>
+		<p> Please select who you wish to vote for, for your constituency <?php echo$userConstituency;?>:</p>
+        <?php for ($x = 0; $x < $num_rows; $x++) {
+            echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] . "</label><p><p>";
+        }?>
+        </select>
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
 </div>
+        <?php
+        if(isset($_POST['submit'])){
+            if(isset($_POST['radio'])){
+                echo"wow";
+                echo$_POST['radio'];
+                $selectedCandidateID = $_POST['radio'];
+                $userNIN = $_POST['username'];
+                mysqli_query("INSERT INTO 'GeneralElection2018'(voterNIN, candidateID)
+                VALUES('$userNIN', '$selectedCandidateID')");
+            }
+        }?>
 
 <div class="container">
 	<form action="#.php">
@@ -142,3 +151,8 @@ $conn = null;
 </footer>
 
 </html>
+<script>
+    function submitVote(){
+
+    }
+</script>
