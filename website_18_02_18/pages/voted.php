@@ -53,19 +53,20 @@ try{
         redirect('../index.php');
     }
 
-    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql_check = "SELECT voterNIN FROM GeneralElection2018
-                WHERE voterNIN = '$userNIN'";
-    $query = $conn->prepare($sql_check);
-
-    $result = $conn->query($sql_check);
-
     $userNIN = $_SESSION['username'];
     $selectedCandidateID = $_POST['radio'];
 
+    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql_check = "SELECT voterNIN FROM GeneralElection2018
+                WHERE voterNIN =:userNIN";
+    $query = $conn->prepare($sql_check);
 
-    if ($result->num_rows > 0) {
+    $query->execute(array(':userNIN' => $userNIN));
+
+    $num_rows = $query->rowCount();
+
+    if ($num_rows > 0) {
         $sql = "UPDATE GeneralElection2018 SET candidateID='$selectedCandidateID' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
         echo 'updated existing vote';
