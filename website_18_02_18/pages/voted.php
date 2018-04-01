@@ -68,13 +68,13 @@ try{
     if ($result->num_rows > 0) {
         $sql = "UPDATE GeneralElection2018 SET candidateID='$selectedCandidateID' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
-        echo 'if';
+        echo 'updated existing vote';
     }
     else {
         $sql = "INSERT INTO GeneralElection2018 (voterNIN, candidateID)
                 VALUES('$userNIN', '$selectedCandidateID')";
         $conn->query($sql);
-        echo 'else';
+        echo 'new vote';
     }
 }
 
@@ -87,5 +87,5 @@ catch(PDOException $e){
 $conn = null;
 ?>
 <html>
-<meta http-equiv="refresh" content="3; url=voting.php">
+<meta http-equiv="refresh" content="1; url=voting.php">
 </html>
