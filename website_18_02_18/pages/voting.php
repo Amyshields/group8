@@ -120,6 +120,7 @@ $conn = null;
         <?php for ($x = 0; $x < $num_rows; $x++) {
             echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
         }?>
+        <input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>
         </select>
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
@@ -135,5 +136,4 @@ $conn = null;
 		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 	</ul>
 </footer>
-
 </html>
