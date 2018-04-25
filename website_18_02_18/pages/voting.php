@@ -13,6 +13,13 @@ if(!isset($_SESSION['logged_in'])){
    header("Location: ../index.php");  
 }
 
+
+if ($_SESSION['hasVoted'] == 1) {
+    $stringToEcho = "You have already voted. However, feel free to change your vote: ";
+} else {
+    $stringToEcho = "You have not voted yet, select an option from below: ";
+}
+
 global $local; //Setting up database based on local variable
 $servername = ""; //Set up connection variables
 $dbname = "";
@@ -107,42 +114,21 @@ $conn = null;
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
 <div class="container">
 	<form action="voted.php" method="post">
-		<h2>Local Election</h2>
-		<p> Please select who you wish to vote for, for your constituency <?php echo$userConstituency;?>:</p>
+		<h2>General Election 2018</h2>
+		<p> Constituency: <b><?php echo$userConstituency;?></b>.</p>
+        <p> <?php echo $stringToEcho ?> </p>
         <?php for ($x = 0; $x < $num_rows; $x++) {
-            echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] . "</label><p><p>";
+            echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
         }?>
         </select>
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
 </div>
-        <?php
-        if(isset($_POST['submit'])){
-            if(isset($_POST['radio'])){
-                echo"wow";
-                echo$_POST['radio'];
-                $selectedCandidateID = $_POST['radio'];
-                $userNIN = $_POST['username'];
-                mysqli_query("INSERT INTO 'GeneralElection2018'(voterNIN, candidateID)
-                VALUES('$userNIN', '$selectedCandidateID')");
-            }
-        }?>
-
-<div class="container">
-	<form action="#.php">
-		<h2>National Election</h2>
-		<p> Brexit, yes or no? </p>
-			<input type="radio" id="Choice1" name="choice1" ><label for="choice1">  Yes </label><p><p>
-			<input type="radio" id="Choice1" name="choice1"><label for="choice2">  No </label><p>
-			<input type="submit" class="btn btn-default" value="Vote" autofocus>
-	</form>
-	
-	<a href="../includes/logout.php"><p>Log out</p></a>
-</div>
 
 <footer class="container-fluid text-left">
 	<!--info here: logo, copyright, links, login as admin-->
 	<ul>
+        <li><a href="../includes/logout.php"><p>Log out</p></a></li>
 		<li><a href="#">Help</a></li>
 		<li><p>Other links</p></li>
 		<li><a href="#">Login as admin</a></li>
@@ -151,8 +137,3 @@ $conn = null;
 </footer>
 
 </html>
-<script>
-    function submitVote(){
-
-    }
-</script>

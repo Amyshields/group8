@@ -59,7 +59,8 @@ function login($username,$password){
 			foreach ($query as $row) {
 				$dbuname = $row['Username'];
 				$dbpw = $row['Password'];
-				$dbconstituency = $row['Constituency'];			
+				$dbconstituency = $row['Constituency'];	
+				$dbhasVoted = $row['hasVoted'];		
 			}
 			
 			if(($username==$dbuname)&&($password==$dbpw)){ //password_verify($password, $dbpw)
@@ -70,6 +71,7 @@ function login($username,$password){
 				$_SESSION['logged_in'] = true; 								
 				$_SESSION['username'] = $username;
 				$_SESSION['constituency'] = $dbconstituency;
+				$_SESSION['hasVoted'] = $dbhasVoted;
 				redirect('../pages/voting.php');					
 			}
 			

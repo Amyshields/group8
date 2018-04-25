@@ -69,14 +69,19 @@ try{
     if ($num_rows > 0) {
         $sql = "UPDATE GeneralElection2018 SET candidateID='$selectedCandidateID' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
-        echo 'updated existing vote';
+        echo "You're existing vote has been changed, auto redirecting back in 3 seconds";
     }
     else {
         $sql = "INSERT INTO GeneralElection2018 (voterNIN, candidateID)
                 VALUES('$userNIN', '$selectedCandidateID')";
         $conn->query($sql);
-        echo 'new vote';
+        echo 'You have voted for the first time, auto redirecting back in 3 seconds';
     }
+
+    // Change hasVoted
+    $sql_updateNew = "UPDATE Voter SET hasVoted=1 WHERE username='$userNIN'";
+    $conn->query($sql_updateNew);
+    $_SESSION['hasVoted'] = 1;
 }
 
 
@@ -88,5 +93,5 @@ catch(PDOException $e){
 $conn = null;
 ?>
 <html>
-<meta http-equiv="refresh" content="1; url=voting.php">
+<meta http-equiv="refresh" content="3; url=voting.php">
 </html>
