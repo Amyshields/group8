@@ -13,7 +13,7 @@ function login($username,$password){
     $dbname = "";
 	$dbusername = "";
 	$dbpassword = "";
-	$table = "Voter";
+	$table = "voter";
 	
 	if ($local == true){ //Setting up variables for local connection
 		global $lservername;	
@@ -24,7 +24,7 @@ function login($username,$password){
 		$dbname = $ldbname;
 		$dbusername = $ldbusername;
 		$dbpassword = $ldbpassword;		
-		$table = "voter"; //Fix for wamp server importing tables names as all lowercase
+		//$table = "voter"; //Fix for wamp server importing tables names as all lowercase
 	}
 	else{ //Setting up variables for online connection
 		global $oservername;	
