@@ -27,9 +27,9 @@ if(!isset($_SESSION['admin'])){
 	<body>
 		<h1>Admin Home Page</h1>
 		<h3>Welcome to electago Admin Home Page</h3>
-		<button type="button" class="btn btn-secondary">Create a new election</button><p><p>
-		<button type="button" class="btn btn-secondary">Modify an existing election</button><p><p>
-		<button type="button" class="btn btn-secondary">Delete an existing election</button><p><p>
+		<button type="button" class="btn btn-secondary">Create a new election</button><p></p>
+		<button type="button" class="btn btn-secondary">Modify an existing election</button><p></p>
+		<button type="button" class="btn btn-secondary">Delete an existing election</button><p></p>
 		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>	
 	
 		<a href="../../includes/logout.php"><p>Log out</p></a>
