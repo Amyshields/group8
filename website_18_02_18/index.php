@@ -27,39 +27,45 @@ if(isset($_SESSION['logged_in'])){
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<header class="container-fluid text-center">
+	<header class="container-fluid text-center pull-left">
 		<div id="logo">
 			<img src="images/logo.png" width="300" height="100" alt="">
 		</div>
 	</header>
 	<!--container class used in bootstrap to make a dynamic container of a fixed size-->
 	<div class="container">
-		<div class="container-fluid">    
-		<h3>Welcome to electago, where you can elect on the go.</h3>
-
-		<p>Use this service to login and vote.<br /> You can use this service to vote for local and national elections. If you make a voting choice you can also login here again to change that vote as long as it is before the election's closing deadline. <br /> To use this service you must have first registered to vote. When you register you can expect to be sent a private letter containing the password you should use here. If you have not recieved this letter please contact your local electoral office.</p>
-
+		<div class="container-fluid col-sm-offset-2">    
+		<h3 >Welcome to electago, where you can elect on the go.</h3>
+		<div class="col-sm-8" id="intro">
+			<p>Use this service to login and vote.</p>
+			<br /> <p>You can use this service to vote for local and national elections. If you make a voting choice you can also login here again to change that vote as long as it is before the election's closing deadline. </p>
+		</div>
 		<div class="col-sm-2">
 		</div>
 		<div class="col-sm-8">
-		<form action="includes/login.php" method="post">
-			<h2>Login here</h2>
-			<div class="form-group">
-				<!--The format of the number is two prefix letters, six digits, and one suffix letter. The example used is typically QQ123456C. -->
-				<label for="email"> National Insurance Number: </label>
-				<input type="text" name="username" class="form-control col-sm-6" value="QQ123456C" onfocus="if (this.value=='QQ123456C') this.value='';"><br>
-			</div>
+			<form action="includes/login.php" method="post">
+				<h2>Login here</h2>
+				<div class="form-group">
+					<!--The format of the number is two prefix letters, six digits, and one suffix letter. The example used is typically QQ123456C. -->
+					<label for="email"> National Insurance Number: </label>
+					<input type="text" name="username" class="form-control col-sm-6" value="QQ123456C" onfocus="if (this.value=='QQ123456C') this.value='';"><br>
+				</div>
 
-			<div class="form-group">
-				<!--Password example formatted like the sample passwords we will produce-->
-				<label for="password"> Password: </label>
-				<input type="password" class="form-control col-sm-6" name="password" value="*********" onfocus="if (this.value=='*********') this.value='';"><br>
-				<!-- An element to toggle between password visibility -->
-				<input type="checkbox" onclick="showPass()">Show Password 
+				<div class="form-group">
+					<!--Password example formatted like the sample passwords we will produce-->
+					<label for="password"> Password: </label>
+					<input type="password" class="form-control col-sm-6" name="password" value="*********" onfocus="if (this.value=='*********') this.value='';"><br>
+					<!-- An element to toggle between password visibility -->
+					<input type="checkbox" onclick="showPass()">Show Password 
+				</div>
+				<input type="submit" class="btn btn-warning pull-right" id="login" value="Login" autofocus>
+			</form>
+			<div>
+				<p> Or click <a href="https://www.gov.uk/register-to-vote">here</a> to register to vote. </p>
 			</div>
-			<input type="submit" class="btn btn-default" value="Login" autofocus>
-		</form>
-		<p> Or click <a href="https://www.gov.uk/register-to-vote">here</a> to register to vote. </p>
+			<div id="info">
+				<br /> <p> To use this service you must have first registered to vote. When you register you can expect to be sent a private letter containing the password you should use here. If you have not recieved this letter please contact your local electoral office.</p>
+			</div>
 		</div>
 
 		<!--
@@ -80,7 +86,7 @@ if(isset($_SESSION['logged_in'])){
 
 	<footer class="container-fluid">
 		<!--info here: logo, copyright, links, login as admin-->
-		
+
 		<div id="small_logo" class="media">
 			<img src="images/small_logo.png" width="100" height="35" alt="">
 		</div>
