@@ -38,7 +38,7 @@ if ($local == true){ //Setting up variables for local connection
     $dbusername = $ldbusername;
     $dbpassword = $ldbpassword;
     $table = $name2;
-	//$table2 = "candidate";
+
 }
 
 else{ //Setting up variables for online connection
@@ -62,23 +62,37 @@ try{
 	$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
+	//Get total number of voters available to vote
+	$sql_select = 'SELECT Username FROM voter';
+	$voters = 0;
+	foreach ($conn->query($sql_select) as $row) {
+		$voters++;
+	}
+	
 	$sql_select = 'SELECT candidateID FROM '.$table;
 	$votes = array();
 	$candidates = array();
-	$s = "";
+	$voted = 0;
 	
 	foreach ($conn->query($sql_select) as $row) {
 		$id = $row['candidateID'];
+		$voted++;
 		if (!isset($votes[$id])){
 			$votes[$id] = 1;
 			array_push($candidates,$id);
 		}
 		else{
 			$votes[$id] = $votes[$id] + 1;
-		}
+		}		
 	}
 	
-	$sql_select = 'SELECT candidateID, candidateParty, candidateArea FROM '.$table2;
+	//Get turnout
+	$turnout = round(($voted/$voters) * 100, 2);
+	$novote = round(100-$turnout,2);
+	//echo 'voters: '.$voters.' , voted: '.$voted;#
+	echo $turnout;
+	
+	$sql_select = 'SELECT candidateID, candidateParty, candidateArea FROM candidate';
 	$parties = array();
 	$party_votes = array();
 	$area_votes = array();
@@ -92,15 +106,14 @@ try{
 		$party = $row['candidateParty'];
 		$candidate_parties[$id] = $party;
 		
-		//Get total number of seats won for each party
+		//Put candidates into an array for the respective constituency (for seat calculation)
 		if (!isset($area_votes[$area])){
 			$area_votes[$area] = array();
 			array_push($area_names, $area);		
 		}
 		array_push($area_votes[$area],$id); //adding candidate into constituency array to sort winner
-		//echo $area.': '.$id,'</br>';
 		
-		//Get total number of votes for each party
+		//Get total number of votes for each party for total party vote count
 		if (isset($votes[$id])){			
 			if (!isset($party_votes[$party])){
 				$party_votes[$party] = $votes[$id];
@@ -115,7 +128,8 @@ try{
 	$area_scores = array();
 	$area_winners = array();
 	
-	foreach ($area_names as $area_name){ //for every area name in the area names array
+	//Find number of votes for each candidate in a constituency
+	foreach ($area_names as $area_name){
 		foreach ($area_votes[$area_name] as $area_candidates){ 
 			if (!isset($area_scores[$area_name])){
 				$area_scores[$area_name] = array();
@@ -124,24 +138,48 @@ try{
 			if (isset($votes[$area_candidates])){
 				$area_scores[$area_name][$area_candidates] = $votes[$area_candidates];
 			}
-		}
-		/*foreach($area_scores[$area_name] as $area_score){
-			echo $area_score;	
-		}*/		
+		}	
 	}
 	
+	//Find the highest scores for each constituency candidate group
 	foreach ($area_names as $area_name){
 		$scores = $area_scores[$area_name];
+		$scores2 = $area_scores[$area_name];
 		
 		if (count($area_scores[$area_name]) > 0){
+			//CODE FOR COIN FLIP
+			/*$winner_ids = array_keys($scores2, max($scores2));
+			foreach ($winner_ids as $a){
+				echo 'candidate: (' . $candidate_parties[$a] . ') ' . $a . ': ' . $scores2[$a] . '</br>';
+			}
+			$winner = null;
+
+			//Test to find multiple winners
+			for ($i = 1; $i <= count($winner_ids)-1; $i++) {
+				if ($scores2[$winner_ids[$i]] <  $scores2[$winner_ids[0]]){
+					unset($scores2,$winner_ids[$i]); //not a winner or tied with winner
+				}
+			}*/ //END OF CODE FOR COIN FLIP
+
+			/*if (count($scores2) > 1){
+				$rand = rand(0,count($scores2)-1);
+				$winner = array_keys($scores, max($scores))[$rand];
+			}
+			else{
+				$winner = array_keys($scores, max($scores))[0];
+			}*/
+			//echo $winner . '</br>';
+
 			$winner_id = array_keys($scores, max($scores))[0];
 			$candidate_party = $candidate_parties[$winner_id];
 			if (!isset($seats[$candidate_party])){
 				$seats[$candidate_party] = 0;	
 			}
-			$seats[$candidate_party] = $seats[$candidate_party] + 1; //Finally adding the winning seat to the results
+			$seats[$candidate_party] = $seats[$candidate_party] + 1; //Adding a seat to the winning party
 		}	
 	}
+
+	//Finding if there is a tie, and coin flipping to find a winner
 	
 }
 catch(PDOException $e){
@@ -239,7 +277,7 @@ $conn = null;
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
 				type: "column",
-				yValueFormatString: "0'%'",
+				yValueFormatString: "0'% Votes'",
 				dataPoints: [
 					{ label: "Labour",  y: 10 },
 					{ label: "Conservatives",  y: -10 },
@@ -249,7 +287,32 @@ $conn = null;
 			}
 			]
 		});
-		chart3.render();		
+		chart3.render();
+
+		var chart4 = new CanvasJS.Chart("chartContainer4", {
+			animationEnabled: true,
+			exportEnabled: true,
+			axisX:{ 
+				title: "Party"
+			},
+			axisY:{ 
+				title: "Seats"
+			},
+			data: [              
+			{
+				// Change type to "doughnut", "line", "splineArea", etc.
+				type: "pie",
+				yValueFormatString: "0'%'",
+				dataPoints: [
+					<?php
+						echo '{ label: "Voted",  y: '.$turnout.'},';
+						echo '{ label: "No Vote",  y: '.$novote.'},';
+					?>
+				]
+			}
+			]
+		});
+		chart4.render();		
 	}
 	</script>
 </head>
@@ -267,6 +330,9 @@ $conn = null;
 
 		<h2>Individual Party Results</h2>
 		<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
+		
+		<h2>Turnout</h2>
+		<div id="chartContainer4" style="height: 300px; width: 600px;"></div>
 		
 		<h2>Change from Previous Year</h2>
 		<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
