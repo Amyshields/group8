@@ -78,15 +78,30 @@ try{
 		}
 	}
 	
-	$sql_select = 'SELECT candidateID, candidateParty FROM '.$table2;
+	$sql_select = 'SELECT candidateID, candidateParty, candidateArea FROM '.$table2;
 	$parties = array();
 	$party_votes = array();
+	$area_votes = array();
+	$area_names = array();
+	$seats = array();
+	$candidate_parties = array();
 	
 	foreach ($conn->query($sql_select) as $row) {
 		$id = $row['candidateID'];
-
-		if (isset($votes[$id])){
-			$party = $row['candidateParty'];
+		$area = $row['candidateArea'];		
+		$party = $row['candidateParty'];
+		$candidate_parties[$id] = $party;
+		
+		//Get total number of seats won for each party
+		if (!isset($area_votes[$area])){
+			$area_votes[$area] = array();
+			array_push($area_names, $area);		
+		}
+		array_push($area_votes[$area],$id); //adding candidate into constituency array to sort winner
+		//echo $area.': '.$id,'</br>';
+		
+		//Get total number of votes for each party
+		if (isset($votes[$id])){			
 			if (!isset($party_votes[$party])){
 				$party_votes[$party] = $votes[$id];
 				array_push($parties,$party);
@@ -95,6 +110,37 @@ try{
 				$party_votes[$party] = $party_votes[$party] + $votes[$id];
 			}
 		}
+	}
+	
+	$area_scores = array();
+	$area_winners = array();
+	
+	foreach ($area_names as $area_name){ //for every area name in the area names array
+		foreach ($area_votes[$area_name] as $area_candidates){ 
+			if (!isset($area_scores[$area_name])){
+				$area_scores[$area_name] = array();
+			}
+
+			if (isset($votes[$area_candidates])){
+				$area_scores[$area_name][$area_candidates] = $votes[$area_candidates];
+			}
+		}
+		/*foreach($area_scores[$area_name] as $area_score){
+			echo $area_score;	
+		}*/		
+	}
+	
+	foreach ($area_names as $area_name){
+		$scores = $area_scores[$area_name];
+		
+		if (count($area_scores[$area_name]) > 0){
+			$winner_id = array_keys($scores, max($scores))[0];
+			$candidate_party = $candidate_parties[$winner_id];
+			if (!isset($seats[$candidate_party])){
+				$seats[$candidate_party] = 0;	
+			}
+			$seats[$candidate_party] = $seats[$candidate_party] + 1; //Finally adding the winning seat to the results
+		}	
 	}
 	
 }
@@ -132,16 +178,19 @@ $conn = null;
 				title: "Constituency"
 			},
 			axisY:{ 
-				title: "Votes"
+				title: "Seats"
 			},
 			data: [              
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
 				type: "column",
+				yValueFormatString: "0' Seat(s)'",
 				dataPoints: [
 					<?php
 					foreach ($parties as $party){
-						echo '{ label: "'.$party.'",  y: '.$party_votes[$party].'},';
+						if (isset($seats[$party])){
+							echo '{ label: "'.$party.'",  y: '.$seats[$party].'},';
+						}
 					}
 					?>
 				]
@@ -157,12 +206,13 @@ $conn = null;
 				title: "Constituency"
 			},
 			axisY:{ 
-				title: "Seats"
+				title: "Votes"
 			},
 			data: [              
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
-				type: "bar",      
+				type: "bar", 
+				yValueFormatString: "0' Vote(s)'", 				
 				dataPoints: [
 					<?php
 					foreach ($parties as $party){
@@ -215,7 +265,7 @@ $conn = null;
 		<h2>Final Voting Results</h2>
 		<div id="chartContainer" style="height: 300px; width: 600px;"></div>
 
-		<h2>Individual Party Results by Seat</h2>
+		<h2>Individual Party Results</h2>
 		<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
 		
 		<h2>Change from Previous Year</h2>
