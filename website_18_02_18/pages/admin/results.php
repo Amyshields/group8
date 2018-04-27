@@ -175,7 +175,7 @@ $conn = null;
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{ 
-				title: "Constituency"
+				title: "Party"
 			},
 			axisY:{ 
 				title: "Seats"
@@ -203,7 +203,7 @@ $conn = null;
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{ 
-				title: "Constituency"
+				title: "Party"
 			},
 			axisY:{ 
 				title: "Votes"
@@ -229,7 +229,7 @@ $conn = null;
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{ 
-				title: "Constituency"
+				title: "Party"
 			},
 			axisY:{ 
 				title: "Change (%)",
