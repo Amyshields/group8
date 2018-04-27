@@ -1,5 +1,7 @@
 @charset "utf-8"; /*Max,Noah,Amy*/
+/*Simplified website so all CSS are in one document*/
 
+/*general*/
 
 html,body{
 	margin: 0;
@@ -32,7 +34,7 @@ h3{
 footer{
 	font-weight: bold;
 }
-
+/*This bit is for the Index page*/
 #logo {
 	padding-top: 50px;
 	padding-bottom: 25px;
@@ -43,3 +45,4 @@ footer{
 	padding-right: 20px;
 }
 
+/**/
