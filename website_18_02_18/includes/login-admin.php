@@ -8,12 +8,17 @@ include('settings.php');
 session_start();
 
 function login($username,$password){	
+	global $oservername;
 	global $local; //Setting up database based on local variable
 	$servername = ""; //Set up connection variables
     $dbname = "";
 	$dbusername = "";
 	$dbpassword = "";
 	$table = "admin";
+	if ($oservername === "csmysql.cs.cf.ac.uk"){
+		$table = "Admin";
+	}
+	
 	
 	if ($local == true){ //Setting up variables for local connection
 		global $lservername;	

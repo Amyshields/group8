@@ -8,12 +8,16 @@ include('settings.php');
 session_start();
 
 function login($username,$password){	
+	global $oservername;
 	global $local; //Setting up database based on local variable
 	$servername = ""; //Set up connection variables
     $dbname = "";
 	$dbusername = "";
 	$dbpassword = "";
 	$table = "voter";
+	if ($oservername === "csmysql.cs.cf.ac.uk"){
+		$table = "Voter";
+	}
 	
 	if ($local == true){ //Setting up variables for local connection
 		global $lservername;	
@@ -24,7 +28,7 @@ function login($username,$password){
 		$dbname = $ldbname;
 		$dbusername = $ldbusername;
 		$dbpassword = $ldbpassword;		
-		//$table = "voter"; //Fix for wamp server importing tables names as all lowercase
+		$table = "voter"; //Fix for wamp server importing tables names as all lowercase
 	}
 	else{ //Setting up variables for online connection
 		global $oservername;	
@@ -43,7 +47,7 @@ function login($username,$password){
 			$_SESSION['error'] = "Couldn't connect to the database";
 			redirect('../index.php');
 		}				
-
+		
 		$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				

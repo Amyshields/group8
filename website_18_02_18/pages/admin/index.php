@@ -30,8 +30,8 @@ if(!isset($_SESSION['admin'])){
 		<button type="button" class="btn btn-secondary">Create a new election</button><p></p>
 		<button type="button" class="btn btn-secondary">Modify an existing election</button><p></p>
 		<button type="button" class="btn btn-secondary">Delete an existing election</button><p></p>
+		<a href="decryptVotes.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
 		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>	
-	
 		<a href="../../includes/logout.php"><p>Log out</p></a>
 	</body>
 	
