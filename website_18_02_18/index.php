@@ -27,7 +27,7 @@ if(isset($_SESSION['logged_in'])){
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<header class="container-fluid text-center pull-left">
+	<header class="container-fluid text-center">
 		<div id="logo">
 			<img src="images/logo.png" width="300" height="100" alt="">
 		</div>
