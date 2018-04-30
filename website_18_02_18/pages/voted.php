@@ -6,7 +6,6 @@ session_start();
 
 if (isset($_SESSION['admin'])){
     redirect("../index.php");
-}
 
 
 if(!isset($_SESSION['logged_in'])){
