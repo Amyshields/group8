@@ -1,7 +1,7 @@
 <?php
 /*Noah Johnson C1649499*/
 
-$local = false; //Do you want to connect to local or online server?
+$local = true; //Do you want to connect to local or online server?
 
 //Details for the online server (Don't change)
 $oservername = "csmysql.cs.cf.ac.uk"; //Name of the online server
@@ -10,10 +10,10 @@ $odbusername = "group8.2017"; //Database login username
 $odbpassword = "kMB8PRzvnZf7Amg"; //Database password username
 
 //Details for the local server
-$lservername = "127.0.0.1:3306"; //Name of the local server (wamps standard)
-$ldbname = "group8_2017"; //Database on the server to enter 
+$lservername = "127.0.0.1"; //Name of the local server (wamps standard)
+$ldbname = "group8_2017"; //Database on the server to enter
 $ldbusername = "root"; //Database login username (wamp's standard is 'root')
-$ldbpassword = ""; //Database password username	(wamp's standard is nothing) 
+$ldbpassword = "root"; //Database password username	(wamp's standard is nothing)
 
 
 /*
@@ -24,7 +24,7 @@ without disrupting the online data?
 A: Install wamp server (https://www.youtube.com/watch?v=MsMaiHqkKkQ)
 then create a new database at localhost/phpmyadmin called 'group8_2017'.
 After this, import the dummy data called 'dummyDataFilledDatabase.sql'.
-Finally, change the $local variable to true and it should work. 
+Finally, change the $local variable to true and it should work.
 
 
 Q: Set $local to true and cannot login in using voter login page?

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.10
--- http://www.phpmyadmin.net
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
 --
--- Host: csmysql.cs.cf.ac.uk
--- Generation Time: Feb 15, 2018 at 12:51 PM
--- Server version: 5.1.73
--- PHP Version: 5.3.3
+-- Host: localhost:3306
+-- Generation Time: Apr 20, 2018 at 12:37 PM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `c1529854`
+-- Database: `group8_2017`
 --
 
 -- --------------------------------------------------------
@@ -26,12 +26,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `Admin`
 --
 
-CREATE TABLE IF NOT EXISTS `Admin` (
-  `adminID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Admin` (
+  `adminID` int(11) NOT NULL,
   `adminUsername` varchar(25) NOT NULL,
-  `adminPassword` varchar(150) NOT NULL,
-  PRIMARY KEY (`adminID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `adminPassword` varchar(150) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Admin`
@@ -47,13 +46,12 @@ INSERT INTO `Admin` (`adminID`, `adminUsername`, `adminPassword`) VALUES
 -- Table structure for table `Candidate`
 --
 
-CREATE TABLE IF NOT EXISTS `Candidate` (
-  `candidateID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Candidate` (
+  `candidateID` int(11) NOT NULL,
   `candidateName` varchar(50) NOT NULL,
   `candidateParty` varchar(25) NOT NULL,
-  `candidateArea` varchar(25) NOT NULL,
-  PRIMARY KEY (`candidateID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `candidateArea` varchar(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Candidate`
@@ -82,21 +80,21 @@ INSERT INTO `Candidate` (`candidateID`, `candidateName`, `candidateParty`, `cand
 -- Table structure for table `Election`
 --
 
-CREATE TABLE IF NOT EXISTS `Election` (
-  `electionID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Election` (
+  `electionID` int(11) NOT NULL,
   `electionName` varchar(50) NOT NULL,
   `electionType` varchar(25) NOT NULL,
   `electionArea` varchar(25) NOT NULL,
   `electionDate` date NOT NULL,
-  PRIMARY KEY (`electionID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `electionCandidates` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Election`
 --
 
-INSERT INTO `Election` (`electionID`, `electionName`, `electionType`, `electionArea`, `electionDate`) VALUES
-(1, 'GeneralElection2018', 'FPTP', 'National', '2018-05-16');
+INSERT INTO `Election` (`electionID`, `electionName`, `electionType`, `electionArea`, `electionDate`, `electionCandidates`) VALUES
+(1, 'GeneralElection2018', 'FPTP', 'National', '2018-05-16', '1');
 
 -- --------------------------------------------------------
 
@@ -104,7 +102,7 @@ INSERT INTO `Election` (`electionID`, `electionName`, `electionType`, `electionA
 -- Table structure for table `GeneralElection2018`
 --
 
-CREATE TABLE IF NOT EXISTS `GeneralElection2018` (
+CREATE TABLE `GeneralElection2018` (
   `voterNIN` varchar(11) NOT NULL,
   `candidateID` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -115,11 +113,10 @@ CREATE TABLE IF NOT EXISTS `GeneralElection2018` (
 -- Table structure for table `Voter`
 --
 
-CREATE TABLE IF NOT EXISTS `Voter` (
+CREATE TABLE `Voter` (
   `Username` varchar(9) NOT NULL,
   `Password` varchar(16) NOT NULL,
-  `Constituency` varchar(25) NOT NULL,
-  PRIMARY KEY (`Username`)
+  `Constituency` varchar(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -137,6 +134,56 @@ INSERT INTO `Voter` (`Username`, `Password`, `Constituency`) VALUES
 ('ZW989276', 'crazyboy123', 'Cardiff West'),
 ('QM786065', 'crazygirl123', 'Cardiff South'),
 ('XI278189', 'last123', 'Cardiff Central');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Admin`
+--
+ALTER TABLE `Admin`
+  ADD PRIMARY KEY (`adminID`);
+
+--
+-- Indexes for table `Candidate`
+--
+ALTER TABLE `Candidate`
+  ADD PRIMARY KEY (`candidateID`);
+
+--
+-- Indexes for table `Election`
+--
+ALTER TABLE `Election`
+  ADD PRIMARY KEY (`electionID`);
+
+--
+-- Indexes for table `Voter`
+--
+ALTER TABLE `Voter`
+  ADD PRIMARY KEY (`Username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Admin`
+--
+ALTER TABLE `Admin`
+  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `Candidate`
+--
+ALTER TABLE `Candidate`
+  MODIFY `candidateID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `Election`
+--
+ALTER TABLE `Election`
+  MODIFY `electionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

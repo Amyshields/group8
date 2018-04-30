@@ -1,16 +1,16 @@
 <?php
-require_once('../includes/functions.php'); 
+require_once('../includes/functions.php');
 include('../includes/settings.php');
 
 session_start();
 
 if (isset($_SESSION['admin'])){
-	redirect("../index.php");  	
+	redirect("../index.php");
 }
 
 if(!isset($_SESSION['logged_in'])){
    $_SESSION['error'] = "Please enter your National Insurance Number and Password";
-   header("Location: ../index.php");  
+   header("Location: ../index.php");
 }
 
 global $local; //Setting up database based on local variable
@@ -54,6 +54,9 @@ try{
 
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$sql_select = "SELECT ";
+
     $sql_select = "SELECT * FROM ".$table." WHERE candidateArea=:userConstituency";
     $query = $conn->prepare($sql_select);
 
@@ -98,7 +101,7 @@ $conn = null;
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container-fluid">    
+	<div class="container-fluid">
 	<header class="container-fluid text-center">
 	<h1>Electago - Voting Page</h1>
 		<!--header image here-->
@@ -136,7 +139,7 @@ $conn = null;
 			<input type="radio" id="Choice1" name="choice1"><label for="choice2">  No </label><p>
 			<input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
-	
+
 	<a href="../includes/logout.php"><p>Log out</p></a>
 </div>
 

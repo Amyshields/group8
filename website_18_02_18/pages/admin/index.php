@@ -1,14 +1,14 @@
 <?php
-require_once('../../includes/functions.php'); 
+require_once('../../includes/functions.php');
 
 session_start();
 
 if(!isset($_SESSION['admin'])){
-	redirect("../../index.php");  
+	redirect("../../index.php");
 }
 ?>
 
-<!doctype html> 
+<!doctype html>
 <html>
 	<head>
 <head>
@@ -23,18 +23,18 @@ if(!isset($_SESSION['admin'])){
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-			
+
 	<body>
 		<h1>Admin Home Page</h1>
 		<h3>Welcome to electago Admin Home Page</h3>
-		<button type="button" class="btn btn-secondary">Create a new election</button><p><p>
-		<button type="button" class="btn btn-secondary">Modify an existing election</button><p><p>
-		<button type="button" class="btn btn-secondary">Delete an existing election</button><p><p>
-		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>	
-	
+		<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
+		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
+		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
+		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
+
 		<a href="../../includes/logout.php"><p>Log out</p></a>
 	</body>
-	
+
 
 	<footer class="container-fluid text-left">
 		<!--info here: logo, copyright, links, login as admin-->
