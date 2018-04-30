@@ -57,7 +57,6 @@
       echo $sql . "<br>" . $e->getMessage();
   }
 
-  $conn = null;
 ?>
 <html>
   <head>
@@ -143,6 +142,7 @@
             $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
             //redirect('../index.php');
         }
+        $conn = null;
       ?>
   </body>
 
