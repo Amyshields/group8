@@ -122,6 +122,7 @@ try{
                 </body>
                 </html>";
 =======
+        echo "Your existing vote has been changed, auto redirecting back in 3 seconds";
 >>>>>>> front-end-changes
     }
     else {
