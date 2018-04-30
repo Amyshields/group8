@@ -72,19 +72,22 @@ if(isset($_SESSION['logged_in'])){
 		?>
 	</div>
 
-	<footer class="container-fluid text-left">
+
+	<footer class="container-fluid">
 		<!--info here: logo, copyright, links, login as admin-->
-		<ul>
+
+		<div id="small_logo" class="media">
+			<img src="images/small_logo.png" width="100" height="35" alt="">
+		</div>
+		<div class="media-body">
+		<ul class="list-inline pull right">
 			<li><a href="#">Help</a></li>
 			<li><p>Other links</p></li>
-			<li><a href="../index.php">Login as voter</a></li>
+			<li><a href="pages/admin-login.php">Login as admin</a></li>
 			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 		</ul>
+		</div>
 	</footer>
-
-	<div id="small_logo">
-	<img src="../images/small_logo.png" width="100" height="35" alt="">
-	</div>
 
 <script>
 function showPass() {

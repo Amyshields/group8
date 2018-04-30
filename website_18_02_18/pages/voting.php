@@ -126,14 +126,20 @@ $conn = null;
 	</form>
 </div>
 
-<footer class="container-fluid text-left">
-	<!--info here: logo, copyright, links, login as admin-->
-	<ul>
-        <li><a href="../includes/logout.php"><p>Log out</p></a></li>
-		<li><a href="#">Help</a></li>
-		<li><p>Other links</p></li>
-		<li><a href="#">Login as admin</a></li>
-		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-	</ul>
-</footer>
+
+    <footer class="container-fluid">
+        <!--info here: logo, copyright, links, login as admin-->
+
+        <div id="small_logo" class="media">
+            <img src="images/small_logo.png" width="100" height="35" alt="">
+        </div>
+        <div class="media-body">
+        <ul class="list-inline pull right">
+            <li><a href="#">Help</a></li>
+            <li><p>Other links</p></li>
+            <li><a href="pages/admin-login.php">Login as admin</a></li>
+            <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+        </ul>
+        </div>
+    </footer>
 </html>
