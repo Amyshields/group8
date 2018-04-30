@@ -44,7 +44,7 @@ if(isset($_SESSION['logged_in'])){
 		</div>
 		<div class="col-sm-8">
 			<form action="includes/login.php" method="post">
-				<h2>Login here</h2>
+				<h2>Login here:</h2>
 				<div class="form-group">
 					<!--The format of the number is two prefix letters, six digits, and one suffix letter. The example used is typically QQ123456C. -->
 					<label for="email"> National Insurance Number: </label>
