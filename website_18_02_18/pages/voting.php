@@ -132,8 +132,6 @@ $conn = null;
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
 </div>
-
-<<<<<<< HEAD
 <footer class="container-fluid text-left">
 	<!--info here: logo, copyright, links, login as admin-->
 	<ul>
@@ -145,7 +143,6 @@ $conn = null;
 	</ul>
 </footer>
 </html>
-=======
 
     <footer class="container-fluid">
         <!--info here: logo, copyright, links, login as admin-->
@@ -163,4 +160,3 @@ $conn = null;
         </div>
     </footer>
 </html>
->>>>>>> front-end-changes
