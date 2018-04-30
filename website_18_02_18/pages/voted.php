@@ -81,7 +81,6 @@ try{
     if ($num_rows > 0) {
         $sql = "UPDATE GeneralElection2018 SET candidateID='$encString' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
-<<<<<<< HEAD
         echo "<!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -121,15 +120,11 @@ try{
                 </footer>
                 </body>
                 </html>";
-=======
-        echo "Your existing vote has been changed, auto redirecting back in 3 seconds";
->>>>>>> front-end-changes
     }
     else {
         $sql = "INSERT INTO GeneralElection2018 (voterNIN, candidateID)
                 VALUES('$userNIN', '$encString')";
         $conn->query($sql);
-        echo 'You have voted for the first time, auto redirecting back in 3 seconds';
     }
 
     // Change hasVoted
