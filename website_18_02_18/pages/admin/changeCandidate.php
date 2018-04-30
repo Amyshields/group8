@@ -15,4 +15,6 @@ UPDATE `$table`
   WHERE `candidateID` = '$id'
 ";
 $query = $conn->query($sql);
+
+$conn = null;
 ?>

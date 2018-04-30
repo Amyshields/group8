@@ -25,4 +25,5 @@ DROP TABLE $electionName
 ";
 $query = $conn->query($sql);
 
+$conn = null;
 ?>

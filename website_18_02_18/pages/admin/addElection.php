@@ -51,4 +51,6 @@ if ($num_rows == 0){
   echo "An election with this name already exists";
 }
 
+$conn = null;
+
 ?>

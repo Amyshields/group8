@@ -11,5 +11,7 @@ VALUES ('$name', '$party', '$area')
 ";
 $query = $conn->query($sql);
 
+$conn = null;
+
 header('Location: ./candidates.php');
 ?>
