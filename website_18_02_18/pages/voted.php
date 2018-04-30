@@ -6,7 +6,7 @@ session_start();
 
 if (isset($_SESSION['admin'])){
     redirect("../index.php");
-}
+
 
 if(!isset($_SESSION['logged_in'])){
     $_SESSION['error'] = "Please enter your National Insurance Number and Password";
@@ -69,7 +69,7 @@ try{
     if ($num_rows > 0) {
         $sql = "UPDATE GeneralElection2018 SET candidateID='$selectedCandidateID' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
-        echo "You're existing vote has been changed, auto redirecting back in 3 seconds";
+        echo "Your existing vote has been changed, auto redirecting back in 3 seconds";
     }
     else {
         $sql = "INSERT INTO GeneralElection2018 (voterNIN, candidateID)
