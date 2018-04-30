@@ -1,14 +1,14 @@
 <?php
-require_once('includes/functions.php'); 
+require_once('includes/functions.php');
 
 session_start();
 
 if(isset($_SESSION['admin'])){
-	redirect("pages/admin/index.php");  
+	redirect("pages/admin/index.php");
 }
 
 if(isset($_SESSION['logged_in'])){
-   redirect("pages/voting.php");  
+   redirect("pages/voting.php");
 }
 ?>
 
@@ -34,7 +34,7 @@ if(isset($_SESSION['logged_in'])){
 	</header>
 	<!--container class used in bootstrap to make a dynamic container of a fixed size-->
 	<div class="container">
-		<div class="container-fluid col-sm-offset-2">    
+		<div class="container-fluid col-sm-offset-2">
 		<h3 >Welcome to electago, where you can elect on the go.</h3>
 		<div class="col-sm-8" id="intro">
 			<p>Use this service to login and vote.</p>
@@ -54,9 +54,9 @@ if(isset($_SESSION['logged_in'])){
 				<div class="form-group">
 					<!--Password example formatted like the sample passwords we will produce-->
 					<label for="password"> Password: </label>
-					<input type="password" class="form-control col-sm-6" name="password" value="*********" onfocus="if (this.value=='*********') this.value='';"><br>
+					<input type="password" class="form-control col-sm-6" name="password" id="passwordInput" placeholder="*********"><br>
 					<!-- An element to toggle between password visibility -->
-					<input type="checkbox" onclick="showPass()">Show Password 
+					<input type="checkbox" onclick="showPass()">Show Password
 				</div>
 				<input type="submit" class="btn btn-warning pull-right" id="login" value="Login" autofocus>
 			</form>
@@ -75,12 +75,12 @@ if(isset($_SESSION['logged_in'])){
 				</div>
 			</div>
 		</div> -->
-		
+
 		<?php
 			if (isset($_SESSION['error'])){
 				echo $_SESSION['error'];
-				unset($_SESSION['error']); 
-			}			
+				unset($_SESSION['error']);
+			}
 		?>
 	</div>
 
@@ -102,7 +102,7 @@ if(isset($_SESSION['logged_in'])){
 
 <script>
 function showPass() {
-    var x = document.getElementById("myInput");
+    var x = document.getElementById("passwordInput");
     if (x.type === "password") {
         x.type = "text";
     } else {

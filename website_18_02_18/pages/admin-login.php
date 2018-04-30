@@ -1,10 +1,10 @@
 <?php
-require_once('../includes/functions.php'); 
+require_once('../includes/functions.php');
 
 session_start();
 
 if(isset($_SESSION['logged_in'])){
-   redirect("../index.php");  
+   redirect("../index.php");
 }
 ?>
 
@@ -31,33 +31,33 @@ if(isset($_SESSION['logged_in'])){
 	</header>
 	<!--container class used in bootstrap to make a dynamic container of a fixed size-->
 	<div class="container">
-		<div class="container-fluid col-sm-offset-2">    
+		<div class="container-fluid col-sm-offset-2">
 		<h3 >Welcome to electago, where you can elect on the go.</h3>
 		<div class="col-sm-8" id="intro">
 			<p>This page is only for administrator use. If you are not an administrator click <a href="/index.php">here</a> to return to the normal login page.</p>
 			<p>Be careful when logging in that you do not save your login details to your browser as they are highly sensitive.</p>
 		</div>
-		<div class="container-fluid">    
+		<div class="container-fluid">
 		<div class="col-sm-2">
 		</div>
 		<div class="col-sm-8">
 			<form action="../includes/login-admin.php" method="post">
 				<h2>Administrator Login:</h2>
-				
+
 				<div class="form-group">
 					<!--The format of the number is two prefix letters, six digits, and one suffix letter. The example used is typically QQ123456C. -->
 					<label for="email"> Username: </label>
 					<input type="text" name="username" class="form-control col-sm-6" value="ladmin" onfocus="if (this.value=='ladmin') this.value='';"><br>
 				</div>
-				
+
 				<div class="form-group">
 					<!--Password example formatted like the sample passwords we will produce-->
 					<label for="password"> Password: </label>
-					<input type="password" class="form-control col-sm-6" name="password" value="*********" onfocus="if (this.value=='*********') this.value='';"><br>
+					<input type="password" class="form-control col-sm-6" name="password" id="passwordInput" placeholder="*********"><br>
 					<!-- An element to toggle between password visibility -->
-					<input type="checkbox" onclick="showPass()">Show Password 
+					<input type="checkbox" onclick="showPass()">Show Password
 				</div>
-				
+
 				<input type="submit" class="btn btn-warning pull-right" id="login" value="Login" autofocus>
 			</form>
 		</div>
@@ -68,12 +68,12 @@ if(isset($_SESSION['logged_in'])){
 				</div>
 			</div>
 		</div> -->
-		
+
 		<?php
 			if (isset($_SESSION['error'])){
 				echo $_SESSION['error'];
-				unset($_SESSION['error']); 
-			}			
+				unset($_SESSION['error']);
+			}
 		?>
 	</div>
 
@@ -96,7 +96,7 @@ if(isset($_SESSION['logged_in'])){
 
 <script>
 function showPass() {
-    var x = document.getElementById("myInput");
+    var x = document.getElementById("passwordInput");
     if (x.type === "password") {
         x.type = "text";
     } else {
