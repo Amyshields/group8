@@ -1,11 +1,44 @@
 <?php
 require_once('../../includes/functions.php'); 
+include('../../includes/settings.php');
 
 session_start();
 
 if(!isset($_SESSION['admin'])){
 	redirect("../../index.php");  
 }
+
+global $local; //Setting up database based on local variable
+$servername = ""; //Set up connection variables
+$dbname = "";
+$dbusername = "";
+$dbpassword = "";
+$table = "election"; 
+
+if ($local == true){ //Setting up variables for local connection
+    global $lservername;
+    global $ldbname;
+    global $ldbusername;
+    global $ldbpassword;
+    $servername = $lservername;
+    $dbname = $ldbname;
+    $dbusername = $ldbusername;
+    $dbpassword = $ldbpassword;
+    $table = "election"; //Fix for wamp server importing tables names as all lowercase
+}
+
+else{ //Setting up variables for online connection
+    global $oservername;
+    global $odbname;
+    global $odbusername;
+    global $odbpassword;
+
+    $servername = $oservername;
+    $dbname = $odbname;
+    $dbusername = $odbusername;
+    $dbpassword = $odbpassword;
+}
+
 ?>
 
 <!doctype html>
@@ -20,7 +53,7 @@ if(!isset($_SESSION['admin'])){
 	<link href="../../css/electago.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 </head>
 			
 	<body>
@@ -33,36 +66,41 @@ if(!isset($_SESSION['admin'])){
 		
 		<h3>Please select which Election you would like to view the demographics for:</h3>
 		
-		<h2>Result</h2>
-		<img src="../../images/pie.png" width="570" height="320" alt="">
+		<?php
+			try{
+				$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
+				if (!$conn){
+					echo "Can't connect to the database.";
+				}				
+
+				$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
+				$sql_select = 'SELECT electionID, electionName FROM '.$table;
+				$elections = array();
+				
+				foreach ($conn->query($sql_select) as $row) {
+					$id = $row['electionID'];
+					$name = $row['electionName'];
+					$elections[$id] = $name;
+					
+					echo '<a href="results.php?id='.$id.'"><button type="button" class="btn btn-secondary">'.$name.'</button></a><p></p>';
+				}
+				
+				$_SESSION['elections'] = $elections;
+			}
+			catch(PDOException $e){
+				echo $sql . "<br>" . $e->getMessage();
+			}
+
+			$conn = null;
+		?>		
 		
-		<h2>Turnout</h2>
-		<img src="../../images/pie.png" width="570" height="320" alt="">
-		
-		<p>All the following data is given by volunteers</p>
-		
-		<h2>Vote by age</h2>
-		<img src="../../images/stacked.png" width="570" height="320" alt="">
-		<p>https://canvasjs.com/javascript-charts/stacked-bar-chart/</p>
-		
-		<h2>Vote by gender</h2>
-		<img src="../../images/column.png" width="570" height="320" alt="">
-		
-		<h2>Vote by employment status</h2>
-		<img src="../../images/stacked.png" width="570" height="320" alt="">
-		<p>Split by number of hours worked (https://yougov.co.uk/news/2017/06/13/how-britain-voted-2017-general-election/)</p>
-		
-		<h2>Vote by Ethnicity</h2>
-		<img src="../../images/multi.png" width="570" height="320" alt="">
-		
-		
-		<h2>Vote compared to previous years</h2>
-		<img src="../../images/column.png" width="570" height="320" alt="">
-		<p>We can make data negative to create a swing graph</p>
 	</body>
 
 	<footer class="container-fluid text-left">
 		<!--info here: logo, copyright, links, login as admin-->
+		</br>
 		<ul>
 			<li><a href="#">Help</a></li>
 			<li><p>Other links</p></li>

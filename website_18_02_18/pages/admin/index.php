@@ -30,6 +30,8 @@ if(!isset($_SESSION['admin'])){
 		<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
 		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
 		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
+		<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
+		<a href="decryptVotes.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
 		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
 
 		<a href="../../includes/logout.php"><p>Log out</p></a>

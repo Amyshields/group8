@@ -33,4 +33,18 @@ A: Check the capitalisation of your table's names, wamp uses lowercase
 tables names while the online version's start with a capital.
 -----------------------------------------------
 */
+
+/*
+//Details for the online server (Don't change)
+$oservername = "csmysql.cs.cf.ac.uk"; //Name of the online server
+$odbname = "group8_2017"; //Database on the server to enter
+$odbusername = "group8.2017"; //Database login username
+$odbpassword = "kMB8PRzvnZf7Amg"; //Database password username
+
+//Details for the local server
+$lservername = "127.0.0.1:3306"; //Name of the local server (wamps standard)
+$ldbname = "group8_2017"; //Database on the server to enter 
+$ldbusername = "root"; //Database login username (wamp's standard is 'root')
+$ldbpassword = ""; //Database password username	(wamp's standard is nothing) 
+*/
 ?>
