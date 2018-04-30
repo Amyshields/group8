@@ -8,6 +8,7 @@ if (isset($_SESSION['admin'])){
     redirect("../index.php");
 }
 
+
 if(!isset($_SESSION['logged_in'])){
     $_SESSION['error'] = "Please enter your National Insurance Number and Password";
     header("Location: ../index.php");
@@ -81,6 +82,7 @@ try{
     if ($num_rows > 0) {
         $sql = "UPDATE GeneralElection2018 SET candidateID='$encString' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
+<<<<<<< HEAD
         echo "<!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -120,6 +122,8 @@ try{
                 </footer>
                 </body>
                 </html>";
+=======
+>>>>>>> front-end-changes
     }
     else {
         $sql = "INSERT INTO GeneralElection2018 (voterNIN, candidateID)
