@@ -71,6 +71,7 @@ try{
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql_check = "SELECT voterNIN FROM GeneralElection2018
                 WHERE voterNIN =:userNIN";
+                
     $query = $conn->prepare($sql_check);
 
     $query->execute(array(':userNIN' => $userNIN));
@@ -101,6 +102,7 @@ catch(PDOException $e){
 }
 
 $conn = null;
+mysql_close();
 ?>
 <html>
 <meta http-equiv="refresh" content="3; url=voting.php">

@@ -63,7 +63,8 @@ function login($username,$password){
 		
 			foreach ($query as $row) {
 				$dbuname = $row['adminUsername'];
-				$dbpw = $row['adminPassword'];		
+				$dbpw = $row['adminPassword'];
+				$_SESSION['adminID'] = $row['adminID'];		
 			}
 			
 			if(($username==$dbuname)&&($password==$dbpw)){ //password_verify($password, $dbpw)
