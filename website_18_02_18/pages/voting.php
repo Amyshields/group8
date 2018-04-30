@@ -104,17 +104,21 @@ $conn = null;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Bootstrap, to load the css information from a CDN-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/electago.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 	<div class="container-fluid">
 	<header class="container-fluid text-center">
-	<h1>Electago - Voting Page</h1>
-		<!--header image here-->
-		<!---->
+        <div id="logo">
+            <img src="images/logo.png" width="300" height="100" alt="">
+        </div>
 	</header>
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
+    <h1>Electago - Voting Page</h1>
 <div class="container">
 	<form action="voted.php" method="post">
 		<h2>General Election 2018</h2>
@@ -128,7 +132,6 @@ $conn = null;
 		<input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
 </div>
-
 <footer class="container-fluid text-left">
 	<!--info here: logo, copyright, links, login as admin-->
 	<ul>
@@ -139,4 +142,21 @@ $conn = null;
 		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 	</ul>
 </footer>
+</html>
+
+    <footer class="container-fluid">
+        <!--info here: logo, copyright, links, login as admin-->
+
+        <div id="small_logo" class="media">
+            <img src="images/small_logo.png" width="100" height="35" alt="">
+        </div>
+        <div class="media-body">
+        <ul class="list-inline pull right">
+            <li><a href="#">Help</a></li>
+            <li><p>Other links</p></li>
+            <li><a href="pages/admin-login.php">Login as admin</a></li>
+            <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+        </ul>
+        </div>
+    </footer>
 </html>
