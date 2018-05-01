@@ -207,9 +207,8 @@ $conn = null;
 <div class="container">
 	<form action="voted.php" method="post">
 		<h2><?php echo $thisElectionDetails[3]?> </h2>
-		<p> Constituency: <b><?php echo$userConstituency;?></b>.</p>
         <?php   if($thisElectionDetails[1]=='FPTP'){
-
+                    echo "<p> Constituency: <b>".$userConstituency."</b>.</p>";
                     for ($x = 0; $x < $num_rows_candidates; $x++) {
                         echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
                     } 

@@ -109,7 +109,7 @@ try{
         $cypherText = $row['candidateID'];
         
         openssl_private_decrypt(base64_decode($cypherText), $decrypted, $privateKey);
-        
+        echo "$decrypted";
         $sql_addDecrypted = "UPDATE ".$electionName." SET decryptedVote='$decrypted' WHERE candidateID='$cypherText'";
         $conn->query($sql_addDecrypted);
     }

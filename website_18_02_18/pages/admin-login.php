@@ -71,11 +71,6 @@ if(isset($_SESSION['logged_in'])){
 
 		<?php
 			if (isset($_SESSION['error'])){
-<<<<<<< HEAD
-				echo $_SESSION['error'];
-				unset($_SESSION['error']);
-			}
-=======
 				echo "<!DOCTYPE html>
                 <html lang='en'>
                 <head>
@@ -117,7 +112,6 @@ if(isset($_SESSION['logged_in'])){
                 </html>";
 				unset($_SESSION['error']); 
 			}			
->>>>>>> front_end_changes
 		?>
 	</div>
 

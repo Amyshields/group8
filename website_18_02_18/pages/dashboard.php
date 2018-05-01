@@ -58,7 +58,7 @@ try{
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql_selectElections = "SELECT * FROM election WHERE electionArea='National' OR electionArea=:userConstituency";
+    $sql_selectElections = "SELECT * FROM election WHERE (electionArea='National' OR electionArea=:userConstituency) AND isEncrypted=1";
 
     $query = $conn->prepare($sql_selectElections);
 

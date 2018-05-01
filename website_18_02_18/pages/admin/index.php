@@ -31,35 +31,13 @@ if(!isset($_SESSION['admin'])){
                         </div>
         </header>
 		<h3>Welcome to electago Admin Home Page</h3>
-<<<<<<< HEAD
-		<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
-		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
-		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
-		<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
-		<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
-		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
-
-		<a href="../../includes/logout.php"><p>Log out</p></a>
-	</body>
-
-
-	<footer class="container-fluid text-left">
-		<!--info here: logo, copyright, links, login as admin-->
-		<ul>
-			<li><a href="#">Help</a></li>
-			<li><p>Other links</p></li>
-			<li><a href="../../index.php">Login as user</a></li>
-			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-		</ul>
-	</footer>
-=======
 
 		<div class="btn-group-vertical">
 			<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
 			<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
 			<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
 			<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
-			<a href="decryptVotes.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
+			<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
 			<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
 		</div> 
 
@@ -82,5 +60,4 @@ if(!isset($_SESSION['admin'])){
         </div>
     </footer>
     	</body>
->>>>>>> e4f07d613128ba55ec0fd5127d2e193b6e2a41f8
 </html>

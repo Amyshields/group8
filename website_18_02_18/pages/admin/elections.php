@@ -66,6 +66,8 @@
       <p>Create Election</p>
       <div id="addElection">
         Election Name: <input type="text" name="newName" id="newName"><br>
+        <!-- Cy Added -->
+        Election Display Name: <input type="text" name="newDisplayName" id="newDisplayName"><br>
         Election Type:
         <select name="newType" id="newType">
           <option value="FPTP">FPTP</option>
@@ -102,13 +104,22 @@
             $electionType = $row['electionType'];
             $electionArea = $row['electionArea'];
             $electionDate = $row['electionDate'];
+            $electionDisplayName = $row['electionDisplayName']; // Cy Added
             $electionCandidates = explode(";", $row['electionCandidates']);
+            $electionIsEncrypted = $row['isEncrypted']; // Cy Added
 
             echo "<p>";
             echo "Election Name: $electionName";
+            echo "<br>Election DisplayName: $electionDisplayName"; // Cy Added
             echo "<br>Election Type: $electionType";
             echo "<br>Election Area: $electionArea";
             echo "<br>Election Date: $electionDate";
+            if ($electionIsEncrypted=1){ // Cy Added
+              echo "<br>Encrypted: YES";
+            } else {
+              echo "<br>Encrypted: NO";
+            }
+      
 
             if ($electionType != "REF"){
               echo "<br>Election Candidates: ";
@@ -187,6 +198,7 @@
   function createElection(){
 
     var name = document.getElementById("newName").value;
+    var displayName = document.getElementById("newDisplayName").value; // Cy Added
     var type = $("#newType").val();
     var area = document.getElementById("newArea").value;
     var date = document.getElementById("newDate").value;
@@ -209,6 +221,9 @@
     if (name == "" || /[^a-zA-Z0-9 ]/.test(name)){
       document.getElementById("createElectionErrorDisplay").innerHTML = "Please enter a valid election name";
       return false;
+    } else if (displayName == "" || /[^a-zA-Z0-9 ]/.test(displayName)){ // Cy Added
+      document.getElementById("createElectionErrorDisplay").innerHTML = "Please enter a valid election display name";
+      return false;
     } else if (area == "" || /[^a-zA-Z ]/.test(area)){
       document.getElementById("createElectionErrorDisplay").innerHTML = "Please enter a valid election area";
       return false;
@@ -226,6 +241,7 @@
 
     $.post("./addElection.php", { //post id to php
         name: name,
+        displayName: displayName, // Cy Added
         type: type,
         area: area,
         date: date,

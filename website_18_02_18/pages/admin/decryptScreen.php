@@ -61,7 +61,7 @@ try{
 
     $num_rows = $query->rowCount();
 
-    if ($num_rows > 0){
+    if ($num_rows > 0) {
 
         $elections = array();
         

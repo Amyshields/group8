@@ -6,7 +6,7 @@ session_start();
 
 if (isset($_SESSION['admin'])){
     redirect("../index.php");
-
+}
 
 if(!isset($_SESSION['logged_in'])){
     $_SESSION['error'] = "Please enter your National Insurance Number and Password";
@@ -18,8 +18,8 @@ $servername = ""; //Set up connection variables
 $dbname = "";
 $dbusername = "";
 $dbpassword = "";
-$table = "Candidate";
-$userConstituency = $_SESSION['constituency'];
+$table = "candidate";
+
 
 if ($local == true){ //Setting up variables for local connection
     global $lservername;
@@ -53,6 +53,7 @@ try{
         redirect('../index.php');
     }
 
+    $userConstituency = $_SESSION['constituency'];
     $userNIN = $_SESSION['username'];
     $selectedVote = $_POST['radio'];
     $electionName = $_POST['electionName'];
@@ -101,7 +102,7 @@ try{
                     <meta name='viewport' content='width=device-width, initial-scale=1'>
                     <!--For Bootstrap, to load the css information from a CDN-->
                     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-                    <link href='css/electago.css' rel='stylesheet' type='text/css'>
+                    <link href='../css/electago.css' rel='stylesheet' type='text/css'>
                     <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
                     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
                     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -127,10 +128,11 @@ try{
                     <ul class='list-inline pull right'>
                         <li><a href='#'>Help</a></li>
                         <li><p>Other links</p></li>
-                        <li><a href='pages/index.php'>Back to voter login</a></li>
+                        <li><a href='dashboard.php'>Back to dashboard</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
                     </div>
+                    <meta http-equiv='refresh' content='3;url=dashboard.php'>
                 </footer>
                 </body>
                 </html>";
@@ -138,7 +140,7 @@ try{
     }
     else {
         $sql = "INSERT INTO ".$electionName." (voterNIN, candidateID)
-                VALUES('$userNIN', '$encString')";
+                VALUES ('$userNIN', '$encString')";
         $conn->query($sql);
         #page that shows if your'e voting for the first time
         #echo 'You have voted for the first time, auto redirecting back in 3 seconds';
@@ -151,7 +153,7 @@ try{
                     <meta name='viewport' content='width=device-width, initial-scale=1'>
                     <!--For Bootstrap, to load the css information from a CDN-->
                     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-                    <link href='css/electago.css' rel='stylesheet' type='text/css'>
+                    <link href='../css/electago.css' rel='stylesheet' type='text/css'>
                     <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
                     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
                     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -174,10 +176,11 @@ try{
                     <ul class='list-inline pull right'>
                         <li><a href='#'>Help</a></li>
                         <li><p>Other links</p></li>
-                        <li><a href='pages/index.php'>Back to voter login</a></li>
+                        <li><a href='dashboard.php'>Back to dashboard</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
                     </div>
+                    <meta http-equiv='refresh' content='3;url=dashboard.php'>
                 </footer>
                 </body>
                 </html>";
