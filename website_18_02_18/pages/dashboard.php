@@ -116,12 +116,11 @@ $conn = null;
             <img src="../images/logo.png" width="300" height="100" alt="">
         </div>
 	</header>
-<!--container class used in bootstrap to make a dynamic container of a fixed size-->
+    <!--container class used in bootstrap to make a dynamic container of a fixed size-->
     <h1>Electago - Dashboard</h1>
     <h2><?php echo $votedString;?></h2>
-<div class="container">
+<div class="container col-sm-8">
 	<form action="voting.php" method="post">
-        <p>Select which election you would like to vote in:</p>
 
                  <!-- <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose an election<span class="caret"></span></button>
@@ -140,18 +139,22 @@ $conn = null;
             <li><a href="#">JavaScript</a></li>
           </ul>
         </div>  -->
-
-        <select name="selection">
-            <?php   if ($num_rows > 0) {
+        <div class="form-group">
+            <label for="dashboardDropdown">Select which election you would like to vote in:</label>
+            <select class="form-control" id="dashboardDropdown"name="selection">
+                <?php   if ($num_rows > 0) {
                         for($x = 0; $x < $num_rows; $x++) {
-                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
+                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option> 
+                            <li class='divider'></li>";
                         }
                     }else{
                         echo "<p>" . $noElectionString . "</p>";
                     }
                 ?>
-        </select-->
-        <input type="submit" class="btn btn-default" value="Proceed" autofocus>        
+            </select-->
+        </div>
+        
+        <input type="submit" class="btn btn-default pull-right" value="Proceed" autofocus>        
 	</form>
 </div>
     <footer class="container-fluid">
