@@ -233,44 +233,32 @@ $conn = null;
 	</header>
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
     <h1>Electago - Voting Page</h1>
-<div class="container">
-	<form action="voted.php" method="post">
-		<h2>General Election 2018</h2>
-		<p> Constituency: <b><?php echo$userConstituency;?></b>.</p>
-        <p> <?php echo $stringToEcho ?> </p>
-        <?php for ($x = 0; $x < $num_rows; $x++) {
-            echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
-        }?>
-        <input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>
-        </select>
-		<input type="submit" class="btn btn-default" value="Vote" autofocus>
-	</form>
-</div>
-<footer class="container-fluid text-left">
-	<!--info here: logo, copyright, links, login as admin-->
-	<ul>
-        <li><a href="../includes/logout.php"><p>Log out</p></a></li>
-		<li><a href="#">Help</a></li>
-		<li><p>Other links</p></li>
-		<li><a href="#">Login as admin</a></li>
-		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-	</ul>
-</footer>
-</html>
-
+    <div class="container">
+    	<form action="voted.php" method="post">
+    		<h2>General Election 2018</h2>
+    		<p> Constituency: <b><?php echo$userConstituency;?></b>.</p>
+            <p> <?php echo $stringToEcho ?> </p>
+            <?php for ($x = 0; $x < $num_rows; $x++) {
+                echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
+            }?>
+            <input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>
+            </select>
+    		<input type="submit" class="btn btn-default" value="Vote" autofocus>
+    	</form>
+    </div>
     <footer class="container-fluid">
-        <!--info here: logo, copyright, links, login as admin-->
-
+    	<!--info here: logo, copyright, links, login as admin-->
         <div id="small_logo" class="media">
             <img src="images/small_logo.png" width="100" height="35" alt="">
         </div>
         <div class="media-body">
-        <ul class="list-inline pull right">
-            <li><a href="#">Help</a></li>
-            <li><p>Other links</p></li>
-            <li><a href="pages/admin-login.php">Login as admin</a></li>
-            <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-        </ul>
+        	<ul>
+                <li><a href="../includes/logout.php"><p>Log out</p></a></li>
+        		<li><a href="#">Help</a></li>
+        		<li><p>Other links</p></li>
+        		<li><a href="#">Login as admin</a></li>
+        		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+        	</ul>
         </div>
     </footer>
 </html>
