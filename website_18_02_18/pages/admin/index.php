@@ -31,7 +31,7 @@ if(!isset($_SESSION['admin'])){
 		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
 		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
 		<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
-		<a href="decryptVotes.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
+		<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
 		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
 
 		<a href="../../includes/logout.php"><p>Log out</p></a>
@@ -43,7 +43,7 @@ if(!isset($_SESSION['admin'])){
 		<ul>
 			<li><a href="#">Help</a></li>
 			<li><p>Other links</p></li>
-			<li><a href="pages/admin-login.php">Login as admin</a></li>
+			<li><a href="../../index.php">Login as user</a></li>
 			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 		</ul>
 	</footer>

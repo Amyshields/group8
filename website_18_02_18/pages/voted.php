@@ -54,8 +54,15 @@ try{
     }
 
     $userNIN = $_SESSION['username'];
-    $selectedCandidateID = $_POST['radio'];
+    $selectedVote = $_POST['radio'];
+    $electionName = $_POST['electionName'];
+    $electionType = $_POST['electionType'];
 
+    // echo $selectedVote;
+    // echo $electionName;
+    // echo $userNIN;
+
+    // ------------ RSA --------------
     $publicKeyPath = '../RSA/pubkey.pem';
 
     $pkeyid = openssl_pkey_get_public(file_get_contents($publicKeyPath));
@@ -63,47 +70,44 @@ try{
     $public_key_from_pem = ($details['key']);    //Get PUBLIC KEY
     // echo $public_key_from_pem;
 
-    openssl_public_encrypt($selectedCandidateID, $output, $public_key_from_pem); // Encrypt
+    // echo $selectedVote;
+    openssl_public_encrypt($selectedVote, $output, $public_key_from_pem); // Encrypt
     $encString = base64_encode($output); // Encode
+
     // echo $encString;
+    // --------------------------------
 
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql_check = "SELECT voterNIN FROM GeneralElection2018
-                WHERE voterNIN =:userNIN";
-                
+    
+    $sql_check = "SELECT voterNIN FROM ".$electionName." WHERE voterNIN ='$userNIN'";
+    
     $query = $conn->prepare($sql_check);
 
-    $query->execute(array(':userNIN' => $userNIN));
+    $query->execute();
 
     $num_rows = $query->rowCount();
 
     if ($num_rows > 0) {
-        $sql = "UPDATE GeneralElection2018 SET candidateID='$encString' WHERE voterNIN='$userNIN'";
+        $sql = "UPDATE ".$electionName." SET candidateID='$encString' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
         echo "You're existing vote has been changed, auto redirecting back in 3 seconds";
+        header("refresh:3;url=dashboard.php?voted=y");
     }
     else {
-        $sql = "INSERT INTO GeneralElection2018 (voterNIN, candidateID)
+        $sql = "INSERT INTO ".$electionName." (voterNIN, candidateID)
                 VALUES('$userNIN', '$encString')";
         $conn->query($sql);
         echo 'You have voted for the first time, auto redirecting back in 3 seconds';
+        header("refresh:3;url=dashboard.php?voted=y");
     }
 
-    // Change hasVoted
-    $sql_updateNew = "UPDATE Voter SET hasVoted=1 WHERE username='$userNIN'";
-    $conn->query($sql_updateNew);
-    $_SESSION['hasVoted'] = 1;
 }
-
-
 catch(PDOException $e){
     echo $sql . "<br>" . $e->getMessage();
 }
 
 $conn = null;
-mysql_close();
 ?>
 <html>
-<meta http-equiv="refresh" content="3; url=voting.php">
 </html>

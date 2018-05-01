@@ -70,7 +70,6 @@ try{
         $sql_addKey = "INSERT INTO adminPrivateKeys (adminID, adminUsername, privateKey) VALUES ('$adminID', '$adminUsername', '$key')";
         $conn->query($sql_addKey);
         echo 'You have added a key for the first time, auto redirecting back in 3 seconds';
-        echo $adminID;
     }
 }
 

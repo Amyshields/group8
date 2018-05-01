@@ -13,7 +13,7 @@ function login($username,$password){
     $dbname = "";
 	$dbusername = "";
 	$dbpassword = "";
-	$table = "Voter";
+	$table = "voter";
 
 	if ($local == true){ //Setting up variables for local connection
 		global $lservername;
@@ -60,7 +60,6 @@ function login($username,$password){
 				$dbuname = $row['Username'];
 				$dbpw = $row['Password'];
 				$dbconstituency = $row['Constituency'];
-				$dbhasVoted = $row['hasVoted'];
 			}
 
 			if(($username==$dbuname)&&($password==$dbpw)){ //password_verify($password, $dbpw)
@@ -71,8 +70,7 @@ function login($username,$password){
 				$_SESSION['logged_in'] = true;
 				$_SESSION['username'] = $username;
 				$_SESSION['constituency'] = $dbconstituency;
-				$_SESSION['hasVoted'] = $dbhasVoted;
-				redirect('../pages/voting.php');
+				redirect('../pages/dashboard.php');
 			}
 
 			else{

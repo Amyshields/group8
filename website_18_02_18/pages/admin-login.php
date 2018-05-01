@@ -88,7 +88,7 @@ if(isset($_SESSION['logged_in'])){
 		<ul class="list-inline pull right">
 			<li><a href="#">Help</a></li>
 			<li><p>Other links</p></li>
-			<li><a href="/index.php">Login as voter</a></li>
+			<li><a href="../index.php">Login as voter</a></li>
 			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 		</ul>
 		</div>

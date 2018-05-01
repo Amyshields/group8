@@ -48,7 +48,7 @@ if(isset($_SESSION['logged_in'])){
 				<div class="form-group">
 					<!--The format of the number is two prefix letters, six digits, and one suffix letter. The example used is typically QQ123456C. -->
 					<label for="email"> National Insurance Number: </label>
-					<input type="text" name="username" class="form-control col-sm-6" value="QQ123456C" onfocus="if (this.value=='QQ123456C') this.value='';"><br>
+					<input type="text" name="username" class="form-control col-sm-6" value="Fill in your NI number" onfocus="if (this.value=='QQ123456C') this.value='';"><br>
 				</div>
 
 				<div class="form-group">

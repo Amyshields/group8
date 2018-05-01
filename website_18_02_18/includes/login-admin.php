@@ -13,7 +13,7 @@ function login($username,$password){
     $dbname = "";
 	$dbusername = "";
 	$dbpassword = "";
-	$table = "Admin";
+	$table = "admin";
 
 	if ($local == true){ //Setting up variables for local connection
 		global $lservername;

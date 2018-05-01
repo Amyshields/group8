@@ -1,7 +1,7 @@
 <?php
 /*Noah Johnson C1649499*/
 
-$local = true; //Do you want to connect to local or online server?
+$local = false; //Do you want to connect to local or online server?
 
 //Details for the online server (Don't change)
 $oservername = "csmysql.cs.cf.ac.uk"; //Name of the online server

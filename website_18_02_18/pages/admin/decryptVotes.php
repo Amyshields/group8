@@ -13,8 +13,7 @@ $servername = ""; //Set up connection variables
 $dbname = "";
 $dbusername = "";
 $dbpassword = "";
-$table = "Candidate";
-$userConstituency = $_SESSION['constituency'];
+$electionName = $_POST['selection'];
 
 if ($local == true){ //Setting up variables for local connection
     global $lservername;
@@ -52,6 +51,8 @@ try{
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // ------------- RSA ---------------
+    $sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
     // Retrieve admin keys
     $sql_getKeyParts = "SELECT privateKey FROM adminPrivateKeys ORDER BY adminID";
 
@@ -86,41 +87,48 @@ try{
     // echo '<br>';
     // echo '<br>';
 
-    // Retrieve all candidate IDs to be decrypted
-    $sql_check = "SELECT candidateID FROM GeneralElection2018";
-    $query = $conn->prepare($sql_check);
-    $result = $query->execute();
-
     // Set up private key from file
     $privateKey = openssl_pkey_get_private(file_get_contents($newPrivKeyPath));   //Get PRIVATE KEY
     
-
     $keyString = openssl_pkey_get_details ( $privateKey );
-    // echo $keyString['key'];
+    // ------------------------------
     
-    echo '<br><br>';
+    // Retrieve all candidate IDs to be decrypted
+    $sql_check = "SELECT candidateID FROM ".$electionName;
+    $query = $conn->prepare($sql_check);
+    $result = $query->execute();
+
+    $sql_addDecryptColumn = "ALTER TABLE ".$electionName." ADD decryptedVote varchar(20)";
+    $conn->query($sql_addDecryptColumn);
+
+    $sql_removeNIN = "ALTER TABLE ".$electionName." DROP COLUMN voterNIN";
+    $conn->query($sql_removeNIN);
+
     // Decrypt each candidate ID and add to decrypted votes table
     foreach($query as $row){
         $cypherText = $row['candidateID'];
-        // echo $cypherText;
-        // echo '<br>';
+        
         openssl_private_decrypt(base64_decode($cypherText), $decrypted, $privateKey);
-        // echo $decrypted;
-        // echo '<br>';
-        $sql_addToDectrypedTable = "INSERT INTO decryptedVotes (candidateID) VALUES ('$decrypted')";
-        $conn->query($sql_addToDectrypedTable);
+        
+        $sql_addDecrypted = "UPDATE ".$electionName." SET decryptedVote='$decrypted' WHERE candidateID='$cypherText'";
+        $conn->query($sql_addDecrypted);
     }
+    
 
      // Display if key is valid and redirect
      if ($keyString['key'] == null){
         echo "Incorrect private key parts.";
         echo '<meta http-equiv="refresh" content="3;url=index.php">';
     } else {
+        $sql_removeEncrypted = "ALTER TABLE ".$electionName." DROP COLUMN candidateID";
+        $conn->query($sql_removeEncrypted);
+        $sql_changeIsEncrypted = "UPDATE election SET isEncrypted=0 WHERE electionName='$electionName'";
+        $conn->query($sql_changeIsEncrypted);
         echo "Votes decrypted successfully.";
         echo '<meta http-equiv="refresh" content="3;url=index.php">';
         // Delete private keys from database
-        $sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
-        $conn->query($sql_clearPrivateKeys);
+        //$sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
+        //$conn->query($sql_clearPrivateKeys);
     }
 
     // Delete key from server
@@ -133,7 +141,6 @@ catch(PDOException $e){
 }
 
 $conn = null;
-mysql_close();
 ?>
 <html>
 </html>

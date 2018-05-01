@@ -32,7 +32,8 @@ if(!isset($_SESSION['admin'])){
 		    <input id="adminKeyInput" name="adminKeyInput" type="text"><br>
 		    <input type="submit" class="btn btn-default" value="Upload" autofocus>
 	    </form><br>
-		<a href="decryptVotes.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
+		<a href="index.php"><button type="button" class="btn btn-secondary">Go back</button></a>
+		<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
 		<a href="../../includes/logout.php"><p>Log out</p></a>
 	</body>
 	
