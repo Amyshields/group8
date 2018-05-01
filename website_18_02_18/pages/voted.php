@@ -113,7 +113,10 @@ try{
                         </div>
                     </header>
                     <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-                    <div class='container'> <p>Your existing vote has been changed, auto redirecting back in 3 seconds</p> </div>
+                        <div class='container'> 
+                            <span class='glyphicon glyphicon-exclamation-sign'></span>
+                            <p>Your existing vote has been changed, auto redirecting back in 3 seconds</p> 
+                        </div>
                     <footer class='container-fluid'>
                     <!--info here: logo, copyright, links, login as admin-->
 
