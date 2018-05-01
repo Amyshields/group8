@@ -225,9 +225,21 @@ $conn = null;
         <input type="submit" class="btn btn-default" value="Vote" autofocus>
 	</form>
 </div>
+    <div class="container">
+    	<form action="voted.php" method="post">
+    		<h2>General Election 2018</h2>
+    		<p> Constituency: <b><?php echo$userConstituency;?></b>.</p>
+            <p> <?php echo $stringToEcho ?> </p>
+            <?php for ($x = 0; $x < $num_rows; $x++) {
+                echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
+            }?>
+            <input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>
+            </select>
+    		<input type="submit" class="btn btn-default" value="Vote" autofocus>
+    	</form>
+    </div>
     <footer class="container-fluid">
-        <!--info here: logo, copyright, links, login as admin-->
-
+    	<!--info here: logo, copyright, links, login as admin-->
         <div id="small_logo" class="media">
             <img src="../images/small_logo.png" width="100" height="35" alt="">
         </div>

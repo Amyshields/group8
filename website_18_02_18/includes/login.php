@@ -98,6 +98,10 @@ if($username&&$password)
 	login($username,$password);
 }
 else
+{
 	$_SESSION['error'] = "Please enter your National Insurance Number and Password";
 	redirect('../index.php');
+}
+#get errors to show
 ?>
+
