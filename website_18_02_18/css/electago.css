@@ -10,7 +10,7 @@ html,body{
 }
 body{
 	/*margin-bottom: 110px;*/
-	height: 100%;
+	/*height: 100%;*/
 }
 label,p{
 	font-family: 'Open Sans', sans-serif;
@@ -71,7 +71,7 @@ footer{
 	padding: 10px 100px;
 }
 
-#submit{
+#selection{
 	padding: 10px 100px;
 }
 
