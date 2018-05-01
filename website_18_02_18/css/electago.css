@@ -1,4 +1,4 @@
-@charset "utf-8"; /*Max,Noah,Amy*/
+@charset "utf-8"; /*Max,Noah,Amy,Dervla*/
 /*Simplified website so all CSS are in one document*/
 
 /*general*/
@@ -11,10 +11,6 @@ html,body{
 
 label,p{
 	font-family: 'Open Sans', sans-serif;
-}
-
-body{
-	margin-left: 50px;	
 }
 
 h1{
@@ -57,5 +53,9 @@ footer{
 
 #info{
 	padding-top: 20px;
+}
+/*
+#passwordCheckbox{
+	padding-top: 15px;
 }
 /**/
