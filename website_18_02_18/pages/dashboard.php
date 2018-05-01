@@ -110,66 +110,68 @@ $conn = null;
 </head>
 
 <body>
-	<div class="container-fluid">
 	<header class="container-fluid text-center">
         <div id="logo">
             <img src="../images/logo.png" width="300" height="100" alt="">
         </div>
 	</header>
-    <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-    <h1>Electago - Dashboard</h1>
-    <h2><?php echo $votedString;?></h2>
-<div class="container col-sm-8">
-	<form action="voting.php" method="post">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="wrap">
+            <!--container class used in bootstrap to make a dynamic container of a fixed size-->
+                <h1>Voting Dashboard</h1>
+                <h2><?php echo $votedString;?></h2>
+                <div class="container-fluid col-sm-8">
+                	<form action="voting.php" method="post">
+                        <!--posting selection-->
+                                 <!-- <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose an election<span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                                <#?php   if ($num_rows > 0) {
+                                        for($x = 0; $x < $num_rows; $x++) {
+                                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
+                                        }
+                                    }else{
+                                        echo "<p>" . $noElectionString . "</p>";
+                                    }
+                                ?>
 
-                 <!-- <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose an election<span class="caret"></span></button>
-          <ul class="dropdown-menu">
-                <#?php   if ($num_rows > 0) {
-                        for($x = 0; $x < $num_rows; $x++) {
-                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
-                        }
-                    }else{
-                        echo "<p>" . $noElectionString . "</p>";
-                    }
-                ?>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                          </ul>
+                        </div>  -->
+                        <div class="form-group">
+                            <label for="electionSelection">Select which election you would like to vote in:</label>
+                            <div class="btn-group-vertical" id="electionSelection">
+                                <?php   if ($num_rows > 0) {
+                                        for($x = 0; $x < $num_rows; $x++) {
+                                            echo "<button type='submit' id='selection'  class='btn btn-warning submit' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</button>";
+                                        }
+                                    }else{
+                                        echo "<p>" . $noElectionString . "</p>";
+                                    }
+                                ?>
+                            </div>
+                        </div>       
+                	</form>
+                </div>
+            </div>
+        </div>
+        <footer class="container-fluid">
+            <!--info here: logo, copyright, links, login as admin-->
 
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>  -->
-        <div class="form-group">
-            <label for="dashboardDropdown">Select which election you would like to vote in:</label>
-            <select class="form-control" id="dashboardDropdown"name="selection">
-                <?php   if ($num_rows > 0) {
-                        for($x = 0; $x < $num_rows; $x++) {
-                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option> 
-                            <li class='divider'></li>";
-                        }
-                    }else{
-                        echo "<p>" . $noElectionString . "</p>";
-                    }
-                ?>
-            </select-->
-        </div>
-        
-        <input type="submit" class="btn btn-default pull-right" value="Proceed" autofocus>        
-	</form>
-</div>
-    <footer class="container-fluid">
-        <!--info here: logo, copyright, links, login as admin-->
-
-        <div id="small_logo" class="media">
-            <img src="../images/small_logo.png" width="100" height="35" alt="">
-        </div>
-        <div class="media-body">
-        <ul class="list-inline pull right">
-            <li><a href="#">Help</a></li>
-            <li><p>Other links</p></li>
-            <li><a href="../includes/logout.php">Log out</a></li>
-            <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-        </ul>
-        </div>
-    </footer>
+            <div id="small_logo" class="media">
+                <img src="../images/small_logo.png" width="100" height="35" alt="">
+            </div>
+            <div class="media-body">
+            <ul class="list-inline pull right">
+                <li><a href="#">Help</a></li>
+                <li><a href="../includes/logout.php">Log out</a></li>
+                <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+            </ul>
+            </div>
+        </footer>
+    </div>
+</body>
 </html>
