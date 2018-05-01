@@ -31,7 +31,15 @@ if(!isset($_SESSION['admin'])){
                         </div>
         </header>
 		<h3>Welcome to electago Admin Home Page</h3>
-<<<<<<< HEAD
+
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="..." alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Card title</h5>
+		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		    <a href="#" class="btn btn-primary">Go somewhere</a>
+		  </div>
+		</div>
 		<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
 		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
 		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
@@ -48,7 +56,7 @@ if(!isset($_SESSION['admin'])){
 		<ul>
 			<li><a href="#">Help</a></li>
 			<li><p>Other links</p></li>
-			<li><a href="../../index.php">Login as user</a></li>
+			<li><a href="../../includes/logout.php"><p>Log out</p></a></li>
 			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 		</ul>
 	</footer>

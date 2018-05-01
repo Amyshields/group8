@@ -122,6 +122,25 @@ $conn = null;
 <div class="container">
 	<form action="voting.php" method="post">
         <p>Select which election you would like to vote in:</p>
+
+                 <!-- <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose an election<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+                <#?php   if ($num_rows > 0) {
+                        for($x = 0; $x < $num_rows; $x++) {
+                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
+                        }
+                    }else{
+                        echo "<p>" . $noElectionString . "</p>";
+                    }
+                ?>
+
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+          </ul>
+        </div>  -->
+
         <select name="selection">
             <?php   if ($num_rows > 0) {
                         for($x = 0; $x < $num_rows; $x++) {
@@ -131,7 +150,7 @@ $conn = null;
                         echo "<p>" . $noElectionString . "</p>";
                     }
                 ?>
-        </select>
+        </select-->
         <input type="submit" class="btn btn-default" value="Proceed" autofocus>        
 	</form>
 </div>

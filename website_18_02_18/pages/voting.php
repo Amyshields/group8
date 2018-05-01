@@ -240,8 +240,7 @@ $conn = null;
     	</form>
     </div>
     <footer class="container-fluid">
-        <!--info here: logo, copyright, links, login as admin-->
-
+    	<!--info here: logo, copyright, links, login as admin-->
         <div id="small_logo" class="media">
             <img src="../images/small_logo.png" width="100" height="35" alt="">
         </div>
@@ -252,13 +251,6 @@ $conn = null;
             <li><a href="..\includes\logout.php">Log out</a></li>
             <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
         </ul>
-        	<ul>
-                <li><a href="../includes/logout.php"><p>Log out</p></a></li>
-        		<li><a href="#">Help</a></li>
-        		<li><p>Other links</p></li>
-        		<li><a href="#">Login as admin</a></li>
-        		<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-        	</ul>
         </div>
     </footer>
 </html>
