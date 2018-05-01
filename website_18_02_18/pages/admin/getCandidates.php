@@ -30,5 +30,5 @@ if ($num_rows === 0){
   echo json_encode($returnCandidates);
 }
 
-
+$conn = null;
  ?>

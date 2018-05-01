@@ -47,7 +47,7 @@
           $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
           redirect('../index.php');
       }
-
+      $conn = null;
       ?>
   </body>
 
@@ -65,7 +65,6 @@
     }, function(result) {
       if (result == "") { //check if result is empty, if not there is an error
       } else {
-        console.log(result);
         document.getElementById("candidateError" + id).innerHTML = result; //display error
       }
     });

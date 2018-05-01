@@ -56,6 +56,7 @@
   catch(PDOException $e){
       echo $sql . "<br>" . $e->getMessage();
   }
+
 ?>
 <html>
   <head>
@@ -141,6 +142,7 @@
             $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
             //redirect('../index.php');
         }
+        $conn = null;
       ?>
   </body>
 
@@ -213,7 +215,7 @@
     } else if(date == ""){
       document.getElementById("createElectionErrorDisplay").innerHTML = "You must enter an end date for the election";
       return false;
-    }else if (candidates == ""){
+    }else if (candidates == "" && type != "REF"){
       document.getElementById("createElectionErrorDisplay").innerHTML = "You must add candidates to an election";
       return false;
     }
@@ -238,11 +240,19 @@
 
   }
   function deleteElection(id){
-    $.post("./deleteElection.php", { //post id to php
-        id: id
-      }, function(result) {
-        location.reload(); //refresh page
-      });
+
+    if (confirm("Are you sure you want to delete this election?")) {
+      $.post("./deleteElection.php", { //post id to php
+          id: id
+        }, function(result) {
+          location.reload(); //refresh page
+        });
+    } else {
+      txt = "You pressed Cancel!";
+    }
+
+
+
   }
 </script>
  </html>

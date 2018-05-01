@@ -9,4 +9,5 @@ FROM candidate
 WHERE candidateId = $id
 ";
 $query = $conn->query($sql);
+$conn = null;
 ?>
