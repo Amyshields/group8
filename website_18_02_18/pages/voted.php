@@ -83,9 +83,9 @@ try{
         $conn->query($sql);
         #page that shows if youve changed your vote
         echo "<!DOCTYPE html>
-                <html lang="en">
+                <html lang='en'>
                 <head>
-                    <meta charset="utf-8">
+                    <meta charset='utf-8'>
                     <title>Home Page</title>
                     <!--For Bootstrap, to make page responsive on mobile-->
                     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -103,7 +103,10 @@ try{
                         </div>
                     </header>
                     <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-                    <div class='container'> <p>Your existing vote has been changed, auto redirecting back in 3 seconds</p> </div>
+                        <div class='container'> 
+                            <span class='glyphicon glyphicon-exclamation-sign'></span>
+                            <p>Your existing vote has been changed, auto redirecting back in 3 seconds</p> 
+                        </div>
                     <footer class='container-fluid'>
                     <!--info here: logo, copyright, links, login as admin-->
 
@@ -130,9 +133,9 @@ try{
         #page that shows if your'e voting for the first time
         #echo 'You have voted for the first time, auto redirecting back in 3 seconds';
         echo "<!DOCTYPE html>
-                <html lang="en">
+                <html lang='en'>
                 <head>
-                    <meta charset="utf-8">
+                    <meta charset='utf-8'>
                     <title>Home Page</title>
                     <!--For Bootstrap, to make page responsive on mobile-->
                     <meta name='viewport' content='width=device-width, initial-scale=1'>
