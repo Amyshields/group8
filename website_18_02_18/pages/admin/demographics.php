@@ -24,7 +24,6 @@ if ($local == true){ //Setting up variables for local connection
     $dbname = $ldbname;
     $dbusername = $ldbusername;
     $dbpassword = $ldbpassword;
-    $table = "election"; //Fix for wamp server importing tables names as all lowercase
 }
 
 else{ //Setting up variables for online connection
@@ -76,18 +75,22 @@ else{ //Setting up variables for online connection
 				$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				
-				$sql_select = 'SELECT electionID, electionName FROM '.$table;
+				$sql_select = 'SELECT electionID, electionName, electionDate FROM '.$table;
 				$elections = array();
+				$electionDates = array();
 				
 				foreach ($conn->query($sql_select) as $row) {
 					$id = $row['electionID'];
 					$name = $row['electionName'];
+					$date = $row['electionDate'];
 					$elections[$id] = $name;
+					$electionDates[$id] = $date;
 					
 					echo '<a href="results.php?id='.$id.'"><button type="button" class="btn btn-secondary">'.$name.'</button></a><p></p>';
 				}
 				
 				$_SESSION['elections'] = $elections;
+				$_SESSION['electionDates'] = $electionDates;
 			}
 			catch(PDOException $e){
 				echo $sql . "<br>" . $e->getMessage();
