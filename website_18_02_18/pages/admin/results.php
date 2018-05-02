@@ -51,7 +51,6 @@ $dbusername = "";
 $dbpassword = "";
 $table = $name2; //If can't connect to table, first letter needs to be uppercase.
 $table2 = "candidate";
-$show = false;
 
 if ($local == true){ //Setting up variables for local connection
     global $lservername;
@@ -82,9 +81,7 @@ date_default_timezone_set('Europe/London');
 $today = date("Y-m-d H:i:s");
 $electdate = $date . " 00:00:00";
 
-if ($today > $electdate){
-	$show = true;
-	
+if ($today > $electdate){	
 	try{
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 		if (!$conn){
@@ -117,7 +114,12 @@ if ($today > $electdate){
 				$votes[$id] = $votes[$id] + 1;
 			}
 		}
-
+		
+		if (!is_numeric($candidates[0])){
+			echo '<h2>Results are still encrypted for '.$name.'</h2>';
+			exit();			
+		}
+		
 		//Get turnout
 		$turnout = round(($voted/$voters) * 100, 2);
 		$novote = round(100-$turnout,2);
