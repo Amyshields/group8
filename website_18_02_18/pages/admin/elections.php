@@ -119,7 +119,7 @@
             } else {
               echo "<br>Encrypted: NO";
             }
-      
+
 
             if ($electionType != "REF"){
               echo "<br>Election Candidates: ";
@@ -228,10 +228,10 @@
     }
 
     candidates = candidates.slice(0, -1);
-    if (name == "" || /[^a-zA-Z0-9 ]/.test(name)){
+    if (name == "" || /[^a-z0-9]/.test(name)){
       document.getElementById("createElectionErrorDisplay").innerHTML = "Please enter a valid election name";
       return false;
-    } else if (displayName == "" || /[^a-zA-Z0-9 ]/.test(displayName)){ // Cy Added
+    } else if (displayName == ""){ // Cy Added
       document.getElementById("createElectionErrorDisplay").innerHTML = "Please enter a valid election display name";
       return false;
     } else if (area == "" || /[^a-zA-Z ]/.test(area)){
