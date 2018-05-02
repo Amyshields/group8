@@ -52,6 +52,25 @@ try{
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // ---------- Time check -----------
+    $sql_getTime = "SELECT electionDate FROM election WHERE electionName ='$electionName'";
+    $timeQuery = $conn->prepare($sql_getTime);
+    $timeQuery->execute();
+
+    date_default_timezone_set('Europe/London');
+    $today = date("Y-m-d H:i:s");
+    
+    foreach ($timeQuery as $row){
+
+        $date = $row['electionDate'];
+        $electDate = $date . " 00:00:00";
+
+        if ($electDate > $today){
+            redirect("decryptScreen.php?tooEarly=y");
+        }
+    }
+    // ---------------------------------
+    
     // ------------- RSA ---------------
     $sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
     // Retrieve admin keys
@@ -84,10 +103,6 @@ try{
     // Write string to pem file
     file_put_contents($newPrivKeyPath , $keyFull);
 
-    // echo $keyFull;
-    // echo '<br>';
-    // echo '<br>';
-
     // Set up private key from file
     $privateKey = openssl_pkey_get_private(file_get_contents($newPrivKeyPath));   //Get PRIVATE KEY
     
@@ -95,7 +110,7 @@ try{
     // ------------------------------
     
     // Retrieve all candidate IDs to be decrypted
-    $sql_check = "SELECT candidateID FROM ".$electionName;
+    $sql_check = "SELECT * FROM ".$electionName;
     $query = $conn->prepare($sql_check);
     $result = $query->execute();
 
@@ -104,7 +119,6 @@ try{
         $cypherText = $row['candidateID'];
         $voterNIN = $row['voterNIN'];
         openssl_private_decrypt(base64_decode($cypherText), $decrypted, $privateKey);
-        echo "$decrypted";
         $sql_addDecrypted = "UPDATE ".$electionName." SET candidateID='$decrypted' WHERE voterNIN='$voterNIN'";
         $conn->query($sql_addDecrypted);
     }
@@ -129,7 +143,7 @@ try{
                 <body>
                     <header class='container-fluid text-center'>
                         <div id='logo'>
-                            <img src='images/logo.png' width='300' height='100' alt=''>
+                            <img src='../../images/logo.png' width='300' height='100' alt=''>
                         </div>
                     </header>
                     <!--Error message here-->
@@ -138,7 +152,7 @@ try{
                     <!--info here: logo, copyright, links, login as admin-->
 
                     <div id='small_logo' class='media'>
-                        <img src='images/small_logo.png' width='100' height='35' alt=''>
+                        <img src='../../images/small_logo.png' width='100' height='35' alt=''>
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
@@ -152,10 +166,11 @@ try{
                 </html>";
             echo '<meta http-equiv="refresh" content="3;url=index.php">';
     } else {
-
+        // Remove national insurance numbers from table
         $sql_removeNIN = "ALTER TABLE ".$electionName." DROP COLUMN voterNIN";
         $conn->query($sql_removeNIN);
 
+        // Change inEncrypted
         $sql_changeIsEncrypted = "UPDATE election SET isEncrypted=0 WHERE electionName='$electionName'";
         $conn->query($sql_changeIsEncrypted);
 
@@ -176,7 +191,7 @@ try{
                 <body>
                     <header class='container-fluid text-center'>
                         <div id='logo'>
-                            <img src='images/logo.png' width='300' height='100' alt=''>
+                            <img src='../../images/logo.png' width='300' height='100' alt=''>
                         </div>
                     </header>
                     <!--Error message here-->
@@ -185,7 +200,7 @@ try{
                     <!--info here: logo, copyright, links, login as admin-->
 
                     <div id='small_logo' class='media'>
-                        <img src='images/small_logo.png' width='100' height='35' alt=''>
+                        <img src='../images/small_logo.png' width='100' height='35' alt=''>
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
