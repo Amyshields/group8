@@ -67,7 +67,9 @@ try{
         $elections = array();
         
         foreach ($query as $row) {
-
+            
+            $electionDate = $row['electionDate'];
+            
             // $electionID = $row['electionID'];
             $electionDisplayName = $row['electionDisplayName'];
             $electionName = $row['electionName'];
@@ -116,6 +118,11 @@ $conn = null;
     <h1>Electago - Decrypt Elections</h1>
 <div class="container">
 	<form action="decryptVotes.php" method="post">
+        <?php   
+                if(isset($_GET['tooEarly'])){
+                    echo "<h2>That election has not ended yet.<h2>"; 
+                }
+        ?>
         <p>Select which election you would like to decrypt votes:</p>
         <select name="selection">
             <?php   if ($num_rows > 0) {

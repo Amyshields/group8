@@ -52,6 +52,25 @@ try{
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // ---------- Time check -----------
+    $sql_getTime = "SELECT electionDate FROM election WHERE electionName ='$electionName'";
+    $timeQuery = $conn->prepare($sql_getTime);
+    $timeQuery->execute();
+
+    date_default_timezone_set('Europe/London');
+    $today = date("Y-m-d H:i:s");
+    
+    foreach ($timeQuery as $row){
+
+        $date = $row['electionDate'];
+        $electDate = $date . " 00:00:00";
+
+        if ($electDate > $today){
+            redirect("decryptScreen.php?tooEarly=y");
+        }
+    }
+    // ---------------------------------
+    
     // ------------- RSA ---------------
     $sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
     // Retrieve admin keys
@@ -84,10 +103,6 @@ try{
     // Write string to pem file
     file_put_contents($newPrivKeyPath , $keyFull);
 
-    // echo $keyFull;
-    // echo '<br>';
-    // echo '<br>';
-
     // Set up private key from file
     $privateKey = openssl_pkey_get_private(file_get_contents($newPrivKeyPath));   //Get PRIVATE KEY
     
@@ -95,7 +110,7 @@ try{
     // ------------------------------
     
     // Retrieve all candidate IDs to be decrypted
-    $sql_check = "SELECT candidateID FROM ".$electionName;
+    $sql_check = "SELECT * FROM ".$electionName;
     $query = $conn->prepare($sql_check);
     $result = $query->execute();
 
@@ -151,10 +166,11 @@ try{
                 </html>";
             echo '<meta http-equiv="refresh" content="3;url=index.php">';
     } else {
-
+        // Remove national insurance numbers from table
         $sql_removeNIN = "ALTER TABLE ".$electionName." DROP COLUMN voterNIN";
         $conn->query($sql_removeNIN);
 
+        // Change inEncrypted
         $sql_changeIsEncrypted = "UPDATE election SET isEncrypted=0 WHERE electionName='$electionName'";
         $conn->query($sql_changeIsEncrypted);
 
