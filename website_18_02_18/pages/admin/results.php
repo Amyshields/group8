@@ -14,7 +14,7 @@
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <?php
-require_once('../../includes/functions.php'); 
+require_once('../../includes/functions.php');
 include('../../includes/settings.php');
 
 session_start();
@@ -81,7 +81,7 @@ date_default_timezone_set('Europe/London');
 $today = date("Y-m-d H:i:s");
 $electdate = $date . " 00:00:00";
 
-if ($today > $electdate){	
+if ($today > $electdate){
 	try{
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 		if (!$conn){
@@ -91,7 +91,6 @@ if ($today > $electdate){
 		$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-<<<<<<< HEAD
 		$sql_select = "SELECT COUNT(candidateID) FROM $table";
 		foreach ($conn->query($sql_select) as $row) {
 			$turnout = $row[0];
@@ -101,8 +100,6 @@ if ($today > $electdate){
 			$novote = $row[0] - $turnout;
 		}
 	} else {
-=======
->>>>>>> 6a5ee4cd67cb12fa8bf48d3b537c5e02d26cf454
 		//Get total number of voters available to vote
 		$sql_select = 'SELECT Username FROM voter';
 		$voters = 0;
@@ -126,12 +123,12 @@ if ($today > $electdate){
 				$votes[$id] = $votes[$id] + 1;
 			}
 		}
-		
+
 		if (!is_numeric($candidates[0])){
 			echo '<h2>Results are still encrypted for '.$name.'</h2>';
-			exit();			
+			exit();
 		}
-		
+
 		//Get turnout
 		$turnout = round(($voted/$voters) * 100, 2);
 		$novote = round(100-$turnout,2);
