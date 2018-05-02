@@ -24,7 +24,6 @@ function login($username,$password){
 		$dbname = $ldbname;
 		$dbusername = $ldbusername;
 		$dbpassword = $ldbpassword;
-		$table = "admin"; //Fix for wamp server importing tables names as all lowercase
 	}
 	else{ //Setting up variables for online connection
 		global $oservername;
@@ -62,7 +61,7 @@ function login($username,$password){
 				$_SESSION['adminID'] = $row['adminID'];
 			}
 
-			if(($username==$dbuname)&&($password==$dbpw)){ //password_verify($password, $dbpw)
+			if(($username==$dbuname)&&password_verify($password, $dbpw)){ 
 				if (isset($_SESSION['error'])){
 					unset($_SESSION['error']);
 				}
