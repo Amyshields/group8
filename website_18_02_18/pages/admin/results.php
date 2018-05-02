@@ -1,5 +1,5 @@
 <?php
-require_once('../../includes/functions.php'); 
+require_once('../../includes/functions.php');
 include('../../includes/settings.php');
 
 session_start();
@@ -62,120 +62,146 @@ try{
 	$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	//Get total number of voters available to vote
-	$sql_select = 'SELECT Username FROM voter';
-	$voters = 0;
+	$sql_select = "SELECT electionType FROM election WHERE electionID = $id";
 	foreach ($conn->query($sql_select) as $row) {
-		$voters++;
+		$type = $row['electionType'];
 	}
+	if ($type == "REF"){
+		$sql_select = "SELECT COUNT(yesOrNo) FROM $table WHERE yesOrNo = 1";
 
-	$sql_select = 'SELECT candidateID FROM '.$table;
-	$votes = array();
-	$candidates = array();
-	$voted = 0;
-
-	foreach ($conn->query($sql_select) as $row) {
-		$id = $row['candidateID'];
-		$voted++;
-		if (!isset($votes[$id])){
-			$votes[$id] = 1;
-			array_push($candidates,$id);
+		foreach ($conn->query($sql_select) as $row) {
+			$votedYes = $row[0];
 		}
-		else{
-			$votes[$id] = $votes[$id] + 1;
+		$sql_select = "SELECT COUNT(yesOrNo) FROM $table WHERE yesOrNo = 0";
+
+		foreach ($conn->query($sql_select) as $row) {
+			$votedNo = $row[0];
 		}
-	}
 
-	//Get turnout
-	$turnout = round(($voted/$voters) * 100, 2);
-	$novote = round(100-$turnout,2);
-	//echo 'voters: '.$voters.' , voted: '.$voted;#
-	echo $turnout;
-
-	$sql_select = 'SELECT candidateID, candidateParty, candidateArea FROM candidate';
-	$parties = array();
-	$party_votes = array();
-	$area_votes = array();
-	$area_names = array();
-	$seats = array();
-	$candidate_parties = array();
-
-	foreach ($conn->query($sql_select) as $row) {
-		$id = $row['candidateID'];
-		$area = $row['candidateArea'];
-		$party = $row['candidateParty'];
-		$candidate_parties[$id] = $party;
-
-		//Put candidates into an array for the respective constituency (for seat calculation)
-		if (!isset($area_votes[$area])){
-			$area_votes[$area] = array();
-			array_push($area_names, $area);
+		$sql_select = "SELECT COUNT(voterNIN) FROM $table JOIN voter WHERE voter.Username = voterNIN";
+		foreach ($conn->query($sql_select) as $row) {
+			$turnout = $row[0];
 		}
-		array_push($area_votes[$area],$id); //adding candidate into constituency array to sort winner
+		$sql_select = "SELECT COUNT(Username) FROM voter";
+		foreach ($conn->query($sql_select) as $row) {
+			$novote = $row[0] - $turnout;
+		}
+	} else {
+		//Get total number of voters available to vote
+		$sql_select = 'SELECT Username FROM voter';
+		$voters = 0;
+		foreach ($conn->query($sql_select) as $row) {
+			$voters++;
+		}
 
-		//Get total number of votes for each party for total party vote count
-		if (isset($votes[$id])){
-			if (!isset($party_votes[$party])){
-				$party_votes[$party] = $votes[$id];
-				array_push($parties,$party);
+		$sql_select = 'SELECT candidateID FROM '.$table;
+		$votes = array();
+		$candidates = array();
+		$voted = 0;
+
+		foreach ($conn->query($sql_select) as $row) {
+			$id = $row['candidateID'];
+			$voted++;
+			if (!isset($votes[$id])){
+				$votes[$id] = 1;
+				array_push($candidates,$id);
 			}
 			else{
-				$party_votes[$party] = $party_votes[$party] + $votes[$id];
+				$votes[$id] = $votes[$id] + 1;
 			}
 		}
-	}
 
-	$area_scores = array();
-	$area_winners = array();
+		//Get turnout
+		$turnout = round(($voted/$voters) * 100, 2);
+		$novote = round(100-$turnout,2);
+		//echo 'voters: '.$voters.' , voted: '.$voted;#
+		echo $turnout;
 
-	//Find number of votes for each candidate in a constituency
-	foreach ($area_names as $area_name){
-		foreach ($area_votes[$area_name] as $area_candidates){
-			if (!isset($area_scores[$area_name])){
-				$area_scores[$area_name] = array();
+		$sql_select = 'SELECT candidateID, candidateParty, candidateArea FROM candidate';
+		$parties = array();
+		$party_votes = array();
+		$area_votes = array();
+		$area_names = array();
+		$seats = array();
+		$candidate_parties = array();
+
+		foreach ($conn->query($sql_select) as $row) {
+			$id = $row['candidateID'];
+			$area = $row['candidateArea'];
+			$party = $row['candidateParty'];
+			$candidate_parties[$id] = $party;
+
+			//Put candidates into an array for the respective constituency (for seat calculation)
+			if (!isset($area_votes[$area])){
+				$area_votes[$area] = array();
+				array_push($area_names, $area);
 			}
+			array_push($area_votes[$area],$id); //adding candidate into constituency array to sort winner
 
-			if (isset($votes[$area_candidates])){
-				$area_scores[$area_name][$area_candidates] = $votes[$area_candidates];
-			}
-		}
-	}
-
-	//Find the highest scores for each constituency candidate group
-	foreach ($area_names as $area_name){
-		$scores = $area_scores[$area_name];
-		$scores2 = $area_scores[$area_name];
-
-		if (count($area_scores[$area_name]) > 0){
-			//CODE FOR COIN FLIP
-			/*$winner_ids = array_keys($scores2, max($scores2));
-			foreach ($winner_ids as $a){
-				echo 'candidate: (' . $candidate_parties[$a] . ') ' . $a . ': ' . $scores2[$a] . '</br>';
-			}
-			$winner = null;
-
-			//Test to find multiple winners
-			for ($i = 1; $i <= count($winner_ids)-1; $i++) {
-				if ($scores2[$winner_ids[$i]] <  $scores2[$winner_ids[0]]){
-					unset($scores2,$winner_ids[$i]); //not a winner or tied with winner
+			//Get total number of votes for each party for total party vote count
+			if (isset($votes[$id])){
+				if (!isset($party_votes[$party])){
+					$party_votes[$party] = $votes[$id];
+					array_push($parties,$party);
 				}
-			}*/ //END OF CODE FOR COIN FLIP
-
-			/*if (count($scores2) > 1){
-				$rand = rand(0,count($scores2)-1);
-				$winner = array_keys($scores, max($scores))[$rand];
+				else{
+					$party_votes[$party] = $party_votes[$party] + $votes[$id];
+				}
 			}
-			else{
-				$winner = array_keys($scores, max($scores))[0];
-			}*/
-			//echo $winner . '</br>';
+		}
 
-			$winner_id = array_keys($scores, max($scores))[0];
-			$candidate_party = $candidate_parties[$winner_id];
-			if (!isset($seats[$candidate_party])){
-				$seats[$candidate_party] = 0;
+		$area_scores = array();
+		$area_winners = array();
+
+		//Find number of votes for each candidate in a constituency
+		foreach ($area_names as $area_name){
+			foreach ($area_votes[$area_name] as $area_candidates){
+				if (!isset($area_scores[$area_name])){
+					$area_scores[$area_name] = array();
+				}
+
+				if (isset($votes[$area_candidates])){
+					$area_scores[$area_name][$area_candidates] = $votes[$area_candidates];
+				}
 			}
-			$seats[$candidate_party] = $seats[$candidate_party] + 1; //Adding a seat to the winning party
+		}
+
+		//Find the highest scores for each constituency candidate group
+		foreach ($area_names as $area_name){
+			$scores = $area_scores[$area_name];
+			$scores2 = $area_scores[$area_name];
+
+			if (count($area_scores[$area_name]) > 0){
+				//CODE FOR COIN FLIP
+				/*$winner_ids = array_keys($scores2, max($scores2));
+				foreach ($winner_ids as $a){
+					echo 'candidate: (' . $candidate_parties[$a] . ') ' . $a . ': ' . $scores2[$a] . '</br>';
+				}
+				$winner = null;
+
+				//Test to find multiple winners
+				for ($i = 1; $i <= count($winner_ids)-1; $i++) {
+					if ($scores2[$winner_ids[$i]] <  $scores2[$winner_ids[0]]){
+						unset($scores2,$winner_ids[$i]); //not a winner or tied with winner
+					}
+				}*/ //END OF CODE FOR COIN FLIP
+
+				/*if (count($scores2) > 1){
+					$rand = rand(0,count($scores2)-1);
+					$winner = array_keys($scores, max($scores))[$rand];
+				}
+				else{
+					$winner = array_keys($scores, max($scores))[0];
+				}*/
+				//echo $winner . '</br>';
+
+				$winner_id = array_keys($scores, max($scores))[0];
+				$candidate_party = $candidate_parties[$winner_id];
+				if (!isset($seats[$candidate_party])){
+					$seats[$candidate_party] = 0;
+				}
+				$seats[$candidate_party] = $seats[$candidate_party] + 1; //Adding a seat to the winning party
+			}
 		}
 	}
 
@@ -209,6 +235,10 @@ $conn = null;
 	<script type="text/javascript">
 
 	window.onload = function () {
+
+	var electionType = "<?php echo $type; ?>";
+	console.log(electionType);
+	if (electionType== "FPTP"){
 		var chart = new CanvasJS.Chart("chartContainer", {
 			animationEnabled: true,
 			exportEnabled: true,
@@ -288,31 +318,65 @@ $conn = null;
 			]
 		});
 		chart3.render();
-
-		var chart4 = new CanvasJS.Chart("chartContainer4", {
+	} else {
+		var chart = new CanvasJS.Chart("chartContainer", {
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{
-				title: "Party"
+				title: "Yes Or No"
 			},
 			axisY:{
-				title: "Seats"
+				title: "Votes"
 			},
 			data: [
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
-				type: "pie",
-				yValueFormatString: "0'%'",
+				type: "column",
+				yValueFormatString: "0' Votes'",
 				dataPoints: [
-					<?php
-						echo '{ label: "Voted",  y: '.$turnout.'},';
-						echo '{ label: "No Vote",  y: '.$novote.'},';
-					?>
+							<?php
+								if (isset($votedYes)){
+									echo '{ label: "Yes",  y: '.$votedYes.'},';
+									echo '{ label: "No",  y: '.$votedNo.'},';
+								}
+							?>
 				]
 			}
 			]
 		});
-		chart4.render();
+		chart.render();
+
+		var fptpCharts = document.getElementsByClassName("fptpCharts"); //divsToHide is an array
+    for(var i = 0; i < fptpCharts.length; i++){
+        fptpCharts[i].style.visibility = "hidden"; // or
+        fptpCharts[i].style.display = "none"; // depending on what you're doing
+    }
+
+	}
+	var chart4 = new CanvasJS.Chart("chartContainer4", {
+		animationEnabled: true,
+		exportEnabled: true,
+		axisX:{
+			title: "Party"
+		},
+		axisY:{
+			title: "Seats"
+		},
+		data: [
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "pie",
+			yValueFormatString: "0'%'",
+			dataPoints: [
+				<?php
+					echo '{ label: "Voted",  y: '.$turnout.'},';
+					echo '{ label: "No Vote",  y: '.$novote.'},';
+				?>
+			]
+		}
+		]
+	});
+	chart4.render();
 	}
 	</script>
 </head>
@@ -325,17 +389,22 @@ $conn = null;
 	</header>
 		<h1><?php echo $name; ?> Voting Demographics</h1>
 
+
 		<h2>Final Voting Results</h2>
 		<div id="chartContainer" style="height: 300px; width: 600px;"></div>
 
-		<h2>Individual Party Results</h2>
-		<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
-
+		<div class="fptpCharts">
+			<h2>Individual Party Results</h2>
+			<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
+		</div>
 		<h2>Turnout</h2>
 		<div id="chartContainer4" style="height: 300px; width: 600px;"></div>
 
-		<h2>Change from Previous Year</h2>
-		<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
+		<div class="fptpCharts">
+			<h2>Change from Previous Year</h2>
+			<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
+		</div>
+
 	</body>
 
 	<footer class="container-fluid text-left">
