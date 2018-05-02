@@ -104,7 +104,6 @@ try{
         $cypherText = $row['candidateID'];
         $voterNIN = $row['voterNIN'];
         openssl_private_decrypt(base64_decode($cypherText), $decrypted, $privateKey);
-        echo "$decrypted";
         $sql_addDecrypted = "UPDATE ".$electionName." SET candidateID='$decrypted' WHERE voterNIN='$voterNIN'";
         $conn->query($sql_addDecrypted);
     }
@@ -129,7 +128,7 @@ try{
                 <body>
                     <header class='container-fluid text-center'>
                         <div id='logo'>
-                            <img src='images/logo.png' width='300' height='100' alt=''>
+                            <img src='../../images/logo.png' width='300' height='100' alt=''>
                         </div>
                     </header>
                     <!--Error message here-->
@@ -138,7 +137,7 @@ try{
                     <!--info here: logo, copyright, links, login as admin-->
 
                     <div id='small_logo' class='media'>
-                        <img src='images/small_logo.png' width='100' height='35' alt=''>
+                        <img src='../../images/small_logo.png' width='100' height='35' alt=''>
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
@@ -176,7 +175,7 @@ try{
                 <body>
                     <header class='container-fluid text-center'>
                         <div id='logo'>
-                            <img src='images/logo.png' width='300' height='100' alt=''>
+                            <img src='../../images/logo.png' width='300' height='100' alt=''>
                         </div>
                     </header>
                     <!--Error message here-->
@@ -185,7 +184,7 @@ try{
                     <!--info here: logo, copyright, links, login as admin-->
 
                     <div id='small_logo' class='media'>
-                        <img src='images/small_logo.png' width='100' height='35' alt=''>
+                        <img src='../images/small_logo.png' width='100' height='35' alt=''>
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>

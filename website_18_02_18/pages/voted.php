@@ -132,7 +132,7 @@ try{
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
                         <li><a href='#'>Help</a></li>
-                        <li><a href='pages/index.php'>Back to voter login</a></li>
+                        <li><a href='../dashboard.php'>Back to dashboard</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
                     </div>
@@ -181,7 +181,6 @@ try{
                         <li><a href='#'>Help</a></li>
                         <li><p>Other links</p></li>
                         <li><a href='../dashboard.php'>Back to dashboard</a></li>
-                        <li><a href='../index.php'>Back to voter login</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
                     </div>
