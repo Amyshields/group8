@@ -155,6 +155,16 @@
         }
         $conn = null;
       ?>
+      <footer class="container-fluid text-left">
+		<!--info here: logo, copyright, links, login as admin-->
+		</br>
+		<ul>
+			<li><a href="#">Help</a></li>
+			<li><p>Other links</p></li>
+			<li><a href="index.php">Back</a></li>
+			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+		</ul>
+	</footer>
   </body>
 
 <script>

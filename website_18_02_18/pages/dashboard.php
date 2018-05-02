@@ -1,4 +1,5 @@
 <?php
+/*Cyrus Dobbs C1529854*/
 require_once('../includes/functions.php');
 include('../includes/settings.php');
 
