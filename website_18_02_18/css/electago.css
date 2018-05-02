@@ -1,4 +1,4 @@
-@charset "utf-8"; /*Max,Noah,Amy*/
+@charset "utf-8"; /*Max,Noah,Amy,Dervla*/
 /*Simplified website so all CSS are in one document*/
 
 /*general*/
@@ -8,13 +8,12 @@ html,body{
 	padding: 0px;
 	background-color: #CCCCCC;
 }
-
+body{
+	/*margin-bottom: 110px;*/
+	/*height: 100%;*/
+}
 label,p{
 	font-family: 'Open Sans', sans-serif;
-}
-
-body{
-	margin-left: 50px;	
 }
 
 h1{
@@ -31,9 +30,26 @@ h3{
 
 }
 
+
+/* Wrapper for page content to push down footer */
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+/* Negative indent footer by it's height */
+margin: 0 auto -110px;
+}
+
+#footerLinks{
+	padding: 0 30px; 
+}
+
 footer{
+	margin: 5px;
 	font-weight: bold;
 	padding-top: 25px;
+  	height: 80px; /* Set the fixed height of the footer here */
+  	background-color: #e4e4e4;
 }
 /*This bit is for the Index page*/
 #intro {
@@ -55,7 +71,15 @@ footer{
 	padding: 10px 100px;
 }
 
+#selection{
+	padding: 10px 100px;
+}
+
 #info{
 	padding-top: 20px;
+}
+/*
+#passwordCheckbox{
+	padding-top: 15px;
 }
 /**/

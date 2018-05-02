@@ -114,64 +114,67 @@ $conn = null;
 </head>
 
 <body>
-	<div class="container-fluid">
 	<header class="container-fluid text-center">
         <div id="logo">
             <img src="../images/logo.png" width="300" height="100" alt="">
         </div>
 	</header>
-<!--container class used in bootstrap to make a dynamic container of a fixed size-->
-    <h1>Electago - Dashboard</h1>
-    <h2><?php echo $votedString;?></h2>
-    <h2><?php echo $noSelectionString;?></h2>
-<div class="container">
-	<form action="voting.php" method="post">
-        <p>Select which election you would like to vote in:</p>
-
-                 <!-- <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose an election<span class="caret"></span></button>
-          <ul class="dropdown-menu">
-                <#?php   if ($num_rows > 0) {
-                        for($x = 0; $x < $num_rows; $x++) {
-                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
-                        }
-                    }else{
-                        echo "<p>" . $noElectionString . "</p>";
-                    }
-                ?>
-
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>  -->
-
-        <select name="selection">
-            <?php   if ($num_rows > 0) {
-                        for($x = 0; $x < $num_rows; $x++) {
-                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
-                        }
-                    }else{
-                        echo "<p>" . $noElectionString . "</p>";
-                    }
-                ?>
-        </select-->
-        <input type="submit" class="btn btn-default" value="Proceed" autofocus>        
-	</form>
-</div>
-    <footer class="container-fluid">
-        <!--info here: logo, copyright, links, login as admin-->
-
-        <div id="small_logo" class="media">
-            <img src="../images/small_logo.png" width="100" height="35" alt="">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="wrap">
+            <!--container class used in bootstrap to make a dynamic container of a fixed size-->
+                <h1>Voting Dashboard</h1>
+                <h2><?php echo $votedString;?></h2>
+                <h2><?php echo $noSelectionString;?></h2>
+                <div id="intro">
+                    <p>Below you should see a list of elections you are eligible to vote for at this time.</p>
+                    <p>Select the name of the election you want to vote in next to be taken to your online ballot. 
+                    <br />Please take your time to read over your selection after voting to make sure the highlighted selection is correct and then click the "vote" button to return to this page.</p>
+                </div>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-12">
+                	<form action="voting.php" method="post">
+                        <!--posting selection-->
+                        <div class="form-group text-center">
+                            <label for="electionSelection">Select an election:</label>
+                            <br>
+                            <div class="btn-group-vertical" id="electionSelection">
+                                <?php   if ($num_rows > 0) {
+                                        for($x = 0; $x < $num_rows; $x++) {
+                                            echo "<button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</button>";
+                                        }
+                                    }else{
+                                        echo "<p>" . $noElectionString . "</p>";
+                                    }
+                                ?>
+                            </div>
+                        </div>       
+                	</form>
+                </div>
+                <!--adding space between form and footer-->
+                <div class="form-group">
+                    &nbsp;
+                </div>
+                <div class="form-group">
+                    &nbsp;
+                </div>
+            </div>
         </div>
-        <div class="media-body">
-        <ul class="list-inline pull right">
-            <li><a href="#">Help</a></li>
-            <li><p>Other links</p></li>
-            <li><a href="../includes/logout.php">Log out</a></li>
-            <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-        </ul>
-        </div>
-    </footer>
+        <footer class="container-fluid">
+            <!--info here: logo, copyright, links, login as admin-->
+
+            <div id="small_logo" class="media">
+                <img src="../images/small_logo.png" width="100" height="35" alt="">
+            </div>
+            <div class="media-body">
+            <ul class="list-inline pull right">
+                <li><a href="#">Help</a></li>
+                <li><a href="../includes/logout.php">Log out</a></li>
+                <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+            </ul>
+            </div>
+        </footer>
+    </div>
+</body>
 </html>

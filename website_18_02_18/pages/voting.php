@@ -167,7 +167,6 @@ catch(PDOException $e){
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
                         <li><a href='#'>Help</a></li>
-                        <li><p>Other links</p></li>
                         <li><a href='pages/index.php'>Back to voter login</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
@@ -196,48 +195,65 @@ $conn = null;
 </head>
 
 <body>
-	<div class="container-fluid">
 	<header class="container-fluid text-center">
         <div id="logo">
             <img src="../images/logo.png" width="300" height="100" alt="">
         </div>
 	</header>
-<!--container class used in bootstrap to make a dynamic container of a fixed size-->
-    <h1>Electago - Voting Page</h1>
-<div class="container">
-	<form action="voted.php" method="post">
-        <?php   if($thisElectionDetails[1]=='FPTP'){
-                    echo "<h2>" . $thisElectionDetails[3] . "</h2>";
-                    echo "<p> Constituency: <b>".$userConstituency."</b>.</p>";
-                    for ($x = 0; $x < $num_rows_candidates; $x++) {
-                        echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
-                    } 
-                    echo "<input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>";
 
-                }elseif($thisElectionDetails[1]=='REF'){
-                    echo "<h2>" . $thisElectionDetails[3] . "?</h2>";
-                    echo "<input type='radio' id='radio' name='radio' value='1'> <label for='votedYes'>Yes</label><p><p>";
-                    echo "<input type='radio' id='radio' name='radio' value='0'> <label for='votedNo'>No</label><p><p>";
-                }?>
-        
-        <input type='hidden' id='electionName' name='electionName' value='<?php echo $thisElectionDetails[0];?>'>
-        <input type='hidden' id='text' name='electionType' value='<?php echo $thisElectionDetails[1];?>'>
-        <a href="dashboard.php"><button type="button" class="btn btn-secondary">Go back</button></a>
-        <input type="submit" class="btn btn-default" value="Vote" autofocus>
-	</form>
-</div>
-    <footer class="container-fluid">
-    	<!--info here: logo, copyright, links, login as admin-->
-        <div id="small_logo" class="media">
-            <img src="../images/small_logo.png" width="100" height="35" alt="">
+    <div class="container">
+        <div class="container-fluid col-sm-offset-2">
+            <div class="wrap">
+                <div class="col-sm-10 col-sm-offset-1" id="intro">
+                    <h1 class="text-center">Voting Page</h1>
+                    <h3>Please cast your vote.</h3>
+                </div>
+                <div class="col-sm-8 col-sm-offset-1 panel">
+                	<form action="voted.php" method="post">
+                        <!--DISABLE VOTE BUTTON UNTIL SUBMIT-->
+                        <?php   
+                            if($thisElectionDetails[1]=='FPTP'){
+                                    echo "<h2>" . $thisElectionDetails[3] . "</h2>";
+                                    echo "<p> Constituency: <b>".$userConstituency."</b>.</p>";
+                                    for ($x = 0; $x < $num_rows_candidates; $x++) {
+                                        echo"<input type='radio' id='radio' name='radio' value='" . $candidates[$x][0] . "'> <label for='Choice".$x."'>" . $candidates[$x][1] ." - ". $candidates[$x][2] . "</label><p><p>";
+                                    } 
+                                    echo "<input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>";
+
+                            }
+                            elseif($thisElectionDetails[1]='REF'){
+                                    echo "<h2>" . $thisElectionDetails[3] . "?</h2>";
+                                    echo "<input type='radio' id='radio' name='radio' value='1'> <label for='votedYes'>Yes</label><p><p>";
+                                    echo "<input type='radio' id='radio' name='radio' value='0'> <label for='votedNo'>No</label><p><p>";
+                            }
+                        ?>
+                        
+                        <input type='hidden' id='electionName' name='electionName' value='<?php echo $thisElectionDetails[0];?>'>
+                        <input type='hidden' id='text' name='electionType' value='<?php echo $thisElectionDetails[1];?>'>
+                        <a href="dashboard.php"><button type="button" class="btn btn-secondary">Go back</button></a>
+                        <input type="submit" class="btn btn-default" value="Vote" autofocus/>
+                	</form>
+                    <hr>
+                    <div class="form-group">
+                    &nbsp;
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="media-body">
-        <ul class="list-inline pull right">
-            <li><a href="#">Help</a></li>
-            <li><p>Other links</p></li>
-            <li><a href="..\includes\logout.php">Log out</a></li>
-            <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-        </ul>
-        </div>
-    </footer>
+        <footer class="container-fluid">
+        	<!--info here: logo, copyright, links, login as admin-->
+            <div id="small_logo" class="media">
+                <img src="../images/small_logo.png" width="100" height="35" alt="">
+            </div>
+            <div class="media-body">
+                <ul class="list-inline pull right">
+                    <li><a href="#">Help</a></li>
+                    <li><a href="dashboard.php">Back to Dashboard</a></li>
+                    <li><a href="..\includes\logout.php">Log out</a></li>
+                    <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
 </html>
