@@ -1,5 +1,20 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Demographics</title>
+	<!--For Bootstrap, to make page responsive on mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--For Bootstrap, to load the css information from a CDN-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="../../css/electago.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 <?php
-require_once('../../includes/functions.php');
+require_once('../../includes/functions.php'); 
 include('../../includes/settings.php');
 
 session_start();
@@ -12,13 +27,22 @@ if (!isset($_SESSION['elections'])){
 	redirect("demographics.php");
 }
 
+if (!isset($_SESSION['electionDates'])){
+	redirect("demographics.php");
+}
+
 if (!isset($_GET['id'])){
 	redirect("demographics.php");
 }
 
 $id = $_GET['id'];
+if (!isset($_SESSION['elections'][$id])){
+	redirect("demographics.php");
+}
+
 $name = $_SESSION['elections'][$id];
 $name2 = strtolower(str_replace(' ', '', $name));
+$date = $_SESSION['electionDates'][$id];
 
 global $local; //Setting up database based on local variable
 $servername = ""; //Set up connection variables
@@ -27,6 +51,7 @@ $dbusername = "";
 $dbpassword = "";
 $table = $name2; //If can't connect to table, first letter needs to be uppercase.
 $table2 = "candidate";
+$show = false;
 
 if ($local == true){ //Setting up variables for local connection
     global $lservername;
@@ -53,40 +78,22 @@ else{ //Setting up variables for online connection
     $dbpassword = $odbpassword;
 }
 
-try{
-	$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
-	if (!$conn){
-		echo "Can't connect to the database.";
-	}
+date_default_timezone_set('Europe/London');
+$today = date("Y-m-d H:i:s");
+$electdate = $date . " 00:00:00";
 
-	$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-	$sql_select = "SELECT electionType FROM election WHERE electionID = $id";
-	foreach ($conn->query($sql_select) as $row) {
-		$type = $row['electionType'];
-	}
-	if ($type == "REF"){
-		$sql_select = "SELECT COUNT(candidateID) FROM $table WHERE candidateID = 1";
-
-		foreach ($conn->query($sql_select) as $row) {
-			$votedYes = $row[0];
-		}
-		$sql_select = "SELECT COUNT(candidateID) FROM $table WHERE candidateID = 0";
-
-		foreach ($conn->query($sql_select) as $row) {
-			$votedNo = $row[0];
+if ($today > $electdate){
+	$show = true;
+	
+	try{
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
+		if (!$conn){
+			echo "Can't connect to the database.";
 		}
 
-		$sql_select = "SELECT COUNT(voterNIN) FROM $table JOIN voter WHERE voter.Username = voterNIN";
-		foreach ($conn->query($sql_select) as $row) {
-			$turnout = $row[0];
-		}
-		$sql_select = "SELECT COUNT(Username) FROM voter";
-		foreach ($conn->query($sql_select) as $row) {
-			$novote = $row[0] - $turnout;
-		}
-	} else {
+		$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 		//Get total number of voters available to vote
 		$sql_select = 'SELECT Username FROM voter';
 		$voters = 0;
@@ -203,42 +210,28 @@ try{
 				$seats[$candidate_party] = $seats[$candidate_party] + 1; //Adding a seat to the winning party
 			}
 		}
+
+		//Finding if there is a tie, and coin flipping to find a winner
+
+	}
+	catch(PDOException $e){
+		echo $sql . "<br>" . $e->getMessage();
 	}
 
-	//Finding if there is a tie, and coin flipping to find a winner
+	$conn = null;
 
 }
-catch(PDOException $e){
-	echo $sql . "<br>" . $e->getMessage();
+else{
+	echo '<h2>Demographics for '.$name.' can only be shown once the election has finished ('.$date.')</h2>';
+	exit();
 }
-
-$conn = null;
-
-
 ?>
 
-<!doctype html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Demographics</title>
-	<!--For Bootstrap, to make page responsive on mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--For Bootstrap, to load the css information from a CDN-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="../../css/electago.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
 	<script type="text/javascript">
 
 	window.onload = function () {
-
-	var electionType = "<?php echo $type; ?>";
-	console.log(electionType);
-	if (electionType== "FPTP"){
 		var chart = new CanvasJS.Chart("chartContainer", {
 			animationEnabled: true,
 			exportEnabled: true,
@@ -318,65 +311,31 @@ $conn = null;
 			]
 		});
 		chart3.render();
-	} else {
-		var chart = new CanvasJS.Chart("chartContainer", {
+
+		var chart4 = new CanvasJS.Chart("chartContainer4", {
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{
-				title: "Yes Or No"
+				title: "Party"
 			},
 			axisY:{
-				title: "Votes"
+				title: "Seats"
 			},
 			data: [
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
-				type: "column",
-				yValueFormatString: "0' Votes'",
+				type: "pie",
+				yValueFormatString: "0'%'",
 				dataPoints: [
-							<?php
-								if (isset($votedYes)){
-									echo '{ label: "Yes",  y: '.$votedYes.'},';
-									echo '{ label: "No",  y: '.$votedNo.'},';
-								}
-							?>
+					<?php
+						echo '{ label: "Voted",  y: '.$turnout.'},';
+						echo '{ label: "No Vote",  y: '.$novote.'},';
+					?>
 				]
 			}
 			]
 		});
-		chart.render();
-
-		var fptpCharts = document.getElementsByClassName("fptpCharts"); //divsToHide is an array
-    for(var i = 0; i < fptpCharts.length; i++){
-        fptpCharts[i].style.visibility = "hidden"; // or
-        fptpCharts[i].style.display = "none"; // depending on what you're doing
-    }
-
-	}
-	var chart4 = new CanvasJS.Chart("chartContainer4", {
-		animationEnabled: true,
-		exportEnabled: true,
-		axisX:{
-			title: "Party"
-		},
-		axisY:{
-			title: "Seats"
-		},
-		data: [
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "pie",
-			yValueFormatString: "0'%'",
-			dataPoints: [
-				<?php
-					echo '{ label: "Voted",  y: '.$turnout.'},';
-					echo '{ label: "No Vote",  y: '.$novote.'},';
-				?>
-			]
-		}
-		]
-	});
-	chart4.render();
+		chart4.render();
 	}
 	</script>
 </head>
@@ -389,22 +348,17 @@ $conn = null;
 	</header>
 		<h1><?php echo $name; ?> Voting Demographics</h1>
 
-
 		<h2>Final Voting Results</h2>
 		<div id="chartContainer" style="height: 300px; width: 600px;"></div>
 
-		<div class="fptpCharts">
-			<h2>Individual Party Results</h2>
-			<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
-		</div>
+		<h2>Individual Party Results</h2>
+		<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
+
 		<h2>Turnout</h2>
 		<div id="chartContainer4" style="height: 300px; width: 600px;"></div>
 
-		<div class="fptpCharts">
-			<h2>Change from Previous Year</h2>
-			<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
-		</div>
-
+		<h2>Change from Previous Year</h2>
+		<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
 	</body>
 
 	<footer class="container-fluid text-left">
