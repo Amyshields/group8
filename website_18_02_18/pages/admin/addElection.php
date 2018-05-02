@@ -27,24 +27,30 @@ if ($num_rows == 0){
     $sql = "
     CREATE TABLE $name (
         voterNIN VARCHAR(9) PRIMARY KEY,
-        candidateID VARCHAR(200),
+        candidateID VARCHAR(500),
         FOREIGN KEY (voterNIN) REFERENCES voter(Username),
         FOREIGN KEY (candidateID) REFERENCES candidate(candidateID)
-      ) ENGINE=MyISAM DEFAULT CHARSET=latin1"; // VARCHAR(200) added for encryption support
+      ) ENGINE=MyISAM DEFAULT CHARSET=latin1"; // VARCHAR(500) added for encryption support
   } elseif ($type == "STV"){
     $sql = "
     CREATE TABLE $name (
         voterNIN VARCHAR(9) PRIMARY KEY,
-        candidateIDs VARCHAR(120),
+        candidateIDs VARCHAR(500),
         FOREIGN KEY (voterNIN) REFERENCES voter(Username)
       ) ENGINE=MyISAM DEFAULT CHARSET=latin1";
   } elseif ($type == "REF"){
     $sql = "
     CREATE TABLE $name (
         voterNIN VARCHAR(9) PRIMARY KEY,
+<<<<<<< HEAD
         yesOrNo BIT,
         FOREIGN KEY (voterNIN) REFERENCES voter(Username)
       ) ENGINE=MyISAM DEFAULT CHARSET=latin1"; // VARCHAR(200) added for encryption support
+=======
+        candidateID VARCHAR(500),
+        FOREIGN KEY (voterNIN) REFERENCES voter(Username)
+      ) ENGINE=MyISAM DEFAULT CHARSET=latin1"; // VARCHAR(500) added for encryption support 
+>>>>>>> 595d5b633ca0c35f705b8b85e9b5bd83ea88460d
   }                                            // & also changed the referendum choice to be called candidateID
   $query = $conn->query($sql);
 

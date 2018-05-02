@@ -17,6 +17,10 @@ if(isset($_GET['voted'])){
     $votedString = "Vote recorded.";
 }
 
+if(isset($_GET['noSelection'])){
+    $noSelectionString = "No vote was recorded. Next time, click a radio button to select your choice.";
+}
+
 global $local; //Setting up database based on local variable
 $servername = ""; //Set up connection variables
 $dbname = "";
@@ -121,32 +125,24 @@ $conn = null;
             <!--container class used in bootstrap to make a dynamic container of a fixed size-->
                 <h1>Voting Dashboard</h1>
                 <h2><?php echo $votedString;?></h2>
-                <div class="container-fluid col-sm-8">
+                <h2><?php echo $noSelectionString;?></h2>
+                <div id="intro">
+                    <p>Below you should see a list of elections you are eligible to vote for at this time.</p>
+                    <p>Select the name of the election you want to vote in next to be taken to your online ballot. 
+                    <br />Please take your time to read over your selection after voting to make sure the highlighted selection is correct and then click the "vote" button to return to this page.</p>
+                </div>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-12">
                 	<form action="voting.php" method="post">
                         <!--posting selection-->
-                                 <!-- <div class="dropdown">
-                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose an election<span class="caret"></span></button>
-                          <ul class="dropdown-menu">
-                                <#?php   if ($num_rows > 0) {
-                                        for($x = 0; $x < $num_rows; $x++) {
-                                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
-                                        }
-                                    }else{
-                                        echo "<p>" . $noElectionString . "</p>";
-                                    }
-                                ?>
-
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">JavaScript</a></li>
-                          </ul>
-                        </div>  -->
-                        <div class="form-group">
-                            <label for="electionSelection">Select which election you would like to vote in:</label>
+                        <div class="form-group text-center">
+                            <label for="electionSelection">Select an election:</label>
+                            <br>
                             <div class="btn-group-vertical" id="electionSelection">
                                 <?php   if ($num_rows > 0) {
                                         for($x = 0; $x < $num_rows; $x++) {
-                                            echo "<button type='submit' id='selection'  class='btn btn-warning submit' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</button>";
+                                            echo "<button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</button>";
                                         }
                                     }else{
                                         echo "<p>" . $noElectionString . "</p>";
@@ -155,6 +151,13 @@ $conn = null;
                             </div>
                         </div>       
                 	</form>
+                </div>
+                <!--adding space between form and footer-->
+                <div class="form-group">
+                    &nbsp;
+                </div>
+                <div class="form-group">
+                    &nbsp;
                 </div>
             </div>
         </div>
