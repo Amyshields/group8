@@ -166,7 +166,7 @@ catch(PDOException $e){
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
-                        <li><a href='#'>Help</a></li>
+                        <li><a href='voterHelp.html'>Help</a></li>
                         <li><a href='pages/index.php'>Back to voter login</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
@@ -247,7 +247,7 @@ $conn = null;
             </div>
             <div class="media-body">
                 <ul class="list-inline pull right">
-                    <li><a href="#">Help</a></li>
+                    <li><a href="voterHelp.html">Help</a></li>
                     <li><a href="dashboard.php">Back to Dashboard</a></li>
                     <li><a href="..\includes\logout.php">Log out</a></li>
                     <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
