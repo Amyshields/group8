@@ -1,7 +1,7 @@
 <?php
 /*Noah Johnson C1649499*/
 
-$local = false; //Do you want to connect to local or online server?
+$local = true; //Do you want to connect to local or online server?
 
 //Details for the online server (Don't change)
 $oservername = "csmysql.cs.cf.ac.uk"; //Name of the online server
@@ -43,8 +43,8 @@ $odbpassword = "kMB8PRzvnZf7Amg"; //Database password username
 
 //Details for the local server
 $lservername = "127.0.0.1:3306"; //Name of the local server (wamps standard)
-$ldbname = "group8_2017"; //Database on the server to enter 
+$ldbname = "group8_2017"; //Database on the server to enter
 $ldbusername = "root"; //Database login username (wamp's standard is 'root')
-$ldbpassword = ""; //Database password username	(wamp's standard is nothing) 
+$ldbpassword = ""; //Database password username	(wamp's standard is nothing)
 */
 ?>
