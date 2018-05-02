@@ -93,49 +93,10 @@ try{
         $sql = "UPDATE ".$electionName." SET candidateID='$encString' WHERE voterNIN='$userNIN'";
         $conn->query($sql);
         #page that shows if youve changed your vote
-        echo "<!DOCTYPE html>
-                <html lang='en'>
-                <head>
-                    <meta charset='utf-8'>
-                    <title>Home Page</title>
-                    <!--For Bootstrap, to make page responsive on mobile-->
-                    <meta name='viewport' content='width=device-width, initial-scale=1'>
-                    <!--For Bootstrap, to load the css information from a CDN-->
-                    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-                    <link href='../css/electago.css' rel='stylesheet' type='text/css'>
-                    <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
-                    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-                    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-                </head>
-                <body>
-                    <header class='container-fluid text-center'>
-                        <div id='logo'>
-                            <img src='images/logo.png' width='300' height='100' alt=''>
-                        </div>
-                    </header>
-                    <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-                        <div class='container'> 
+        echo "<div class='container'> 
                             <span class='glyphicon glyphicon-exclamation-sign'></span>
                             <p>Your existing vote has been changed, auto redirecting back in 3 seconds</p> 
-                        </div>
-                    <footer class='container-fluid'>
-                    <!--info here: logo, copyright, links, login as admin-->
-
-                    <div id='small_logo' class='media'>
-                        <img src='images/small_logo.png' width='100' height='35' alt=''>
-                    </div>
-                    <div class='media-body'>
-                    <ul class='list-inline pull right'>
-                        <li><a href='#'>Help</a></li>
-                        <li><p>Other links</p></li>
-                        <li><a href='dashboard.php'>Back to dashboard</a></li>
-                        <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-                    </ul>
-                    </div>
-                    <meta http-equiv='refresh' content='3;url=dashboard.php'>
-                </footer>
-                </body>
-                </html>";
+                        </div>";
         #echo "Your existing vote has been changed, auto redirecting back in 3 seconds";-->
     }
     else {
@@ -144,46 +105,7 @@ try{
         $conn->query($sql);
         #page that shows if your'e voting for the first time
         #echo 'You have voted for the first time, auto redirecting back in 3 seconds';
-        echo "<!DOCTYPE html>
-                <html lang='en'>
-                <head>
-                    <meta charset='utf-8'>
-                    <title>Home Page</title>
-                    <!--For Bootstrap, to make page responsive on mobile-->
-                    <meta name='viewport' content='width=device-width, initial-scale=1'>
-                    <!--For Bootstrap, to load the css information from a CDN-->
-                    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-                    <link href='../css/electago.css' rel='stylesheet' type='text/css'>
-                    <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
-                    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-                    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-                </head>
-                <body>
-                    <header class='container-fluid text-center'>
-                        <div id='logo'>
-                            <img src='images/logo.png' width='300' height='100' alt=''>
-                        </div>
-                    </header>
-                    <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-                    <div class='container'> <p>You have voted for the first time, auto redirecting back in 3 seconds</p> </div>
-                    <footer class='container-fluid'>
-                    <!--info here: logo, copyright, links, login as admin-->
-
-                    <div id='small_logo' class='media'>
-                        <img src='images/small_logo.png' width='100' height='35' alt=''>
-                    </div>
-                    <div class='media-body'>
-                    <ul class='list-inline pull right'>
-                        <li><a href='#'>Help</a></li>
-                        <li><p>Other links</p></li>
-                        <li><a href='dashboard.php'>Back to dashboard</a></li>
-                        <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-                    </ul>
-                    </div>
-                    <meta http-equiv='refresh' content='3;url=dashboard.php'>
-                </footer>
-                </body>
-                </html>";
+        echo "<div class='container'> <p>You have voted for the first time, auto redirecting back in 3 seconds</p> </div>";
     }
 }
 catch(PDOException $e){
