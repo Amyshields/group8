@@ -42,7 +42,7 @@ if ($num_rows == 0){
     $sql = "
     CREATE TABLE $name (
         voterNIN VARCHAR(9) PRIMARY KEY,
-        yesOrNo BIT,
+        candidateID VARCHAR(500),
         FOREIGN KEY (voterNIN) REFERENCES voter(Username)
       ) ENGINE=MyISAM DEFAULT CHARSET=latin1"; // VARCHAR(200) added for encryption support
   }                                            // & also changed the referendum choice to be called candidateID

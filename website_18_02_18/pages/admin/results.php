@@ -67,12 +67,12 @@ try{
 		$type = $row['electionType'];
 	}
 	if ($type == "REF"){
-		$sql_select = "SELECT COUNT(yesOrNo) FROM $table WHERE yesOrNo = 1";
+		$sql_select = "SELECT COUNT(candidateID) FROM $table WHERE candidateID = 1";
 
 		foreach ($conn->query($sql_select) as $row) {
 			$votedYes = $row[0];
 		}
-		$sql_select = "SELECT COUNT(yesOrNo) FROM $table WHERE yesOrNo = 0";
+		$sql_select = "SELECT COUNT(candidateID) FROM $table WHERE candidateID = 0";
 
 		foreach ($conn->query($sql_select) as $row) {
 			$votedNo = $row[0];
