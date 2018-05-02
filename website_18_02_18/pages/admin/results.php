@@ -78,7 +78,7 @@ try{
 			$votedNo = $row[0];
 		}
 
-		$sql_select = "SELECT COUNT(voterNIN) FROM $table JOIN voter WHERE voter.Username = voterNIN";
+		$sql_select = "SELECT COUNT(candidateID) FROM $table";
 		foreach ($conn->query($sql_select) as $row) {
 			$turnout = $row[0];
 		}
