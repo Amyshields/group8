@@ -205,11 +205,12 @@ $conn = null;
         <div class="container-fluid col-sm-offset-2">
             <div class="wrap">
                 <div class="col-sm-10 col-sm-offset-1" id="intro">
-                    <h1>Voting Page</h1>
+                    <h1 class="text-center">Voting Page</h1>
                     <h3>Please cast your vote.</h3>
                 </div>
                 <div class="col-sm-8 col-sm-offset-1 panel">
                 	<form action="voted.php" method="post">
+                        <!--DISABLE VOTE BUTTON UNTIL SUBMIT-->
                 		<h2><?php echo $thisElectionDetails[3]?> </h2>
                         <?php   
                             if($thisElectionDetails[1]=='FPTP'){
@@ -229,7 +230,7 @@ $conn = null;
                         <input type='hidden' id='electionName' name='electionName' value='<?php echo $thisElectionDetails[0];?>'>
                         <input type='hidden' id='text' name='electionType' value='<?php echo $thisElectionDetails[1];?>'>
                         <a href="dashboard.php"><button type="button" class="btn btn-secondary">Go back</button></a>
-                        <input type="submit" class="btn btn-default" value="Vote" autofocus>
+                        <input type="submit" class="btn btn-default" value="Vote" autofocus/>
                 	</form>
                     <hr>
                 	<form action="voted.php" method="post">
@@ -241,7 +242,7 @@ $conn = null;
                         }?>
                         <input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p></p>
                         </select>
-                		<input type="submit" class="btn btn-default" value="Vote" autofocus>
+                		<input type="submit" class="btn btn-default" value="Vote" autofocus/>
                 	</form>
                     <div class="form-group">
                     &nbsp;
