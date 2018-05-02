@@ -204,8 +204,8 @@ $conn = null;
     <div class="container">
         <div class="container-fluid col-sm-offset-2">
             <div class="wrap">
-                <h1>Voting Page</h1>
                 <div class="col-sm-10 col-sm-offset-1" id="intro">
+                    <h1>Voting Page</h1>
                     <h3>Please cast your vote.</h3>
                 </div>
                 <div class="col-sm-8 col-sm-offset-1 panel">
