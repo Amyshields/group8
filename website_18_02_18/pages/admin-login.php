@@ -71,7 +71,6 @@ if(isset($_SESSION['logged_in'])){
 
 		<?php
 			if (isset($_SESSION['error'])){
-<<<<<<< HEAD
 				echo "<!DOCTYPE html>
                 <html lang='en'>
                 <head>
@@ -113,11 +112,6 @@ if(isset($_SESSION['logged_in'])){
                 </html>";
 				unset($_SESSION['error']); 
 			}			
-=======
-				echo $_SESSION['error'];
-				unset($_SESSION['error']);
-			}
->>>>>>> d36369c8e75efe832c4e81e04e5451cb14ac3694
 		?>
 	</div>
 
@@ -126,12 +120,12 @@ if(isset($_SESSION['logged_in'])){
 		<!--info here: logo, copyright, links, login as admin-->
 
 		<div id="small_logo" class="media">
-			<img src="images/small_logo.png" width="100" height="35" alt="">
+			<img src="../images/small_logo.png" width="100" height="35" alt="">
 		</div>
 		<div class="media-body">
 		<ul class="list-inline pull right">
 			<li><a href="#">Help</a></li>
-			<li><span class="glyphicon glyphicon-log-out"></span><a href="../../includes/logout.php"><p>Log out</p></a></li>
+			<li><span class="glyphicon glyphicon-log-out"></span><a href="../index.php"><p>Log in as voter</p></a></li>
 			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 		</ul>
 		</div>

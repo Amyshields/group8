@@ -114,7 +114,7 @@
             echo "<br>Election Type: $electionType";
             echo "<br>Election Area: $electionArea";
             echo "<br>Election Date: $electionDate";
-            if ($electionIsEncrypted=1){ // Cy Added
+            if ($electionIsEncrypted==1){ // Cy Added
               echo "<br>Encrypted: YES";
             } else {
               echo "<br>Encrypted: NO";

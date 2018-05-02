@@ -17,6 +17,10 @@ if(isset($_GET['voted'])){
     $votedString = "Vote recorded.";
 }
 
+if(isset($_GET['noSelection'])){
+    $noSelectionString = "No vote was recorded. Next time, click a radio button to select your choice.";
+}
+
 global $local; //Setting up database based on local variable
 $servername = ""; //Set up connection variables
 $dbname = "";
@@ -119,6 +123,7 @@ $conn = null;
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
     <h1>Electago - Dashboard</h1>
     <h2><?php echo $votedString;?></h2>
+    <h2><?php echo $noSelectionString;?></h2>
 <div class="container">
 	<form action="voting.php" method="post">
         <p>Select which election you would like to vote in:</p>
