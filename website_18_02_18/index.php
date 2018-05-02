@@ -97,8 +97,8 @@ if(isset($_SESSION['logged_in'])){
 			</div>
 			<div class="media-body">
 			<ul class="list-inline">
-				<li><a href="#">Help</a></li>
-				<li><p>Other links</p></li>
+				<li><a href="voterHelp.html">Help</a></li>
+				<li><a href="voterHelp.html/#privacy">Privacy</a></li>
 				<li><a href="pages/admin-login.php">Login as admin</a></li>
 				<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
 			</ul>
