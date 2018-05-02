@@ -1,4 +1,5 @@
 <?php
+/*Cyrus Dobbs C1529854*/
 require_once('../../includes/functions.php');
 include('../../includes/settings.php');
 
@@ -98,19 +99,13 @@ try{
     $query = $conn->prepare($sql_check);
     $result = $query->execute();
 
-    $sql_addDecryptColumn = "ALTER TABLE ".$electionName." ADD decryptedVote varchar(20)";
-    $conn->query($sql_addDecryptColumn);
-
-    $sql_removeNIN = "ALTER TABLE ".$electionName." DROP COLUMN voterNIN";
-    $conn->query($sql_removeNIN);
-
     // Decrypt each candidate ID and add to decrypted votes table
     foreach($query as $row){
         $cypherText = $row['candidateID'];
-        
+        $voterNIN = $row['voterNIN'];
         openssl_private_decrypt(base64_decode($cypherText), $decrypted, $privateKey);
         echo "$decrypted";
-        $sql_addDecrypted = "UPDATE ".$electionName." SET decryptedVote='$decrypted' WHERE candidateID='$cypherText'";
+        $sql_addDecrypted = "UPDATE ".$electionName." SET candidateID='$decrypted' WHERE voterNIN='$voterNIN'";
         $conn->query($sql_addDecrypted);
     }
     
@@ -126,7 +121,7 @@ try{
                     <meta name='viewport' content='width=device-width, initial-scale=1'>
                     <!--For Bootstrap, to load the css information from a CDN-->
                     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-                    <link href='css/electago.css' rel='stylesheet' type='text/css'>
+                    <link href='../../css/electago.css' rel='stylesheet' type='text/css'>
                     <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
                     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
                     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -157,10 +152,13 @@ try{
                 </html>";
             echo '<meta http-equiv="refresh" content="3;url=index.php">';
     } else {
-        $sql_removeEncrypted = "ALTER TABLE ".$electionName." DROP COLUMN candidateID";
-        $conn->query($sql_removeEncrypted);
+
+        $sql_removeNIN = "ALTER TABLE ".$electionName." DROP COLUMN voterNIN";
+        $conn->query($sql_removeNIN);
+
         $sql_changeIsEncrypted = "UPDATE election SET isEncrypted=0 WHERE electionName='$electionName'";
         $conn->query($sql_changeIsEncrypted);
+
         echo "<!DOCTYPE html>
                 <html lang='en'>
                 <head>
@@ -170,7 +168,7 @@ try{
                     <meta name='viewport' content='width=device-width, initial-scale=1'>
                     <!--For Bootstrap, to load the css information from a CDN-->
                     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-                    <link href='css/electago.css' rel='stylesheet' type='text/css'>
+                    <link href='../../css/electago.css' rel='stylesheet' type='text/css'>
                     <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
                     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
                     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>

@@ -1,4 +1,5 @@
 <?php
+/*Cyrus Dobbs C1529854*/
 require_once('../../includes/functions.php');
 include('../../includes/settings.php');
 
@@ -140,6 +141,7 @@ $conn = null;
             <li><a href="#">Help</a></li>
             <li><p>Other links</p></li>
             <li><a href="../../includes/logout.php">Log out</a></li>
+            <li><a href="index.php">Back</a></li>
             <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
         </ul>
         </div>

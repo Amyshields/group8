@@ -1,4 +1,5 @@
 <?php
+/*Cyrus Dobbs C1529854*/
 require_once('../includes/functions.php');
 include('../includes/settings.php');
 
@@ -222,7 +223,7 @@ $conn = null;
 
                             }
                             elseif($thisElectionDetails[1]='REF'){
-                                    echo "<h2>" . $thisElectionDetails[3] . "?</h2>";
+                                    echo "<h2>" . $thisElectionDetails[3] . "</h2>";
                                     echo "<input type='radio' id='radio' name='radio' value='1'> <label for='votedYes'>Yes</label><p><p>";
                                     echo "<input type='radio' id='radio' name='radio' value='0'> <label for='votedNo'>No</label><p><p>";
                             }
