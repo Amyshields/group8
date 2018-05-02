@@ -14,10 +14,12 @@ if(!isset($_SESSION['logged_in'])){
    header("Location: ../index.php");
 }
 
+$votedString = "";
 if(isset($_GET['voted'])){
     $votedString = "Vote recorded.";
 }
 
+$noSelectionString = "";
 if(isset($_GET['noSelection'])){
     $noSelectionString = "No vote was recorded. Next time, click a radio button to select your choice.";
 }
@@ -71,21 +73,35 @@ try{
 
     $num_rows = $query->rowCount();
 
+    date_default_timezone_set('Europe/London');
+    $today = date("Y-m-d H:i:s");
+
+
+    $activeElectionCount = 0;
+
     if ($num_rows > 0){
 
         $elections = array();
         
         foreach ($query as $row) {
 
-            $electionID = $row['electionID'];
-            $electionDisplayName = $row['electionDisplayName'];
-            // $electionName = $row['electionName'];
-            // $electionType = $row['electionType'];
-            // $electionArea = $row['electionArea'];
-            // $electionDate = $row['electionDate'];
+            $date = $row['electionDate'];
+            $electDate = $date . " 00:00:00";
 
-            $thisElection = array($electionID, $electionDisplayName);
-            array_push($elections, $thisElection);
+            if ($electDate > $today){
+                
+                $activeElectionCount++;
+
+                $electionID = $row['electionID'];
+                $electionDisplayName = $row['electionDisplayName'];
+                // $electionName = $row['electionName'];
+                // $electionType = $row['electionType'];
+                // $electionArea = $row['electionArea'];
+                // $electionDate = $row['electionDate'];
+
+                $thisElection = array($electionID, $electionDisplayName);
+                array_push($elections, $thisElection);
+            }
         }
     }
     else{
@@ -141,8 +157,8 @@ $conn = null;
                             <label for="electionSelection">Select an election:</label>
                             <br>
                             <div class="btn-group-vertical" id="electionSelection">
-                                <?php   if ($num_rows > 0) {
-                                        for($x = 0; $x < $num_rows; $x++) {
+                                <?php   if ($activeElectionCount > 0) {
+                                        for($x = 0; $x < $activeElectionCount; $x++) {
                                             echo "<button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</button>";
                                         }
                                     }else{

@@ -222,7 +222,7 @@ $conn = null;
                                     echo "<input type='radio' id='radio' name='radio' value='0'> <label for='ChoiceSpoil'>Spoil Ballot</label><p><p>";
 
                             }
-                            elseif($thisElectionDetails[1]='REF'){
+                            elseif($thisElectionDetails[1]=='REF'){
                                     echo "<h2>" . $thisElectionDetails[3] . "</h2>";
                                     echo "<input type='radio' id='radio' name='radio' value='1'> <label for='votedYes'>Yes</label><p><p>";
                                     echo "<input type='radio' id='radio' name='radio' value='0'> <label for='votedNo'>No</label><p><p>";
