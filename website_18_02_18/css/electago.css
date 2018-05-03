@@ -30,6 +30,9 @@ h3{
 
 }
 
+#errorbox{
+	margin-bottom: -20px;
+}
 
 /* Wrapper for page content to push down footer */
 #wrap {

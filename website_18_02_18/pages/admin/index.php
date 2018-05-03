@@ -18,48 +18,65 @@ if(!isset($_SESSION['admin'])){
 			<link href="../../css/electago.css" rel="stylesheet" type="text/css">
 			<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<<<<<<< HEAD
 		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
+=======
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+		</head>
+>>>>>>> front_end_changes
 
 
 	<body>
-		<header class='container-fluid text-center'>
-                        <div id='logo'>
-                            <img src='../../images/logo.png' width='300' height='100' alt=''>
-                        </div>
-        </header>
-		<h3>Welcome to electago Admin Home Page</h3>
-
-		<div class="card" style="width: 18rem;">
-		  <img class="card-img-top" src="..." alt="Card image cap">
-		  <div class="card-body">
-		    <h5 class="card-title">Card title</h5>
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <a href="#" class="btn btn-primary">Go somewhere</a>
-		  </div>
+	<header class='container-fluid text-center'>
+        <div id='logo'>
+            <img src='../../images/logo.png' width='300' height='100' alt=''>
+        </div>
+    </header>
+    <div class="container">
+	<div class="container-fluid col-sm-offset-1 col-sm-10">
+		<div class="wrap">
+        <div class="container" id="intro">
+			<h3>Welcome to electago Admin Home Page</h3>
 		</div>
-		<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
-		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
-		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
-		<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
-		<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
-		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
+	</div>
+	<div class="container-fluid">
 
-		<a href="../../includes/logout.php"><p>Log out</p></a>
-	</body>
+			<a href="elections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-plus"></span> &nbsp;Create New Election</a>
 
+			<a href="elections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> &nbsp;Current Elections</a>
+
+			<a href="elections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-check"></span> &nbsp;Election Results and Demographics</a>
+
+			<a href="candidates.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-user"></span> &nbsp;Add or Edit Candidates</a>
+
+			<a href="uploadKey.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-upload"></span> &nbsp;Upload Private Key</a>
+
+			<a href="candidates.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-lock"></span> &nbsp;Decrypt Votes</a>
+
+
+			<br>
+
+			<a href="elections.php"><button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection'>Create View Elections</button></a>
+			<a href="elections.php"><button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection'>View Results and Demographics</button></a>
+
+
+			<a href="../../includes/logout.php" class="btn btn-outline-secondary btn-lg btn-block"><p>Log out</p></a>
+		</div>
+	<footer>
         <!--info here: logo, copyright, links, login as admin-->
         <div id='small_logo' class='media'>
             <img src='../../images/small_logo.png' width='100' height='35' alt=''>
         </div>
         <div class='media-body'>
         <ul class='list-inline pull right'>
-            <li><a href='#'>Help</a></li>
-            <li><p>Other links</p></li>
+            <li><a href="adminHelp.html">Help</a></li>
+            <li><a href="../includes/logout.php">Log out</a></li>
             <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
         </ul>
         </div>
-
     </footer>
-    	</body>
+</div>
+</div>
+    </body>
 </html>

@@ -10,7 +10,10 @@ if (isset($_SESSION['admin'])){
 }
 
 if(!isset($_SESSION['logged_in'])){
-    $_SESSION['error'] = "Please enter your National Insurance Number and Password";
+    $_SESSION['error'] = "<div class='alert alert-danger alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Error!</strong> Please enter your National Insurance Number and Password
+                        </div>";
     header("Location: ../index.php");
 }
 
@@ -119,10 +122,10 @@ try{
                         </div>
                     </header>
                     <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-                    <div class='container'> 
-                            <span class='glyphicon glyphicon-exclamation-sign'></span>
-                            <p>Your existing vote has been changed, auto redirecting back in 3 seconds</p> 
-                        </div>
+                    <div class='alert alert-success alert-dismissible'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                        <strong>Vote Changed!</strong> Your existing vote has been changed, auto redirecting back in 3 seconds.
+                    </div>
                     <footer class='container-fluid'>
                     <!--info here: logo, copyright, links, login as admin-->
 
@@ -169,7 +172,10 @@ try{
                         </div>
                     </header>
                     <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-                <div class='container'> <p>You have voted for the first time, auto redirecting back in 3 seconds</p> </div>
+                    <div class='alert alert-success alert-dismissible'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                        <strong>Success!</strong> You have voted for the first time, auto redirecting back in 3 seconds
+                    </div>
                 <footer class='container-fluid'>
                     <!--info here: logo, copyright, links, login as admin-->
 

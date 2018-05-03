@@ -54,22 +54,27 @@ else{ //Setting up variables for online connection
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 </head>
-			
-	<body>
-	<header class="container-fluid text-center">
-		<div id="logo">
-			<img src="../../images/logo.png" width="300" height="100" alt="">
-		</div>
-	</header>
-		<h1>Voting Demographics</h1>
-		
+  <body>
+    <header class="container-fluid text-center">
+      <div id="logo">
+        <img src="images/logo.png" width="300" height="100" alt="">
+      </div>
+    </header>
+    <div class="container">
+    <div class="container-fluid col-sm-offset-2">
+      <div class="wrap">
+		<h1>Voting Demographics</h1></h1>
+      <!--Error box here?-->	
 		<h3>Please select which Election you would like to view the demographics for:</h3>
-		
+
 		<?php
 			try{
 				$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 				if (!$conn){
-					echo "Can't connect to the database.";
+					echo  "<div class='alert alert-danger alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Error!</strong> Couldn't connect to the database</div>";
+        			#echo "Can't connect to the database.";
 				}				
 
 				$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -99,20 +104,22 @@ else{ //Setting up variables for online connection
 			$conn = null;
 		?>		
 		
-	</body>
+	  </div>
+    </div>
+    <footer class="container-fluid">
+      <!--info here: logo, copyright, links, login as admin-->
 
-	<footer class="container-fluid text-left">
-		<!--info here: logo, copyright, links, login as admin-->
-		</br>
-		<ul>
-			<li><a href="#">Help</a></li>
-			<li><p>Other links</p></li>
-			<li><a href="index.php">Back</a></li>
-			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-		</ul>
-	</footer>
-
-		<div id="small_logo">
-		<img src="../../images/small_logo.png" width="100" height="35" alt="">
-	</div>
+      <div id="small_logo" class="media">
+        <img src="images/small_logo.png" width="100" height="35" alt="">
+      </div>
+      <div class="media-body">
+      <ul class="list-inline">
+        <li><a href="adminHelp.html">Help</a></li>
+        <li><a href="..\admin\index.php">Back</a></li>
+        <li><a href="..\includes\logout.php">Log out</a></li>
+        <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+      </ul>
+      </div>
+    </footer>
+  </div>
 </html>
