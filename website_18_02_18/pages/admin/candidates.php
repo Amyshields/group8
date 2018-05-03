@@ -4,37 +4,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
-    <title>Admin Home Page</title>
+    <title>View and Add Elections</title>
     <!--For Bootstrap, to make page responsive on mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--For Bootstrap, to load the css information from a CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="../../css/electago.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
-    <body>
-      <p><h2>Add Candidates</h2></p>
-      <table>
-=======
-      <meta charset="utf-8">
-      <title>View and Add Elections</title>
-      <!--For Bootstrap, to make page responsive on mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!--For Bootstrap, to load the css information from a CDN-->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link href="../../css/electago.css" rel="stylesheet" type="text/css">
-      <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-    <body>    
-      <header class="container-fluid text-center">
+  <body>    
+    <header class="container-fluid text-center">
       <div id="logo">
-        <img src="images/logo.png" width="300" height="100" alt="">
+        <img src="../../images/logo.png" width="300" height="100" alt="">
       </div>
     </header>
     <div class="container">
@@ -42,20 +26,16 @@
       <div class="wrap">
       <h1>Add Candidates</h1>
       <!--Error box here?-->
-      <div class="col-sm-8" id="intro">
-        <p></p>
-      </div>
->>>>>>> front_end_changes
-      <form name="addCandidate" method="POST" action="./addCandidate.php">
+      <table>
+        <form name="addCandidate" method="POST" action="./addCandidate.php">
         <tr><td>Candidate Name: </td><td><input type="text" name="newName"></td></tr>
         <tr><td>Candidate Party: </td><td><input type="text" name="newParty"></td></tr>
         <tr><td>Candidate Area: </td><td><input type="text" name="newArea"></td></tr>
-        <tr><td><button type="submit">Add Candidate</button>
-      </form>
-    </table>
-
-      <p><h2>View Candidates</h2></p>
-      <?php
+        <tr><td><button type="submit">Add Candidate</button></td></tr>
+        </form>
+      </table>
+    <h2>View Candidates</h2>
+    <?php
 
       $sql_select = "SELECT * FROM candidate";
       $query = $conn->query($sql_select);
@@ -83,19 +63,19 @@
           }
       }
       else{
-          $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
+          $_SESSION['error'] =  "<div class='alert alert-danger'><strong>Error!</strong> Couldn't connect to the database</div>";
+        #$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
           redirect('../index.php');
       }
       $conn = null;
-      ?>
-
-        </div>
+    ?>
+    </div>
     </div>
     <footer class="container-fluid">
       <!--info here: logo, copyright, links, login as admin-->
 
       <div id="small_logo" class="media">
-        <img src="images/small_logo.png" width="100" height="35" alt="">
+        <img src="../../images/small_logo.png" width="100" height="35" alt="">
       </div>
       <div class="media-body">
       <ul class="list-inline">
@@ -108,7 +88,6 @@
     </footer>
   </div>
   </body>
-
 <script>
   function changeCandidate(id){
     var inputName = document.getElementById("candName" + id).value;

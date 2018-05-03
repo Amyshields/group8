@@ -67,7 +67,7 @@ if(!isset($_SESSION['admin'])){
       <!--info here: logo, copyright, links, login as admin-->
 
       <div id="small_logo" class="media">
-        <img src="images/small_logo.png" width="100" height="35" alt="">
+        <img src="..\..\images\small_logo.png" width="100" height="35" alt="">
       </div>
       <div class="media-body">
       <ul class="list-inline">

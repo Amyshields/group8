@@ -99,7 +99,7 @@ $conn = null;
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Voting Page</title>
+	<title>Decrypt Selection</title>
 	<!--For Bootstrap, to make page responsive on mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Bootstrap, to load the css information from a CDN-->
@@ -113,38 +113,55 @@ $conn = null;
 <body>
     <header class="container-fluid text-center">
       <div id="logo">
-        <img src="images/logo.png" width="300" height="100" alt="">
+        <img src="../../images/logo.png" width="300" height="100" alt="">
       </div>
     </header>
     <div class="container">
     <div class="container-fluid col-sm-offset-2">
-      <div class="wrap">
-      <h1>Decrypt Election</h1>
-      <!--Error box here?-->
-      <div class="col-sm-8" id="intro">
-        <p>Select an option from the dropdown and click "Decrypt".</p>
-      </div> 
+        <h1 class="pull-left">Decrypt Election</h1>
+        <div class="wrap">
+        <!--Error box here?-->
+        <div class="col-sm-10" id="intro">
+            <p>Select an election from the dropdown and click "Decrypt".</p> 
+        </div> 
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-	<form action="decryptVotes.php" method="post">
-        <?php   
+        <div class="col-sm-8">
+        	<form action="decryptVotes.php" method="post">
+
+                <div class="input-group">
+                    <select class="custom-select form-control input-lg" name="selection">
+                        <?php   if ($num_rows > 0) {
+                                    for($x = 0; $x < $num_rows; $x++) {
+                                        echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
+                                    }
+                                }else{
+                                    echo "<p>" . $noElectionString . "</p>";
+                                }
+                            ?>
+                    </select>
+                    <div class="input-group-btn">
+                        <!--input type="submit" class="btn btn-lg btn-default" value="Decrypt" autofocus-->
+                        <button class="btn btn-lg btn-warning" type="submit">Decrypt</button>
+                        <br>
+                    </div>
+                </div>        
+        	</form>
+            <br>
+            <p>An election can not be decrypted until after voting has closed and all the admin keys have been uploaded.</p>
+            <br>
+            <?php   
                 if(isset($_GET['tooEarly'])){
-                    echo "<h2>That election has not ended yet.<h2>"; 
+                    echo "<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong> Can not decypt!</strong> That election has not ended yet.</div>"; 
                 }
-        ?>
-        <p>Select which election you would like to decrypt votes:</p>
-        <select name="selection">
-            <?php   if ($num_rows > 0) {
-                        for($x = 0; $x < $num_rows; $x++) {
-                            echo "<option id='selection' name='selection' value='" . $elections[$x][0] . "'>" . $elections[$x][1] . "</option>";
-                        }
-                    }else{
-                        echo "<p>" . $noElectionString . "</p>";
-                    }
-                ?>
-        </select>
-        <input type="submit" class="btn btn-default" value="Decrypt" autofocus>        
-	</form>
-</div>
+            ?>
+            <hr>
+            <p>Or go back to the admin dashboard.</p>
+            <a href="../admin/index.php" class="btn btn-lg btn-primary center-block"><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go Back</a>
+            <br>
+        </div>
+    </div>
 </div>
     <footer class="container-fluid">
         <!--info here: logo, copyright, links, login as admin-->

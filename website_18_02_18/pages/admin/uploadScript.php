@@ -151,8 +151,8 @@ try{
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
-                        <li><a href='#'>Help</a></li>
-                        <li><a href='../dashboard.php'>Back to dashboard</a></li>
+                        <li><a href='adminHelp.html'>Help</a></li>
+                        <li><a href='..\admin\index.php'>Back to dashboard</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
                     </div>
@@ -199,8 +199,8 @@ catch(PDOException $e){
                     </div>
                     <div class='media-body'>
                     <ul class='list-inline pull right'>
-                        <li><a href='#'>Help</a></li>
-                        <li><a href='../dashboard.php'>Back to dashboard</a></li>
+                        <li><a href='adminHelp.html'>Help</a></li>
+                        <li><a href='..\admin\index.php'>Back to dashboard</a></li>
                         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
                     </ul>
                     </div>

@@ -21,7 +21,7 @@ $votedString = "";
 if(isset($_GET['voted'])){
     $votedString = "<div class='alert alert-success'>
                         <strong> Voted!</strong> Vote Recorded.
-                    </div>>";
+                    </div>";
 
     #"Vote recorded.";
 }
@@ -30,7 +30,7 @@ $noSelectionString = "";
 if(isset($_GET['noSelection'])){
     $noSelectionString = "<div class='alert alert-warning'>
                         <strong> Select an option!</strong> No vote was recorded. Next time, click a radio button to select your choice.
-                    </div>>";
+                    </div>";
 
     #"No vote was recorded. Next time, click a radio button to select your choice.";
 }
@@ -138,7 +138,7 @@ $conn = null;
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Voting Page</title>
+	<title>Dashboard</title>
 	<!--For Bootstrap, to make page responsive on mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Bootstrap, to load the css information from a CDN-->

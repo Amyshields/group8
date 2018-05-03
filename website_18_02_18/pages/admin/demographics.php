@@ -57,7 +57,7 @@ else{ //Setting up variables for online connection
   <body>
     <header class="container-fluid text-center">
       <div id="logo">
-        <img src="images/logo.png" width="300" height="100" alt="">
+        <img src="..\..\images\logo.png" width="300" height="100" alt="">
       </div>
     </header>
     <div class="container">
@@ -114,7 +114,7 @@ else{ //Setting up variables for online connection
       <!--info here: logo, copyright, links, login as admin-->
 
       <div id="small_logo" class="media">
-        <img src="images/small_logo.png" width="100" height="35" alt="">
+        <img src="..\..\images\small_logo.png" width="100" height="35" alt="">
       </div>
       <div class="media-body">
       <ul class="list-inline">
