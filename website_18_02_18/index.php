@@ -71,13 +71,19 @@ if(isset($_SESSION['logged_in'])){
 							<label class="form-check-label" for="gridCheck"><small>Show Password</small></label>
 						</div>
 					<!--/div-->
-					<div class="g-recaptcha" data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
-					<input type="submit" class="btn btn-warning pull-right" id="login" value="Login" autofocus>
+					<div class="form-group">
+						<div class="g-recaptcha col-sm-offset-1 pull-right" data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
+						<br>
+						<p class="pull-left"> &nbsp; Or click <a href="https://www.gov.uk/register-to-vote">here</a> to register to vote. </p>
+						<br>
+						<hr>
+					</div>
+					<div class="form-group">
+						<br>
+						<input type="submit" class="btn btn-warning btn-block" id="login" value="Login" autofocus>
+					</div>
 				</div>
 				</form>
-				<div>
-					<p> Or click <a href="https://www.gov.uk/register-to-vote">here</a> to register to vote. </p>
-				</div>
 				<div id="info">
 					<br /> <p> To use this service you must have first registered to vote. When you register you can expect to be sent a private letter containing the password you should use here. If you have not recieved this letter please contact your local electoral office.</p>
 				</div>

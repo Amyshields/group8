@@ -34,7 +34,7 @@ if(isset($_SESSION['logged_in'])){
 		<div class="container-fluid col-sm-offset-2">
 			<div class="wrap">
 				<h3 >Welcome to electago, where you can elect on the go.</h3>
-				<div class="col-sm-8" id = "errorBox"><!--Errors Here-->
+				<div class="col-sm-10" id = "errorBox"><!--Errors Here-->
 					<?php
 						if (isset($_SESSION['error'])){
 							echo $_SESSION['error'];
@@ -47,8 +47,8 @@ if(isset($_SESSION['logged_in'])){
 						to return to the normal login page.</p>
 					<p>Be careful when logging in that you do not save your login details to your browser as they are highly sensitive.</p>
 				</div>
-				<div class="col-sm-8">
-					<form action="../includes/login-admin.php" method="post">
+				<div class="col-sm-10">
+					<form class="col-sm-10" action="../includes/login-admin.php" method="post">
 						<h2>Administrator Login:</h2>
 						<div class="form-group">
 							<!--The format of the number is two prefix letters, six digits, and one suffix letter. The example used is typically QQ123456C. -->
@@ -66,21 +66,23 @@ if(isset($_SESSION['logged_in'])){
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="g-recaptcha pull-left" data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
+							<div class="g-recaptcha col-sm-offset-1 pull-right " data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
 							<br>
-							<p class="col-sm-offset-1"> &nbsp; Or click <a href="../index.php">here</a> to login as a voter. </p>
+							<p class="pull-left"> &nbsp; Or click <a href="../index.php">here</a> to login as a voter. </p>
+							<br>
+							<hr>
 						</div>
 						<div class="form-group">
 							<br>
-							<hr>
 							<input type="submit" class="btn btn-warning btn-block" id="login" value="Login" autofocus>
 						</div>
 					</form>
 					<div>
-						<p> Or click <a href="../index.php">here</a> to login as a voter. </p>
+						<!--p> Or click <a href="../index.php">here</a> to login as a voter. </p-->
 					</div>
-					<div id="info">
-						<br /> <p> Election administrators log in above using the username and password given to them. You should have recieved two seperate private letters containing this information. If you have not recieved this letter please contact your local electoral office.</p>
+					<div class="col-sm-11">
+						<br /> <p> Election administrators log in above using the username and password given to them.</p><p>You should have received two seperate private letters containing this information.</p><p> If you have not received this letter please contact your local electoral office.</p>
+						<br>
 					</div>
 				</div>
 			</div>
