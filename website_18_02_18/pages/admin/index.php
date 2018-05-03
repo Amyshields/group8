@@ -18,15 +18,8 @@ if(!isset($_SESSION['admin'])){
 			<link href="../../css/electago.css" rel="stylesheet" type="text/css">
 			<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<<<<<<< HEAD
-		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-=======
-		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		</head>
->>>>>>> front_end_changes
-
-
 	<body>
 	<header class='container-fluid text-center'>
         <div id='logo'>
@@ -37,7 +30,7 @@ if(!isset($_SESSION['admin'])){
 	<div class="container-fluid col-sm-offset-1 col-sm-10">
 		<div class="wrap">
         <div class="container" id="intro">
-			<h3>Welcome to electago Admin Home Page</h3>
+			<h3>Welcome to the Electago Administrator Home Page</h3>
 		</div>
 	</div>
 	<div class="container-fluid">
@@ -57,11 +50,13 @@ if(!isset($_SESSION['admin'])){
 
 			<br>
 
-			<a href="elections.php"><button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection'>Create View Elections</button></a>
+			<!--a href="elections.php"><button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection'>Create View Elections</button></a>
 			<a href="elections.php"><button type='submit' id='selection'  class='btn btn-warning btn-lg submit' name='selection'>View Results and Demographics</button></a>
 
+			<br-->
 
-			<a href="../../includes/logout.php" class="btn btn-outline-secondary btn-lg btn-block"><p>Log out</p></a>
+
+			<a href="../../includes/logout.php" class="btn btn-lg btn-block btn-info"><p><span class="glyphicon glyphicon-log-out"></span> Log out</p></a>
 		</div>
 	<footer>
         <!--info here: logo, copyright, links, login as admin-->
