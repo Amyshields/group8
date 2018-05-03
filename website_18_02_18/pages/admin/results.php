@@ -84,7 +84,9 @@ if ($today > $electdate){
 	try{
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 		if (!$conn){
-			echo "Can't connect to the database.";
+			echo "<div class='alert alert-danger alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Error!</strong> Couldn't connect to the database</div>";
 		}
 
 		$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

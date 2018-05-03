@@ -37,6 +37,14 @@ if(isset($_SESSION['logged_in'])){
 	<div class="container-fluid col-sm-offset-2">
 		<div class="wrap">
 			<h3 >Welcome to electago, where you can elect on the go.</h3>
+			<div class="col-sm-8" id = "errorBox"><!--Errors Here-->
+				<?php
+					if (isset($_SESSION['error'])){
+						echo $_SESSION['error'];
+						unset($_SESSION['error']); 
+					}			
+				?>	
+			</div>
 			<div class="col-sm-8" id="intro">
 				<p>Use this service to login and vote.</p>
 				<br /> <p>You can use this service to vote for local and national elections. If you make a voting choice you can also login here again to change that vote as long as it is before the election's closing deadline. </p>
@@ -73,21 +81,6 @@ if(isset($_SESSION['logged_in'])){
 				</div>
 			</div>
 		</div>
-
-		<!--
-			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-			</div>
-		</div> -->
-
-		<?php
-			if (isset($_SESSION['error'])){
-				echo $_SESSION['error'];
-				unset($_SESSION['error']); 
-			}			
-		?>
 		</div>
 		<footer class="container-fluid">
 			<!--info here: logo, copyright, links, login as admin-->

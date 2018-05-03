@@ -73,12 +73,20 @@ function login($username,$password){
 			}
 
 			else{
-				$_SESSION['error'] = "Your Username or Password is incorrect";
+				$_SESSION['error'] ="<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Incorrect Login!</strong> Your Username or Password is incorrect.
+                        </div>";
+				#$_SESSION['error'] = "Your Username or Password is incorrect";
 				redirect('../pages/admin-login.php');
 			}
 		}
 		else{
-			$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
+			$_SESSION['error'] = "<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'><i class='glyphicon glyphicon-remove'></i></a>
+                            <strong>Oops!</strong> Sorry that username does not exist.
+                        </div>";
+			#$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
 			redirect('../pages/admin-login.php');
 		}
 	}
@@ -97,6 +105,10 @@ if($username&&$password)
 	login($username,$password);
 }
 else
-	$_SESSION['error'] = "Please enter your Username and Password";
+	$_SESSION['error'] ="<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            Please enter your Username and Password
+                        </div>";
+	#$_SESSION['error'] = "Please enter your Username and Password";
 	redirect('../pages/admin-login.php');
 ?>

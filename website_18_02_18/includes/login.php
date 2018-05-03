@@ -73,12 +73,20 @@ function login($username,$password){
 			}
 
 			else{
-				$_SESSION['error'] = "Your National Insurance Number or Password is incorrect";
+				$_SESSION['error'] ="<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Incorrect Login!</strong> Your National Insurance Number or Password is incorrect.
+                        </div>";
+				#$_SESSION['error'] = "Your National Insurance Number or Password is incorrect";
 				redirect('../index.php');
 			}
 		}
 		else{
-			$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
+			$_SESSION['error'] = "<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'><i class='glyphicon glyphicon-remove'></i></a>
+                            <strong>Oops!</strong> Sorry that username does not exist.
+                        </div>";
+			#$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
 			redirect('../index.php');
 		}
 	}
@@ -98,7 +106,11 @@ if($username&&$password)
 }
 else
 {
-	$_SESSION['error'] = "Please enter your National Insurance Number and Password";
+	$_SESSION['error'] ="<div class='alert alert-warning alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            Please enter your National Insurance Number and Password
+                        </div>";
+	#$_SESSION['error'] = "Please enter your National Insurance Number and Password";
 	redirect('../index.php');
 }
 #get errors to show

@@ -33,13 +33,18 @@ if(isset($_SESSION['logged_in'])){
 		<div class="container-fluid col-sm-offset-2">
 			<div class="wrap">
 				<h3 >Welcome to electago, where you can elect on the go.</h3>
+				<div class="col-sm-8" id = "errorBox"><!--Errors Here-->
+					<?php
+						if (isset($_SESSION['error'])){
+							echo $_SESSION['error'];
+							unset($_SESSION['error']); 
+						}			
+					?>	
+				</div>
 				<div class="col-sm-8" id="intro">
 					<p>This page is only for administrator use. If you are not an administrator click <a href="/index.php">here</a> 
 						to return to the normal login page.</p>
 					<p>Be careful when logging in that you do not save your login details to your browser as they are highly sensitive.</p>
-				</div>
-				<!--/div-->
-				<div class="col-sm-2">
 				</div>
 				<div class="col-sm-8">
 					<form action="../includes/login-admin.php" method="post">
@@ -70,28 +75,22 @@ if(isset($_SESSION['logged_in'])){
 						<br /> <p> Election administrators log in above using the username and password given to them. You should have recieved two seperate private letters containing this information. If you have not recieved this letter please contact your local electoral office.</p>
 					</div>
 				</div>
-				<?php
-					if (isset($_SESSION['error'])){			
-						echo $_SESSION['error'];
-						unset($_SESSION['error']);
-					}
-				?>
 			</div>
-			<footer class="container-fluid">
-				<!--info here: logo, copyright, links, login as admin-->
-
-				<div id="small_logo" class="media">
-					<img src="../images/small_logo.png" width="100" height="35" alt="">
-				</div>
-				<div class="media-body">
-				<ul class="list-inline footerLinks">
-					<li><a href="#">Help</a></li>
-					<li><a href="../index.php">Login as voter</a></li>
-					<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-				</ul>
-				</div>
-			</footer>
 		</div>
+		<footer class="container-fluid">
+			<!--info here: logo, copyright, links, login as admin-->
+
+			<div id="small_logo" class="media">
+				<img src="../images/small_logo.png" width="100" height="35" alt="">
+			</div>
+			<div class="media-body">
+			<ul class="list-inline footerLinks">
+				<li><a href="adminHelp.html">Help</a></li>
+				<li><a href="../index.php">Login as voter</a></li>
+				<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+			</ul>
+			</div>
+		</footer>
 	</div>
 	<script>
 	function showPass() {

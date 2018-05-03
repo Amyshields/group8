@@ -49,7 +49,11 @@ if ($num_rows == 0){
   $query = $conn->query($sql);
 
 } else {
-  echo "An election with this name already exists";
+  echo "<div class='alert alert-warning alert-dismissible'>
+        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        <strong>Warning!</strong>An election with this name already exists</div>";
+    
+  #echo "An election with this name already exists";
 }
 
 $conn = null;

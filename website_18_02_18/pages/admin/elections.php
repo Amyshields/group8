@@ -46,7 +46,10 @@
   try{
       $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
       if (!$conn){
-          $_SESSION['error'] = "Couldn't connect to the database";
+          $_SESSION['error'] =  "<div class='alert alert-danger alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Error!</strong> Couldn't connect to the database</div>";
+        #$_SESSION['error'] = "Couldn't connect to the database";
           redirect('../index.php');
       }
 

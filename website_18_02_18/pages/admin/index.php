@@ -20,36 +20,92 @@ if(!isset($_SESSION['admin'])){
 			<link href="../../css/electago.css" rel="stylesheet" type="text/css">
 			<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		</head>
 
 
 	<body>
-		<header class='container-fluid text-center'>
-                        <div id='logo'>
-                            <img src='../../images/logo.png' width='300' height='100' alt=''>
-                        </div>
-        </header>
-		<h3>Welcome to electago Admin Home Page</h3>
-
-		<div class="card" style="width: 18rem;">
-		  <img class="card-img-top" src="..." alt="Card image cap">
-		  <div class="card-body">
-		    <h5 class="card-title">Card title</h5>
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <a href="#" class="btn btn-primary">Go somewhere</a>
-		  </div>
+	<header class='container-fluid text-center'>
+        <div id='logo'>
+            <img src='../../images/logo.png' width='300' height='100' alt=''>
+        </div>
+    </header>
+    <div class="container">
+	<div class="container-fluid col-sm-offset-2">
+		<div class="wrap">
+        <div class="container" id="intro">
+			<h3>Welcome to electago Admin Home Page</h3>
 		</div>
-		<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p><p>
-		<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p><p>
-		<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p><p>
-		<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
-		<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
-		<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
+	</div>
+	<div class="container">
+		<div class="card-deck">
+			<div class="card bg-dark mb-3 col-sm-3" style="background: white;">
+			  <img class="card-img-top" src="..." alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Create/ View Elections</h5>
+			    <p class="card-text">Click here to create a new election and view all current elections.</p>
+			    <a href="elections.php"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-right"></i></button></a>
+			  </div>
+			</div>
 
-		<a href="../../includes/logout.php"><p>Log out</p></a>
-	</body>
+			<div class="card bg-dark mb-3" style="max-width: 18rem; background: white;">
+			  <img class="card-img-top" src="..." alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Add/Edit Candidates</h5>
+			    <p class="card-text">Click here to add edit or delete candidates from an election.</p>
+			    <a href="candidates.php"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-right"></i></button></a>
+			  </div>
+			</div>
 
+			<div class="card bg-dark mb-3">
+			  <img class="card-img-top" src="..." alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Upload Key</h5>
+			    <p class="card-text">Click here to upload your personal admin private key.</p>
+			    <a href="uploadKey.php"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-right"></i></button></a>
+			  </div>
+			</div>
+
+			<div class="card bg-dark mb-3" style="width: 18rem;">
+			  <img class="card-img-top" src="..." alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Decrypt Votes</h5>
+			    <p class="card-text">Click here to decrypt the election votes so that the results can be tallied. This can not be done until every admin has uploaded their private key.</p>
+			    <a href="uploadKey.php"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-right"></i></button></a>
+			  </div>
+			</div>
+
+			<div class="card bg-dark mb-3" style="width: 18rem;">
+			  <img class="card-img-top" src="..." alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">View Election Results</h5>
+			    <p class="card-text">Click here to view the final results to the election. <br/> Please ensure the results have been successfully decrypted first.</p>
+			    <a href="results.php"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-right"></i></button></a>
+			  </div>
+			</div>
+
+			<div class="card bg-dark mb-3" style="width: 18rem;">
+			  <img class="card-img-top" src="..." alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">View Demographics</h5>
+			    <p class="card-text">Click here to view detailed election demographics for this and previous years. <br/> An election will not appear in the demographics section until voting has closed.</p>
+			    <a href="results.php"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-right"></i></button></a>
+			  </div>
+			</div>
+		</div>
+		</div>
+
+			<a href="elections.php"><button type="button" class="btn btn-secondary">Create/View Elections</button></a><p></p>
+			<a href="results.php"><button type="button" class="btn btn-secondary">View Election Results</button></a><p></p>
+			<a href="candidates.php"><button type="button" class="btn btn-secondary">Add/Edit Candidates</button></a><p></p>
+			<a href="uploadKey.php"><button type="button" class="btn btn-secondary">Upload key</button></a><p></p>
+			<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
+			<a href="demographics.php"><button type="button" class="btn btn-secondary">View Demographics</button></a>
+
+			<a href="../../includes/logout.php"><p>Log out</p></a>
+		</div>
+	</div>
+	<footer>
         <!--info here: logo, copyright, links, login as admin-->
         <div id='small_logo' class='media'>
             <img src='../../images/small_logo.png' width='100' height='35' alt=''>
@@ -61,7 +117,7 @@ if(!isset($_SESSION['admin'])){
             <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
         </ul>
         </div>
-
     </footer>
-    	</body>
+	</div>
+    </body>
 </html>

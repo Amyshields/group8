@@ -1,5 +1,6 @@
 <?php
 /*Cyrus Dobbs C1529854*/
+/*Dervla O'Brien C1642646*/
 require_once('../../includes/functions.php'); 
 
 session_start();
@@ -25,8 +26,18 @@ if(!isset($_SESSION['admin'])){
 </head>
 			
 	<body>
-		<h1>Admin Upload Key Page</h1>
-		<h3></h3>
+	<header class='container-fluid text-center'>
+        <div id='logo'>
+            <img src='../../images/logo.png' width='300' height='100' alt=''>
+        </div>
+    </header>
+    <div class="container">
+	<div class="container-fluid col-sm-offset-2">
+		<div class="wrap">
+        <div class="container" id="intro">
+			<h1>Admin Upload Key Page</h1>
+			<p>Upload your personal private key into the text field below.</p>
+		</div>
         <form action="uploadScript.php" method="post">
             <label for="adminKeyInput">Your Admin Key:</label>
 		    <input id="adminKeyInput" name="adminKeyInput" type="text"><br>
