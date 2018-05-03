@@ -72,29 +72,36 @@
 		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
     <body>
-      <p>Create Election</p>
+      <p><h2>Create Election</h2></p>
+      <style>
+      td {
+        padding: 3px;
+      }
+      </style>
+      <table>
       <div id="addElection">
-        Election Name: <input type="text" name="newName" id="newName"><br>
+        <tr><td>Election Name: </td><td><input type="text" name="newName" id="newName"></td></tr>
         <!-- Cy Added -->
-        Election Display Name: <input type="text" name="newDisplayName" id="newDisplayName"><br>
-        Election Type:
+        <tr><td>Election Display Name: </td><td><input type="text" name="newDisplayName" id="newDisplayName"></td></tr>
+        <tr><td>Election Type:</td><td>
         <select name="newType" id="newType">
           <option value="FPTP">FPTP</option>
           <option value="STV">STV</option>
           <option value="REF">Referendum</option>
         </select>
-        <br>
-        Election Area: <input type="text" name="newArea" id="newArea"><br>
-        Election Date: <input type="date" name="newDate" id="newDate"><br>
-        <div id="addCands"></div>
-        <button type="button" id="addCandidateBtn" onclick="addCandidate()">Add Candidate</button>
+        </td></tr>
+        <tr><td>Election Area: </td><td><input type="text" name="newArea" id="newArea"></td></tr>
+        <tr><td>Election Date: </td><td><input type="date" name="newDate" id="newDate"></td></tr>
+        <tr><td colspan="2"><div id="addCands"></div></td></tr>
+        <tr><td colspan="2"><button type="button" id="addCandidateBtn" onclick="addCandidate()">Add Candidate</button>
         <button type="button" id="newCandidateBtn" onclick="newCandidate()">+</button>
         <button type="submit" onclick="createElection()">Create Election</button>
-        <button type="button" onclick="location.reload()">Clear</button>
-        <div id="createElectionErrorDisplay"></div>
+        <button type="button" onclick="location.reload()">Clear</button></td></tr>
+        <tr><td colspan="2"><div id="createElectionErrorDisplay"></div></td></tr>
       </div>
+    </table>
 
-      <p>View Election Settings</p>
+      <p><h2>View Election Settings</h2></p>
       <?php
         $sql_select = "
         SELECT * FROM election
@@ -117,21 +124,21 @@
             $electionCandidates = explode(";", $row['electionCandidates']);
             $electionIsEncrypted = $row['isEncrypted']; // Cy Added
 
-            echo "<p>";
-            echo "Election Name: $electionName";
-            echo "<br>Election DisplayName: $electionDisplayName"; // Cy Added
-            echo "<br>Election Type: $electionType";
-            echo "<br>Election Area: $electionArea";
-            echo "<br>Election Date: $electionDate";
+            echo "<table>";
+            echo "<tr><td>Election Name: </td><td>$electionName</td></tr>";
+            echo "<tr><td>Election Display Name: </td><td>$electionDisplayName</td></tr>"; // Cy Added
+            echo "<tr><td>Election Type: </td><td>$electionType</td></tr>";
+            echo "<tr><td>Election Area: </td><td>$electionArea</td></tr>";
+            echo "<tr><td>Election Date: </td><td>$electionDate</td></tr>";
             if ($electionIsEncrypted==1){ // Cy Added
-              echo "<br>Encrypted: YES";
+              echo "<tr><td>Encrypted: </td><td>YES</td></tr>";
             } else {
-              echo "<br>Encrypted: NO";
+              echo "<tr><td>Encrypted: </td><td>NO</td></tr>";
             }
 
 
             if ($electionType != "REF"){
-              echo "<br>Election Candidates: ";
+              echo "<tr><td colspan=2>Election Candidates: <table>";
               $sql_select2 = "";
               foreach ($electionCandidates as $currentCandidate){
 
@@ -145,18 +152,19 @@
                 $num_Cand = $queryCand->rowCount();
 
                 if ($num_Cand = 0){
-                  echo "This candidate has been removed from the system";
+                  echo "<tr><td>This candidate has been removed from the system</td></tr>";
                 } else {
                     $candidateInfo = $queryCand->fetchAll();
                     $candName = $candidateInfo[0]['candidateName'];
                     $candParty = $candidateInfo[0]['candidateParty'];
                     $candArea = $candidateInfo[0]['candidateArea'];
-                    echo "<br>Name: $candName Party: $candParty Area: $candArea";
+                    echo "<tr><td>Name: $candName </td><td>Party: $candParty </td><td>Area: $candArea</td></tr>";
 
                 }
               }
+              echo "</td></tr></table>";
             }
-            echo "<br><button id='delete$electionId' type='submit' onclick='deleteElection($electionId)'>Delete Election</button>";
+            echo "<tr><td><button id='delete$electionId' type='submit' onclick='deleteElection($electionId)'>Delete Election</button></td></tr></table><br>";
           }
         } else {
             $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";

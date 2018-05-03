@@ -4,17 +4,29 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Admin Home Page</title>
+    <!--For Bootstrap, to make page responsive on mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--For Bootstrap, to load the css information from a CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../css/electago.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
     <body>
-      <p>Add Candidates</p>
+      <p><h2>Add Candidates</h2></p>
+      <table>
       <form name="addCandidate" method="POST" action="./addCandidate.php">
-        Candidate Name: <input type="text" name="newName"><br>
-        Candidate Party: <input type="text" name="newParty"><br>
-        Candidate Area: <input type="text" name="newArea"><br>
-        <button type="submit">Add Candidate</button>
+        <tr><td>Candidate Name: </td><td><input type="text" name="newName"></td></tr>
+        <tr><td>Candidate Party: </td><td><input type="text" name="newParty"></td></tr>
+        <tr><td>Candidate Area: </td><td><input type="text" name="newArea"></td></tr>
+        <tr><td><button type="submit">Add Candidate</button>
       </form>
+    </table>
 
-      <p>View Candidates</p>
+      <p><h2>View Candidates</h2></p>
       <?php
 
       $sql_select = "SELECT * FROM candidate";
@@ -31,15 +43,14 @@
             $candidateName = $row['candidateName'];
             $candidateParty = $row['candidateParty'];
             $candidateArea = $row['candidateArea'];
-            echo "<p>";
-            echo "Candidate Name: <input type='text' value='$candidateName' id='candName$candidateId'>";
-            echo "<br>Candidate Party: <input type='text' value='$candidateParty' id='candParty$candidateId'>";
-            echo "<br>Candidate Area: <input type='text' value='$candidateArea' id='candArea$candidateId'>";
-            echo "<br>";
-            echo "<button id='change$candidateId' type='submit' onclick='changeCandidate($candidateId)'>Change Candidate</button>";
-            echo "<button id='delete$candidateId' type='submit' onclick='deleteCandidate($candidateId)'>Delete Candidate</button>";
-            echo "</p>";
-            echo "<div id='candidateError$candidateId'> </div>";
+            echo "<table>";
+            echo "<tr><td>Candidate Name: </td><td><input type='text' value='$candidateName' id='candName$candidateId'></td></tr>";
+            echo "<tr><td>Candidate Party: </td><td><input type='text' value='$candidateParty' id='candParty$candidateId'></td></tr>";
+            echo "<tr><td>Candidate Area: </td><td><input type='text' value='$candidateArea' id='candArea$candidateId'></td></tr>";
+            echo "<tr>";
+            echo "<td><button id='change$candidateId' type='submit' onclick='changeCandidate($candidateId)'>Change Candidate</button></td>";
+            echo "<td><button id='delete$candidateId' type='submit' onclick='deleteCandidate($candidateId)'>Delete Candidate</button></td>";
+            echo "</tr><tr><td><div id='candidateError$candidateId'> </div></td></tr></table><br>";
 
           }
       }

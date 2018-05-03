@@ -16,7 +16,7 @@ $servername = ""; //Set up connection variables
 $dbname = "";
 $dbusername = "";
 $dbpassword = "";
-$table = "Candidate";
+$table = "candidate";
 
 if ($local == true){ //Setting up variables for local connection
     global $lservername;

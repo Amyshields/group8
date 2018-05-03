@@ -106,12 +106,15 @@ if ($today > $electdate){
 			}
 			$sql_select = "SELECT COUNT(candidateID) FROM $table";
 			foreach ($conn->query($sql_select) as $row) {
-				$turnout = $row[0];
+				$voted = $row[0];
 			}
+
 			$sql_select = "SELECT COUNT(Username) FROM voter";
 			foreach ($conn->query($sql_select) as $row) {
-				$novote = $row[0] - $turnout;
+				$turnout = round(($voted/$row[0]) * 100, 2);
+				$novote = 100 - $turnout;
 			}
+			$novote = round(100-$turnout,2);
 		} else {
 			//Get total number of voters available to vote
 			$sql_select = 'SELECT Username FROM voter';

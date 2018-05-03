@@ -1,8 +1,6 @@
 <?php
 require_once('../../includes/functions.php');
-
 session_start();
-
 if(!isset($_SESSION['admin'])){
 	redirect("../../index.php");
 }
