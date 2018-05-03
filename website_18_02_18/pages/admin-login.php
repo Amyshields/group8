@@ -62,11 +62,19 @@ if(isset($_SESSION['logged_in'])){
 							<!-- An element to toggle between password visibility -->
 							<div class="form-check" id="passwordCheckbox">
 								<input class="form-check-input" id="gridCheck" type="checkbox" onclick="showPass()">
-								<label class="form-check-label" for="gridCheck"><small>Show Password</small></label>
+								<label class="form-check-label" for="gridCheck"><small class="text-muted">Show Password</small></label>
 							</div>
 						</div>
-						<div class="g-recaptcha" data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
-						<input type="submit" class="btn btn-warning pull-right" id="login" value="Login" autofocus>
+						<div class="form-group">
+							<div class="g-recaptcha pull-left" data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
+							<br>
+							<p class="col-sm-offset-1"> &nbsp; Or click <a href="../index.php">here</a> to login as a voter. </p>
+						</div>
+						<div class="form-group">
+							<br>
+							<hr>
+							<input type="submit" class="btn btn-warning btn-block" id="login" value="Login" autofocus>
+						</div>
 					</form>
 					<div>
 						<p> Or click <a href="../index.php">here</a> to login as a voter. </p>
