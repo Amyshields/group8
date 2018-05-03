@@ -272,7 +272,7 @@ else{
       <div class="col-sm-8" id="intro">
       	<br>
 		<p>Below are the final results of the <?php echo $name; ?>. The demographics displayed include the election results, the results for each party, the overall turnout and the change from previous years. Click on the top right hand corner of a graph to save the image to your computer.</p>
-      <a href="index.php" class="btn btn-lg btn-info pull-right"> <span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go back</a>
+      <a href="demographics.php" class="btn btn-lg btn-info pull-right"> <span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go back</a>
 	</div>
       <br>
       <div class="col-sm-12">

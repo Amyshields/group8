@@ -45,7 +45,7 @@ if(!isset($_SESSION['admin'])){
 
 			<a href="uploadKey.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-upload"></span> &nbsp;Upload Private Key</a>
 
-			<a href="candidates.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-lock"></span> &nbsp;Decrypt Votes</a>
+			<a href="decryptScreen.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-lock"></span> &nbsp;Decrypt Votes</a>
 
 
 			<br>

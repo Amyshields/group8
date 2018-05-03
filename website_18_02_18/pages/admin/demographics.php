@@ -104,7 +104,9 @@ else{ //Setting up variables for online connection
 
 			$conn = null;
 		?>
-		<br>	
+		<br>
+		<a href="../admin/index.php" id="selection" class="btn btn-lg btn-block btn-info md-3"><p><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go Back </p></a>	
+		<br>
 		</div>
 	  </div>
     </div>

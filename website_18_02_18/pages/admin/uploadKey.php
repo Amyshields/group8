@@ -32,23 +32,37 @@ if(!isset($_SESSION['admin'])){
     </header>
     <div class="container">
 	<div class="container-fluid col-sm-offset-2">
+		<h1 class="pull-left">Admin Upload Key Page</h1>
+		<br>
 		<div class="wrap">
         <div class="container" id="intro">
-			<h1>Admin Upload Key Page</h1>
-			<p>Upload your personal private key into the text field below.</p>
+        	<br>
+			<p class= "pull-left col-sm-8">Upload your personal private key into the text field below.</p>
+			<!--a href="index.php" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go back</a-->
 		</div>
+		<div class="col-sm-8">
         <form action="uploadScript.php" method="post">
-            <label for="adminKeyInput">Your Admin Key:</label>
-		    <input id="adminKeyInput" name="adminKeyInput" type="text"><br>
-		    <input type="submit" class="btn btn-default" value="Upload" autofocus>
+			<div class="form-group">
+            	<label for="adminKeyInput">Your Admin Key:</label>
+            	<div class="input-group">
+		    		<input id="adminKeyInput" name="adminKeyInput" type="text" class="form-control input-lg">
+		    		<span class="input-group-btn">
+		    			<button class="btn btn-lg btn-info"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+		    		</span>
+		    	</div>
+		    </div>
 	    </form><br>
-		<a href="index.php" class="btn btn-lg btn-info">Go back</a>
-		<a href="decryptScreen.php" class="btn btn-lg btn-info">Decrypt Votes</a>
-		<a href="../../includes/logout.php"><p>Log out</p></a>
-
-
-      </div>
-    </div>
+		</div>
+		<div class="col-sm-8">
+			<p>Click below when all the admin keys have been uploaded.</p>
+			<a href="decryptScreen.php" class="btn btn-lg btn-warning center-block"><span class="glyphicon glyphicon-check"></span> &nbsp; Decrypt Votes</a>
+	    	<br>
+	    	<p>Or go back to the admin dashboard.</p>
+	    	<a href="../admin/index.php" class="btn btn-lg btn-primary center-block"><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go Back</a>
+	    	<br>
+		</div>
+      </div>    
+	</div>
     <footer class="container-fluid">
       <!--info here: logo, copyright, links, login as admin-->
 
