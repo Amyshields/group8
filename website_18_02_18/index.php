@@ -20,6 +20,7 @@ if(isset($_SESSION['logged_in'])){
 	<!--For Bootstrap, to make page responsive on mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--For Bootstrap, to load the css information from a CDN-->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="css/electago.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
@@ -62,6 +63,7 @@ if(isset($_SESSION['logged_in'])){
 							<label class="form-check-label" for="gridCheck"><small>Show Password</small></label>
 						</div>
 					<!--/div-->
+					<div class="g-recaptcha" data-sitekey="6Lev_1YUAAAAANXkQ0sRv_2LfP1kRKgQTHHh0Qca"></div>
 					<input type="submit" class="btn btn-warning pull-right" id="login" value="Login" autofocus>
 				</div>
 				</form>

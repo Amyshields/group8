@@ -7,6 +7,19 @@ include('settings.php');
 
 session_start();
 
+if ($local == false){
+	$url = 'https://www.google.com/recaptcha/api/siteverify';
+	$privatekey = "6Lev_1YUAAAAAMK9Y9j8yI2rUR01LZRE8sNiHMxp";
+
+	$response = file_get_contents($url."?secret=".$privatekey."&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR']);
+	$data = json_decode($response);
+
+	if(!isset($data->success) OR $data->success!=true){
+		$_SESSION['error'] = "Recaptcha incomplete";
+		redirect('../index.php');
+	}
+}
+
 function login($username,$password){
 	global $local; //Setting up database based on local variable
 	$servername = ""; //Set up connection variables
