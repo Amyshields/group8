@@ -111,15 +111,20 @@ $conn = null;
 </head>
 
 <body>
-	<div class="container-fluid">
-	<header class="container-fluid text-center">
-        <div id="logo">
-            <img src="../../images/logo.png" width="300" height="100" alt="">
-        </div>
-	</header>
+    <header class="container-fluid text-center">
+      <div id="logo">
+        <img src="images/logo.png" width="300" height="100" alt="">
+      </div>
+    </header>
+    <div class="container">
+    <div class="container-fluid col-sm-offset-2">
+      <div class="wrap">
+      <h1>Decrypt Election</h1>
+      <!--Error box here?-->
+      <div class="col-sm-8" id="intro">
+        <p>Select an option from the dropdown and click "Decrypt".</p>
+      </div> 
 <!--container class used in bootstrap to make a dynamic container of a fixed size-->
-    <h1>Electago - Decrypt Elections</h1>
-<div class="container">
 	<form action="decryptVotes.php" method="post">
         <?php   
                 if(isset($_GET['tooEarly'])){
@@ -140,6 +145,7 @@ $conn = null;
         <input type="submit" class="btn btn-default" value="Decrypt" autofocus>        
 	</form>
 </div>
+</div>
     <footer class="container-fluid">
         <!--info here: logo, copyright, links, login as admin-->
 
@@ -148,12 +154,13 @@ $conn = null;
         </div>
         <div class="media-body">
         <ul class="list-inline pull right">
-            <li><a href="#">Help</a></li>
-            <li><p>Other links</p></li>
+            <li><a href="adminHelp.html">Help</a></li>
             <li><a href="../../includes/logout.php">Log out</a></li>
             <li><a href="index.php">Back</a></li>
             <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
         </ul>
         </div>
     </footer>
+</div>
+</body>
 </html>
