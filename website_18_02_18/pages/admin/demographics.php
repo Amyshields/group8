@@ -63,10 +63,12 @@ else{ //Setting up variables for online connection
     <div class="container">
     <div class="container-fluid col-sm-offset-2">
       <div class="wrap">
-		<h1>Voting Demographics</h1></h1>
+		<h1>Voting Demographics</h1>
+		<br>
       <!--Error box here?-->	
-		<h3>Please select which Election you would like to view the demographics for:</h3>
-
+		<p>Please select an election you would like to view the demographics for:</p>
+		<br>
+		<div class="col-sm-10">
 		<?php
 			try{
 				$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
@@ -90,8 +92,7 @@ else{ //Setting up variables for online connection
 					$date = $row['electionDate'];
 					$elections[$id] = $name;
 					$electionDates[$id] = $date;
-					
-					echo '<a href="results.php?id='.$id.'"><button type="button" class="btn btn-secondary">'.$name.'</button></a><p></p>';
+					echo '<a href="results.php?id='.$id.'" id="selection" class="btn btn-lg btn-block btn-success md-3"><p><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;'.$name.'</p></a> <br>';
 				}
 				
 				$_SESSION['elections'] = $elections;
@@ -102,8 +103,9 @@ else{ //Setting up variables for online connection
 			}
 
 			$conn = null;
-		?>		
-		
+		?>
+		<br>	
+		</div>
 	  </div>
     </div>
     <footer class="container-fluid">

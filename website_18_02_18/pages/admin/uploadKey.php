@@ -42,8 +42,8 @@ if(!isset($_SESSION['admin'])){
 		    <input id="adminKeyInput" name="adminKeyInput" type="text"><br>
 		    <input type="submit" class="btn btn-default" value="Upload" autofocus>
 	    </form><br>
-		<a href="index.php"><button type="button" class="btn btn-secondary">Go back</button></a>
-		<a href="decryptScreen.php"><button type="button" class="btn btn-secondary">Decrypt Votes</button></a><p></p>
+		<a href="index.php" class="btn btn-lg btn-info">Go back</a>
+		<a href="decryptScreen.php" class="btn btn-lg btn-info">Decrypt Votes</a>
 		<a href="../../includes/logout.php"><p>Log out</p></a>
 
 
@@ -57,7 +57,7 @@ if(!isset($_SESSION['admin'])){
       </div>
       <div class="media-body">
       <ul class="list-inline">
-        <li><a href="adminHelp.html">Help</a></li>
+        <li><a href="..\..\adminHelp.html">Help</a></li>
         <li><a href="..\admin\index.php">Back</a></li>
         <li><a href="..\includes\logout.php">Log out</a></li>
         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>

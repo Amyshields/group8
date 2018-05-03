@@ -10,18 +10,29 @@ if (isset($_SESSION['admin'])){
 }
 
 if(!isset($_SESSION['logged_in'])){
-   $_SESSION['error'] = "Please enter your National Insurance Number and Password";
+   $_SESSION['error'] =  "<div class='alert alert-danger alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Error!</strong> Please enter your National Insurance Number and Password</div>";
+    #$_SESSION['error'] = "Please enter your National Insurance Number and Password";
    header("Location: ../index.php");
 }
 
 $votedString = "";
 if(isset($_GET['voted'])){
-    $votedString = "Vote recorded.";
+    $votedString = "<div class='alert alert-success'>
+                        <strong> Voted!</strong> Vote Recorded.
+                    </div>>";
+
+    #"Vote recorded.";
 }
 
 $noSelectionString = "";
 if(isset($_GET['noSelection'])){
-    $noSelectionString = "No vote was recorded. Next time, click a radio button to select your choice.";
+    $noSelectionString = "<div class='alert alert-warning'>
+                        <strong> Select an option!</strong> No vote was recorded. Next time, click a radio button to select your choice.
+                    </div>>";
+
+    #"No vote was recorded. Next time, click a radio button to select your choice.";
 }
 
 global $local; //Setting up database based on local variable
@@ -58,7 +69,11 @@ else{ //Setting up variables for online connection
 try{
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
     if (!$conn){
-        $_SESSION['error'] = "Couldn't connect to the database";
+        $_SESSION['error'] ="<div class='alert alert-danger alert-dismissible'>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                            <strong>Incorrect Oops!</strong> Couldn't connect to the database.
+                        </div>";
+        #$_SESSION['error'] = "Couldn't connect to the database";
         redirect('../index.php');
     }
 
@@ -105,7 +120,11 @@ try{
         }
     }
     else{
-        $noElectionString = "You have no elections.";
+        $noElectionString = "<div class='alert alert-warning'>
+                        <strong> You have no elections.</strong>
+                    </div>>";
+
+    #"You have no elections.";
     }
 }
 catch(PDOException $e){
@@ -186,7 +205,7 @@ $conn = null;
             </div>
             <div class="media-body">
             <ul class="list-inline pull right">
-                <li><a href="#">Help</a></li>
+                <li><a href="voterHelp.html">Help</a></li>
                 <li><a href="../includes/logout.php">Log out</a></li>
                 <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
             </ul>

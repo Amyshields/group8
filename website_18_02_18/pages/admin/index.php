@@ -39,7 +39,7 @@ if(!isset($_SESSION['admin'])){
 
 			<a href="elections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> &nbsp;Current Elections</a>
 
-			<a href="elections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-check"></span> &nbsp;Election Results and Demographics</a>
+			<a href="demographics.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-check"></span> &nbsp;Election Results and Demographics</a>
 
 			<a href="candidates.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-user"></span> &nbsp;Add or Edit Candidates</a>
 
