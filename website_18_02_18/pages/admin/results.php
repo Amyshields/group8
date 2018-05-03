@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Demographics</title>
@@ -12,6 +12,7 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
 
 <?php
 require_once('../../includes/functions.php');
@@ -253,144 +254,84 @@ else{
 	exit();
 }
 ?>
+	<body>
+	<header class="container-fluid text-center">
+      <div id="logo">
+        <img src="images/logo.png" width="300" height="100" alt="">
+      </div>
+    </header>
+    <div class="container">
+    <div class="container-fluid col-sm-offset-2">
+      <div class="wrap">
+      <h1><?php echo $name; ?> Voting Demographics</h1>
+      <!--Error box here?-->
+      <div class="col-sm-8" id="intro">
+		<p>Below are the final results of the <?php echo $name; ?>. The demographics displayed include the election results, the results for each party, the overall turnout and the change from previous years. Click on the top right hand corner of a graph to save the image to your computer.</p>
+      </div>
+      <br>
 
+      <div class="container-fluid" style="min-width: 600px;">
+		<h2>Final Voting Results</h2>
+		<div id="chartContainer" style="height: 300px; width: 600px;"></div>
+		<div class="fptpCharts">
+		<h2>Individual Party Results</h2>
+			<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
+		</div>
+		<h2>Turnout</h2>
+		<div id="chartContainer4" style="height: 300px; width: 600px;"></div>
 
+		<div class="fptpCharts">
+			<h2>Change from Previous Year</h2>
+			<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
+		</div>
+	  </div>
+	</div>
+    </div>
+    <footer class="container-fluid">
+      <!--info here: logo, copyright, links, login as admin-->
 
-	<script type="text/javascript">
+      <div id="small_logo" class="media">
+        <img src="images/small_logo.png" width="100" height="35" alt="">
+      </div>
+      <div class="media-body">
+      <ul class="list-inline">
+        <li><a href="adminHelp.html">Help</a></li>
+        <li><a href="..\admin\index.php">Back</a></li>
+        <li><a href="..\includes\logout.php">Log out</a></li>
+        <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+      </ul>
+      </div>
+    </footer>
+  </div>
+	</body>
 
+<script type="text/javascript">
 	window.onload = function () {
 
-		var electionType = "<?php echo $type; ?>";
+	var electionType = "<?php echo $type; ?>";
 
-		if (electionType == "FPTP"){
-			var chart = new CanvasJS.Chart("chartContainer", {
-				animationEnabled: true,
-				exportEnabled: true,
-				axisX:{
-					title: "Party"
-				},
-				axisY:{
-					title: "Seats"
-				},
-				data: [
-				{
-					// Change type to "doughnut", "line", "splineArea", etc.
-					type: "column",
-					yValueFormatString: "0' Seat(s)'",
-					dataPoints: [
-						<?php
-						foreach ($parties as $party){
-							if (isset($seats[$party])){
-								echo '{ label: "'.$party.'",  y: '.$seats[$party].'},';
-							}
-						}
-						?>
-					]
-				}
-				]
-			});
-			chart.render();
-
-			var chart2 = new CanvasJS.Chart("chartContainer2", {
-				animationEnabled: true,
-				exportEnabled: true,
-				axisX:{
-					title: "Party"
-				},
-				axisY:{
-					title: "Votes"
-				},
-				data: [
-				{
-					// Change type to "doughnut", "line", "splineArea", etc.
-					type: "bar",
-					yValueFormatString: "0' Vote(s)'",
-					dataPoints: [
-						<?php
-						foreach ($parties as $party){
-							echo '{ label: "'.$party.'",  y: '.$party_votes[$party].'},';
-						}
-						?>
-					]
-				}
-				]
-			});
-			chart2.render();
-
-			var chart3 = new CanvasJS.Chart("chartContainer3", {
-				animationEnabled: true,
-				exportEnabled: true,
-				axisX:{
-					title: "Party"
-				},
-				axisY:{
-					title: "Change (%)",
-					suffix: "%"
-				},
-				data: [
-				{
-					// Change type to "doughnut", "line", "splineArea", etc.
-					type: "column",
-					yValueFormatString: "0'% Votes'",
-					dataPoints: [
-						{ label: "Labour",  y: 10 },
-						{ label: "Conservatives",  y: -10 },
-						{ label: "Plaid Cymru",  y: -20 },
-						{ label: "Green",  y: 5 }
-					]
-				}
-				]
-			});
-			chart3.render();
-
-			var chart4 = new CanvasJS.Chart("chartContainer4", {
-				animationEnabled: true,
-				exportEnabled: true,
-				axisX:{
-					title: "Party"
-				},
-				axisY:{
-					title: "Seats"
-				},
-				data: [
-				{
-					// Change type to "doughnut", "line", "splineArea", etc.
-					type: "pie",
-					yValueFormatString: "0'%'",
-					dataPoints: [
-						<?php
-							echo '{ label: "Voted",  y: '.$turnout.'},';
-							echo '{ label: "No Vote",  y: '.$novote.'},';
-						?>
-					]
-				}
-				]
-			});
-			chart4.render();
-		} else {
-
+	if (electionType == "FPTP"){
 		var chart = new CanvasJS.Chart("chartContainer", {
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{
-				title: "Yes or No"
+				title: "Party"
 			},
 			axisY:{
-				title: "Votes"
+				title: "Seats"
 			},
 			data: [
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
 				type: "column",
-				yValueFormatString: "0' Votes'",
+				yValueFormatString: "0' Seat(s)'",
 				dataPoints: [
 					<?php
-
-					if (isset($votedYes)){
-						echo '{ label: "Yes",  y: '.$votedYes.'},';
-						echo '{ label: "No",  y: '.$votedNo.'},';
+					foreach ($parties as $party){
+						if (isset($seats[$party])){
+							echo '{ label: "'.$party.'",  y: '.$seats[$party].'},';
+						}
 					}
-
 					?>
 				]
 			}
@@ -398,14 +339,66 @@ else{
 		});
 		chart.render();
 
+		var chart2 = new CanvasJS.Chart("chartContainer2", {
+			animationEnabled: true,
+			exportEnabled: true,
+			axisX:{
+				title: "Party"
+			},
+			axisY:{
+				title: "Votes"
+			},
+			data: [
+			{
+				// Change type to "doughnut", "line", "splineArea", etc.
+				type: "bar",
+				yValueFormatString: "0' Vote(s)'",
+				dataPoints: [
+					<?php
+					foreach ($parties as $party){
+						echo '{ label: "'.$party.'",  y: '.$party_votes[$party].'},';
+					}
+					?>
+				]
+			}
+			]
+		});
+		chart2.render();
+
+		var chart3 = new CanvasJS.Chart("chartContainer3", {
+			animationEnabled: true,
+			exportEnabled: true,
+			axisX:{
+				title: "Party"
+			},
+			axisY:{
+				title: "Change (%)",
+				suffix: "%"
+			},
+			data: [
+			{
+				// Change type to "doughnut", "line", "splineArea", etc.
+				type: "column",
+				yValueFormatString: "0'% Votes'",
+				dataPoints: [
+					{ label: "Labour",  y: 10 },
+					{ label: "Conservatives",  y: -10 },
+					{ label: "Plaid Cymru",  y: -20 },
+					{ label: "Green",  y: 5 }
+				]
+			}
+			]
+		});
+		chart3.render();
+
 		var chart4 = new CanvasJS.Chart("chartContainer4", {
 			animationEnabled: true,
 			exportEnabled: true,
 			axisX:{
-				title: "Voted"
+				title: "Party"
 			},
 			axisY:{
-				title: "Not Voted"
+				title: "Seats"
 			},
 			data: [
 			{
@@ -422,51 +415,71 @@ else{
 			]
 		});
 		chart4.render();
+	} else {
 
-		var fptpCharts = document.getElementsByClassName("fptpCharts"); //divsToHide is an array
-			for(var i = 0; i < fptpCharts.length; i++){
-				fptpCharts[i].style.visibility = "hidden";
-				fptpCharts[i].style.display = "none";
-			}
+	var chart = new CanvasJS.Chart("chartContainer", {
+		animationEnabled: true,
+		exportEnabled: true,
+		axisX:{
+			title: "Yes or No"
+		},
+		axisY:{
+			title: "Votes"
+		},
+		data: [
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+			yValueFormatString: "0' Votes'",
+			dataPoints: [
+				<?php
+
+				if (isset($votedYes)){
+					echo '{ label: "Yes",  y: '.$votedYes.'},';
+					echo '{ label: "No",  y: '.$votedNo.'},';
+				}
+
+				?>
+			]
+		}
+		]
+	});
+	chart.render();
+
+	var chart4 = new CanvasJS.Chart("chartContainer4", {
+		animationEnabled: true,
+		exportEnabled: true,
+		axisX:{
+			title: "Voted"
+		},
+		axisY:{
+			title: "Not Voted"
+		},
+		data: [
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "pie",
+			yValueFormatString: "0'%'",
+			dataPoints: [
+				<?php
+					echo '{ label: "Voted",  y: '.$turnout.'},';
+					echo '{ label: "No Vote",  y: '.$novote.'},';
+				?>
+			]
+		}
+		]
+	});
+	chart4.render();
+
+	var fptpCharts = document.getElementsByClassName("fptpCharts"); //divsToHide is an array
+		for(var i = 0; i < fptpCharts.length; i++){
+			fptpCharts[i].style.visibility = "hidden";
+			fptpCharts[i].style.display = "none";
 		}
 	}
-	</script>
-</head>
+	}
+</script>
 
-	<body>
-	<header class="container-fluid text-center">
-		<div id="logo">
-			<img src="../../images/logo.png" width="300" height="100" alt="">
-		</div>
-	</header>
-		<h1><?php echo $name; ?> Voting Demographics</h1>
-
-		<h2>Final Voting Results</h2>
-		<div id="chartContainer" style="height: 300px; width: 600px;"></div>
-		<div class="fptpCharts">
-		<h2>Individual Party Results</h2>
-			<div id="chartContainer2" style="height: 300px; width: 600px;"></div>
-		</div>
-		<h2>Turnout</h2>
-		<div id="chartContainer4" style="height: 300px; width: 600px;"></div>
-
-		<div class="fptpCharts">
-			<h2>Change from Previous Year</h2>
-			<div id="chartContainer3" style="height: 300px; width: 600px;"></div>
-		</div>
-	</body>
-
-	<footer class="container-fluid text-left">
-		<!--info here: logo, copyright, links, login as admin-->
-		<ul>
-			<li><a href="#">Help</a></li>
-			<li><p>Other links</p></li>
-			<li><a href="index.php">Back</a></li>
-			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-		</ul>
-	</footer>
-
-		<div id="small_logo">
-		<img src="../../images/small_logo.png" width="100" height="35" alt="">
-	</div>
 </html>
+
+

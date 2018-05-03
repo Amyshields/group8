@@ -57,14 +57,16 @@
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   }
   catch(PDOException $e){
+    #################here
       echo $sql . "<br>" . $e->getMessage();
   }
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
 			<meta charset="utf-8">
-			<title>Admin Home Page</title>
+			<title>View and Add Elections</title>
 			<!--For Bootstrap, to make page responsive on mobile-->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!--For Bootstrap, to load the css information from a CDN-->
@@ -74,9 +76,21 @@
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
-    <body>
-      <p>Create Election</p>
-      <div id="addElection">
+  <body>
+    <header class="container-fluid text-center">
+      <div id="logo">
+        <img src="images/logo.png" width="300" height="100" alt="">
+      </div>
+    </header>
+    <div class="container">
+    <div class="container-fluid col-sm-offset-2">
+      <div class="wrap">
+      <h1>Create Election</h1>
+      <!--Error box here?-->
+      <div class="col-sm-8" id="intro">
+        <p>Create Election Here</p>
+      </div>
+      <div id="addElection" class="panel">
         Election Name: <input type="text" name="newName" id="newName"><br>
         <!-- Cy Added -->
         Election Display Name: <input type="text" name="newDisplayName" id="newDisplayName"><br>
@@ -167,16 +181,24 @@
         }
         $conn = null;
       ?>
-      <footer class="container-fluid text-left">
-		<!--info here: logo, copyright, links, login as admin-->
-		</br>
-		<ul>
-			<li><a href="#">Help</a></li>
-			<li><p>Other links</p></li>
-			<li><a href="index.php">Back</a></li>
-			<li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
-		</ul>
-	</footer>
+      </div>
+    </div>
+    <footer class="container-fluid">
+      <!--info here: logo, copyright, links, login as admin-->
+
+      <div id="small_logo" class="media">
+        <img src="images/small_logo.png" width="100" height="35" alt="">
+      </div>
+      <div class="media-body">
+      <ul class="list-inline">
+        <li><a href="adminHelp.html">Help</a></li>
+        <li><a href="..\admin\index.php">Back</a></li>
+        <li><a href="..\includes\logout.php">Log out</a></li>
+        <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+      </ul>
+      </div>
+    </footer>
+  </div>
   </body>
 
 <script>
