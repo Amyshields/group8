@@ -37,7 +37,7 @@ if(!isset($_SESSION['admin'])){
 
 			<a href="elections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-plus"></span> &nbsp;Create New Election</a>
 
-			<a href="elections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> &nbsp;Current Elections</a>
+			<a href="viewElections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> &nbsp;View and Delete Current Elections</a>
 
 			<a href="demographics.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-check"></span> &nbsp;Election Results and Demographics</a>
 
@@ -57,6 +57,8 @@ if(!isset($_SESSION['admin'])){
 
 
 			<a href="../../includes/logout.php" class="btn btn-lg btn-block btn-info"><p><span class="glyphicon glyphicon-log-out"></span> Log out</p></a>
+			<hr>
+			<br>
 		</div>
 	<footer>
         <!--info here: logo, copyright, links, login as admin-->

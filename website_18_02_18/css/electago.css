@@ -41,7 +41,7 @@ min-height: 100%;
 height: auto !important;
 height: 100%;
 /* Negative indent footer by it's height */
-margin: 0 auto -110px;
+margin: 0px auto 110px;
 }
 
 #footerLinks{
@@ -81,6 +81,10 @@ footer{
 
 #info{
 	padding-top: 20px;
+}
+
+#electionList{
+	padding-bottom: 20px;
 }
 /*
 #passwordCheckbox{

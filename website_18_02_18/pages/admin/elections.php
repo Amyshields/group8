@@ -66,7 +66,7 @@
 <html lang="en">
   <head>
 			<meta charset="utf-8">
-			<title>View and Add Elections</title>
+			<title>Create New Elections</title>
 			<!--For Bootstrap, to make page responsive on mobile-->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!--For Bootstrap, to load the css information from a CDN-->
@@ -76,18 +76,6 @@
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
-<<<<<<< HEAD
-    <body>
-      <p><h2>Create Election</h2></p>
-      <style>
-      td {
-        padding: 3px;
-      }
-      </style>
-      <table>
-      <div id="addElection">
-        <tr><td>Election Name: </td><td><input type="text" name="newName" id="newName"></td></tr>
-=======
   <body>
     <header class="container-fluid text-center">
       <div id="logo">
@@ -103,9 +91,8 @@
         <p>Create Election Here</p>
       </div>
       <div id="addElection" class="panel">
-        Election Name: <input type="text" name="newName" id="newName"><br>
->>>>>>> front_end_changes
-        <!-- Cy Added -->
+        <table> <tr><td>Election Name: <input type="text" name="newName" id="newName"> </td></tr><br>
+
         <tr><td>Election Display Name: </td><td><input type="text" name="newDisplayName" id="newDisplayName"></td></tr>
         <tr><td>Election Type:</td><td>
         <select name="newType" id="newType">
@@ -124,79 +111,7 @@
         <tr><td colspan="2"><div id="createElectionErrorDisplay"></div></td></tr>
       </div>
     </table>
-
-      <p><h2>View Election Settings</h2></p>
-      <?php
-        $sql_select = "
-        SELECT * FROM election
-
-        ORDER BY electionArea
-        ";
-        $query = $conn->query($sql_select);
-        $num_rows = $query->rowCount();
-        $electionCandidates = [];
-        $electionData = $query->fetchAll();
-
-        if ($num_rows > 0){
-          foreach ($electionData as $row) {
-            $electionId = $row['electionID'];
-            $electionName = $row['electionName'];
-            $electionType = $row['electionType'];
-            $electionArea = $row['electionArea'];
-            $electionDate = $row['electionDate'];
-            $electionDisplayName = $row['electionDisplayName']; // Cy Added
-            $electionCandidates = explode(";", $row['electionCandidates']);
-            $electionIsEncrypted = $row['isEncrypted']; // Cy Added
-
-            echo "<table>";
-            echo "<tr><td>Election Name: </td><td>$electionName</td></tr>";
-            echo "<tr><td>Election Display Name: </td><td>$electionDisplayName</td></tr>"; // Cy Added
-            echo "<tr><td>Election Type: </td><td>$electionType</td></tr>";
-            echo "<tr><td>Election Area: </td><td>$electionArea</td></tr>";
-            echo "<tr><td>Election Date: </td><td>$electionDate</td></tr>";
-            if ($electionIsEncrypted==1){ // Cy Added
-              echo "<tr><td>Encrypted: </td><td>YES</td></tr>";
-            } else {
-              echo "<tr><td>Encrypted: </td><td>NO</td></tr>";
-            }
-
-
-            if ($electionType != "REF"){
-              echo "<tr><td colspan=2>Election Candidates: <table>";
-              $sql_select2 = "";
-              foreach ($electionCandidates as $currentCandidate){
-
-                $sql_select2 = "
-                SELECT `candidateName`, `candidateParty`, `candidateArea`
-                FROM candidate
-                WHERE candidateID = $currentCandidate;
-                ";
-
-                $queryCand = $conn->query($sql_select2);
-                $num_Cand = $queryCand->rowCount();
-
-                if ($num_Cand = 0){
-                  echo "<tr><td>This candidate has been removed from the system</td></tr>";
-                } else {
-                    $candidateInfo = $queryCand->fetchAll();
-                    $candName = $candidateInfo[0]['candidateName'];
-                    $candParty = $candidateInfo[0]['candidateParty'];
-                    $candArea = $candidateInfo[0]['candidateArea'];
-                    echo "<tr><td>Name: $candName </td><td>Party: $candParty </td><td>Area: $candArea</td></tr>";
-
-                }
-              }
-              echo "</td></tr></table>";
-            }
-            echo "<tr><td><button id='delete$electionId' type='submit' onclick='deleteElection($electionId)'>Delete Election</button></td></tr></table><br>";
-          }
-        } else {
-            $_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
-            //redirect('../index.php');
-        }
-        $conn = null;
-      ?>
-      </div>
+    </div>
     </div>
     <footer class="container-fluid">
       <!--info here: logo, copyright, links, login as admin-->
@@ -206,7 +121,7 @@
       </div>
       <div class="media-body">
       <ul class="list-inline">
-        <li><a href="adminHelp.html">Help</a></li>
+        <li><a href="..\..\adminHelp.html">Help</a></li>
         <li><a href="..\admin\index.php">Back</a></li>
         <li><a href="..\includes\logout.php">Log out</a></li>
         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
@@ -312,21 +227,6 @@
           document.getElementById("createElectionErrorDisplay").innerHTML = "There is already an election with this name";
         }
       });
-
-  }
-  function deleteElection(id){
-
-    if (confirm("Are you sure you want to delete this election?")) {
-      $.post("./deleteElection.php", { //post id to php
-          id: id
-        }, function(result) {
-          location.reload(); //refresh page
-        });
-    } else {
-      txt = "You pressed Cancel!";
-    }
-
-
 
   }
 </script>
