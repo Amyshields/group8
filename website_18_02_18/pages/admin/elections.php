@@ -74,50 +74,97 @@
 			<link href="../../css/electago.css" rel="stylesheet" type="text/css">
 			<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
   <body>
     <header class="container-fluid text-center">
       <div id="logo">
-        <img src="images/logo.png" width="300" height="100" alt="">
+        <img src="../../images/logo.png" width="300" height="100" alt="">
       </div>
     </header>
     <div class="container">
+    <h1>Create Election</h1>
     <div class="container-fluid col-sm-offset-2">
       <div class="wrap">
-      <h1>Create Election</h1>
       <!--Error box here?-->
       <div class="col-sm-8" id="intro">
-        <p>Create Election Here</p>
+        <p>Create a new election below by inserting information into the fields below.</p>
+        <a href="../admin/index.php" class="btn btn-lg btn-primary center-block"><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go Back</a>
+        <br>
       </div>
-      <div id="addElection" class="panel">
-        <table> <tr><td>Election Name: <input type="text" name="newName" id="newName"> </td></tr><br>
+      <div id="addElection" class="panel col-sm-8">
+          <form>
 
-        <tr><td>Election Display Name: </td><td><input type="text" name="newDisplayName" id="newDisplayName"></td></tr>
-        <tr><td>Election Type:</td><td>
-        <select name="newType" id="newType">
-          <option value="FPTP">FPTP</option>
-          <option value="STV">STV</option>
-          <option value="REF">Referendum</option>
-        </select>
-        </td></tr>
-        <tr><td>Election Area: </td><td><input type="text" name="newArea" id="newArea"></td></tr>
-        <tr><td>Election Date: </td><td><input type="date" name="newDate" id="newDate"></td></tr>
-        <tr><td colspan="2"><div id="addCands"></div></td></tr>
-        <tr><td colspan="2"><button type="button" id="addCandidateBtn" onclick="addCandidate()">Add Candidate</button>
-        <button type="button" id="newCandidateBtn" onclick="newCandidate()">+</button>
-        <button type="submit" onclick="createElection()">Create Election</button>
-        <button type="button" onclick="location.reload()">Clear</button></td></tr>
-        <tr><td colspan="2"><div id="createElectionErrorDisplay"></div></td></tr>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> Election Database Name: </span>
+              </div>
+              <input type="text" class="form-control" name="newName" id="newName">
+            </div>
+
+            <div class="input-group">
+              <label for="newName"> Election Display Name: </label>
+              <input type="text" class="form-control" name="newDisplayName" id="newDisplayName">
+            </div>
+
+            <div class="input-group">
+              <label for="newType"> Type: </label>
+              <select name="newType" id="newType">
+                <option value="FPTP">FPTP</option>
+                <option value="STV">STV</option>
+                <option value="REF">Referendum</option>
+              </select>
+            </div>
+
+
+            <div class="input-group">
+              <label for="newArea"> Area: </label>
+              <input class="form-control input-lg" type="text" name="newArea" id="newArea">
+            </div>
+
+            <div class="input-group">
+              <label for="newDate"> Date: </label>
+              <input  class="form-control" type="date" name="newDate" id="newDate">
+            </div>
+
+            <div class="input-group">
+              <label for="newType"> Candidates: </label>
+              <button class="btn btn-success form-control" type="button" id="addCandidateBtn" onclick="addCandidate()"> &nbsp; Add Candidate</button>
+            </div>
+
+            <hr>
+            <br>
+            <button class="btn btn-info btn-lg" type="button" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> &nbsp;Clear</button>
+
+            <button class="btn btn-success btn-lg pull-right" type="submit" onclick="createElection()"><span class="glyphicon glyphicon-ok"></span> &nbsp;Create Election</button>
+          </form>
+          <br>
+          <!--hr>
+          <table> 
+              <tr><td>Election Name: <input type="text" name="newName" id="newName"> </td></tr><br>
+              <tr><td>Election Display Name: </td><td><input type="text" name="newDisplayName" id="newDisplayName"></td></tr>
+            <tr><td>Election Type:</td><td>
+            <select name="newType" id="newType">
+              <option value="FPTP">FPTP</option>
+              <option value="STV">STV</option>
+              <option value="REF">Referendum</option>
+            </select>
+            </td></tr>
+            <tr><td>Election Area: </td><td><input type="text" name="newArea" id="newArea"></td></tr>
+            <tr><td>Election Date: </td><td><input type="date" name="newDate" id="newDate"></td></tr>
+            <tr><td colspan="2"><div id="addCands"></div></td></tr>
+            <tr><td colspan="2"><button type="button" id="addCandidateBtn" onclick="addCandidate()">Add Candidate</button>
+            <button type="button" id="newCandidateBtn" onclick="newCandidate()">+</button>
+            <button type="submit" onclick="createElection()">Create Election</button>
+            <button type="button" onclick="location.reload()">Clear</button></td></tr>
+            <tr><td colspan="2"><div id="createElectionErrorDisplay"></div></td></tr>
+          </table-->
+        </div>
       </div>
-    </table>
-    </div>
     </div>
     <footer class="container-fluid">
-      <!--info here: logo, copyright, links, login as admin-->
-
       <div id="small_logo" class="media">
-        <img src="images/small_logo.png" width="100" height="35" alt="">
+        <img src="../../images/small_logo.png" width="100" height="35" alt="">
       </div>
       <div class="media-body">
       <ul class="list-inline">

@@ -61,9 +61,9 @@ else{ //Setting up variables for online connection
       </div>
     </header>
     <div class="container">
+    <h1>Voting Demographics</h1>
     <div class="container-fluid col-sm-offset-2">
       <div class="wrap">
-		<h1>Voting Demographics</h1>
 		<br>
       <!--Error box here?-->	
 		<p>Please select an election you would like to view the demographics for:</p>

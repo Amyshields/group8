@@ -67,7 +67,7 @@ if(!isset($_SESSION['admin'])){
         </div>
         <div class='media-body'>
         <ul class='list-inline pull right'>
-            <li><a href="adminHelp.html">Help</a></li>
+            <li><a href="../../adminHelp.html">Help</a></li>
             <li><a href="../includes/logout.php">Log out</a></li>
             <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
         </ul>
