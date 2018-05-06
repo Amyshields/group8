@@ -1,5 +1,6 @@
 <?php
 include('../../includes/settings.php');
+
 session_start();
 
 if (!isset($_SESSION['admin'])){
@@ -32,7 +33,6 @@ if ($local == true){ //Setting up variables for local connection
     $dbpassword = $ldbpassword;
     $table = "candidate"; //Fix for wamp server importing tables names as all lowercase
 }
-
 else{ //Setting up variables for online connection
     global $oservername;
     global $odbname;
@@ -44,8 +44,8 @@ else{ //Setting up variables for online connection
     $dbusername = $odbusername;
     $dbpassword = $odbpassword;
 }
-
 try{
+
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
     if (!$conn){
         $_SESSION['error'] = "<div class='alert alert-danger alert-dismissible'>
@@ -58,10 +58,12 @@ try{
 
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 }
 catch(PDOException $e){
     echo "<div class='alert alert-danger alert-dismissible'>
         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-        <strong>Error!</strong>" $sql . "<br>" . $e->getMessage(). "</div>";
+        <strong>Error!</strong>" . $sql . "<br>" . $e->getMessage(). "</div>";
 }
+
 ?>

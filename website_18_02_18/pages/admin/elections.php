@@ -129,18 +129,19 @@
 
             <div class="input-group">
               <label for="newType"> Candidates: </label>
+              <div id="addCands"></div>
               <button class="btn btn-success form-control" type="button" id="addCandidateBtn" onclick="addCandidate()"> &nbsp; Add Candidate</button>
+              <button class="btn btn-success form-control" type="button" id="newCandidateBtn" onclick="newCandidate()">+</button>
             </div>
-
             <hr>
             <br>
+            <div id="createElectionErrorDisplay"></div>
             <button class="btn btn-info btn-lg" type="button" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> &nbsp;Clear</button>
-
             <button class="btn btn-success btn-lg pull-right" type="submit" onclick="createElection()"><span class="glyphicon glyphicon-ok"></span> &nbsp;Create Election</button>
           </form>
           <br>
           <!--hr>
-          <table> 
+          <table>
               <tr><td>Election Name: <input type="text" name="newName" id="newName"> </td></tr><br>
               <tr><td>Election Display Name: </td><td><input type="text" name="newDisplayName" id="newDisplayName"></td></tr>
             <tr><td>Election Type:</td><td>
@@ -200,6 +201,7 @@
             document.getElementById("addCandidateBtn").style.display = "none";
             document.getElementById("newCandidateBtn").style.display = "block";
             document.getElementById("newArea").readonly = true;
+
           }
         });
       }

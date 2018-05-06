@@ -62,6 +62,6 @@ try{
 catch(PDOException $e){
     echo "<div class='alert alert-danger alert-dismissible'>
                             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                            <strong>Error!</strong>" $sql . "<br>" . $e->getMessage(). "</div>";
+                            <strong>Error!</strong>" . $sql . "<br>" . $e->getMessage(). "</div>";
 }
 ?>
