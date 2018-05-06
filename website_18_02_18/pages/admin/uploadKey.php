@@ -73,7 +73,7 @@ if(!isset($_SESSION['admin'])){
       <ul class="list-inline">
         <li><a href="..\..\adminHelp.html">Help</a></li>
         <li><a href="..\admin\index.php">Back</a></li>
-        <li><a href="..\includes\logout.php">Log out</a></li>
+        <li><a href="..\..\includes\logout.php">Log out</a></li>
         <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
       </ul>
       </div>
