@@ -111,7 +111,6 @@
               <label for="newType"> Type: </label>
               <select name="newType" id="newType">
                 <option value="FPTP">FPTP</option>
-                <option value="STV">STV</option>
                 <option value="REF">Referendum</option>
               </select>
             </div>
@@ -147,7 +146,6 @@
             <tr><td>Election Type:</td><td>
             <select name="newType" id="newType">
               <option value="FPTP">FPTP</option>
-              <option value="STV">STV</option>
               <option value="REF">Referendum</option>
             </select>
             </td></tr>
