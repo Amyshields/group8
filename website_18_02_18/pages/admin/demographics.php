@@ -82,7 +82,7 @@ else{ //Setting up variables for online connection
 				$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				
-				$sql_select = 'SELECT electionID, electionName, electionDate FROM '.$table;
+				$sql_select = 'SELECT electionID, electionName, electionDisplayName, electionDate FROM '.$table;
 				$elections = array();
 				$electionDates = array();
 				
@@ -90,9 +90,10 @@ else{ //Setting up variables for online connection
 					$id = $row['electionID'];
 					$name = $row['electionName'];
 					$date = $row['electionDate'];
+					$displayName = $row['electionDisplayName'];
 					$elections[$id] = $name;
 					$electionDates[$id] = $date;
-					echo '<a href="results.php?id='.$id.'" id="selection" class="btn btn-lg btn-block btn-success md-3"><p><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;'.$name.'</p></a> <br>';
+					echo '<a href="results.php?id='.$id.'" id="selection" class="btn btn-lg btn-block btn-success md-3"><p><span class="glyphicon glyphicon-chevron-right"></span> &nbsp;'.$displayName.'</p></a> <br>';
 				}
 				
 				$_SESSION['elections'] = $elections;
