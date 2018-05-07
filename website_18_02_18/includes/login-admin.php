@@ -16,7 +16,7 @@ if ($local == false){
 
 	if(!isset($data->success) OR $data->success!=true){
 		$_SESSION['error'] = "Recaptcha incomplete";
-		redirect('../index.php');
+		redirect('../pages/admin-login.php');
 	}
 }
 
