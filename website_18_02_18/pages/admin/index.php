@@ -35,7 +35,7 @@ if(!isset($_SESSION['admin'])){
 	</div>
 	<div class="container-fluid">
 
-			<a href="elections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-plus"></span> &nbsp;Create New Election</a>
+			<a href="elections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-plus"></span> Create New Election</a>
 
 			<a href="viewElections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> &nbsp;View and Delete Current Elections</a>
 
