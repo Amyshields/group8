@@ -7,7 +7,7 @@
   }
 
   if(!isset($_SESSION['logged_in'])){
-     $_SESSION['error'] = "Please enter your National Insurance Number and Password";
+     $_SESSION['error'] = "Please enter your Username and Password";
      header("Location: ../../includes/login-admin.php");
   }
 
@@ -97,13 +97,14 @@
 
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"> Election Database Name: </span>
+                <!--span class="input-group-text"> Election Database Name: </span-->
+                <label for="newName"> Election Database Name: </label>
               </div>
               <input type="text" class="form-control" name="newName" id="newName">
             </div>
 
             <div class="input-group">
-              <label for="newName"> Election Display Name: </label>
+              <label for="newDispName"> Election Display Name: </label>
               <input type="text" class="form-control" name="newDisplayName" id="newDisplayName">
             </div>
 

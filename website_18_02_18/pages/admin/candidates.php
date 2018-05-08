@@ -24,53 +24,103 @@
     <div class="container">
     <div class="container-fluid col-sm-offset-2">
       <div class="wrap">
-      <h1>Add Candidates</h1>
+      <h1>Add and Edit Candidates</h1>
+       <div class="col-sm-8" id="intro">
+        <p>Create a new election below by inserting information into the fields below.</p>
+        <a href="../admin/index.php" class="btn btn-lg btn-primary center-block"><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Go Back</a>
+        <br>
+      </div>
       <!--Error box here?-->
-      <table>
-        <form name="addCandidate" method="POST" action="./addCandidate.php">
-        <tr><td>Candidate Name: </td><td><input type="text" name="newName"></td></tr>
-        <tr><td>Candidate Party: </td><td><input type="text" name="newParty"></td></tr>
-        <tr><td>Candidate Area: </td><td><input type="text" name="newArea"></td></tr>
-        <tr><td><button type="submit">Add Candidate</button></td></tr>
-        </form>
-      </table>
-    <h2>View Candidates</h2>
-    <?php
+      <div id="addCandidate" class="panel col-sm-8">
+	        <form name="addCandidate" method="POST" action="./addCandidate.php">
+	        	<h2>Add a new Candidate</h2>
+	        	<div class="input-group">
+	              <div class="input-group-prepend">
+	                <span class="input-group-text"> Name: </span>
+	              </div>
+	              <input type="text" class="form-control" name="newName" id="newName">
+	            </div>
 
-      $sql_select = "SELECT * FROM candidate";
-      $query = $conn->query($sql_select);
+	            <div class="input-group">
+	              <div class="input-group-prepend">
+	                <span class="input-group-text"> Party:  </span>
+	              </div>
+	              <input type="text" class="form-control" name="newParty" id="newParty">
+	            </div>
 
-      $query->execute();
+	            <div class="input-group">
+	              <div class="input-group-prepend">
+	                <span class="input-group-text"> Area:  </span>
+	              </div>
+	              <input type="text" class="form-control" name="newParty" id="newParty">
+	            </div>
 
-      $num_rows = $query->rowCount();
+	            <hr>
 
-      if ($num_rows > 0){
+	            <button class="btn btn-info btn-lg" type="button" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> &nbsp;Clear</button>
+            	<button class="btn btn-success btn-lg pull-right" type="submit"><span class="glyphicon glyphicon-ok"></span> &nbsp;Create Candidate</button>
+            	<br>
 
-          foreach ($query as $row) {
-            $candidateId = $row['candidateID'];
-            $candidateName = $row['candidateName'];
-            $candidateParty = $row['candidateParty'];
-            $candidateArea = $row['candidateArea'];
-            echo "<table>";
-            echo "<tr><td>Candidate Name: </td><td><input type='text' value='$candidateName' id='candName$candidateId'></td></tr>";
-            echo "<tr><td>Candidate Party: </td><td><input type='text' value='$candidateParty' id='candParty$candidateId'></td></tr>";
-            echo "<tr><td>Candidate Area: </td><td><input type='text' value='$candidateArea' id='candArea$candidateId'></td></tr>";
-            echo "<tr>";
-            echo "<td><button id='change$candidateId' type='submit' onclick='changeCandidate($candidateId)'>Change Candidate</button></td>";
-            echo "<td><button id='delete$candidateId' type='submit' onclick='deleteCandidate($candidateId)'>Delete Candidate</button></td>";
-            echo "</tr><tr><td><div id='candidateError$candidateId'> </div></td></tr></table><br>";
 
-          }
-      }
-      else{
-          $_SESSION['error'] =  "<div class='alert alert-danger'><strong>Error!</strong> Couldn't connect to the database</div>";
-        #$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
-          redirect('../index.php');
-      }
-      $conn = null;
-    ?>
+	        <!--tr><td>Candidate Name: </td><td><input type="text" name="newName"></td></tr>
+	        <tr><td>Candidate Party: </td><td><input type="text" name="newParty"></td></tr>
+	        <tr><td>Candidate Area: </td><td><input type="text" name="newArea"></td></tr>
+	        <tr><td><button type="submit">Add Candidate</button></td></tr-->
+	        </form>
+	        <br>
+  		</div>
+  		<div class="col-sm-8">
+		    <h2>View Candidates</h2>
+		    <?php
+
+		      $sql_select = "SELECT * FROM candidate";
+		      $query = $conn->query($sql_select);
+
+		      $query->execute();
+
+		      $num_rows = $query->rowCount();
+
+		      if ($num_rows > 0){
+
+		          foreach ($query as $row) {
+		            $candidateId = $row['candidateID'];
+		            $candidateName = $row['candidateName'];
+		            $candidateParty = $row['candidateParty'];
+		            $candidateArea = $row['candidateArea'];
+		            echo "  		<div class='panel panel-default col-sm-9 electionList'>
+                  	<div class='panel-heading info'>
+                    <h2 class='text-center'></h2>
+                    <table class='table'>
+                    <tr><td>Candidate Name: </td><td><input type='text' value='$candidateName' id='candName$candidateId'></td></tr>
+                    <tr><td>Display Party: </td><td><input type='text' value='$candidateParty' id='candParty$candidateId'></td></tr>
+                    <tr><td>Candidate Area: </td><td><input type='text' value='$candidateArea' id='candArea$candidateId'></td></tr>
+                    <tr> 
+                    	<td><button class='btn btn-success' id='change$candidateId' type='submit' onclick='changeCandidate($candidateId)'>Change Candidate</button></td>
+                    	<td><button class='btn btn-danger' id='delete$candidateId' type='submit' onclick='deleteCandidate($candidateId)'>Delete Candidate</button></td>
+                    </tr>
+                    <tr><td><div id='candidateError$candidateId'> </div></td></tr></table><br></div></div><br>";
+
+		            // echo "<table>";
+		            // echo "<tr><td>Candidate Name: </td><td><input type='text' value='$candidateName' id='candName$candidateId'></td></tr>";
+		            // echo "<tr><td>Candidate Party: </td><td><input type='text' value='$candidateParty' id='candParty$candidateId'></td></tr>";
+		            // echo "<tr><td>Candidate Area: </td><td><input type='text' value='$candidateArea' id='candArea$candidateId'></td></tr>";
+		            // echo "<tr>";
+		            // echo "<td><button id='change$candidateId' type='submit' onclick='changeCandidate($candidateId)'>Change Candidate</button></td>";
+		            // echo "<td><button id='delete$candidateId' type='submit' onclick='deleteCandidate($candidateId)'>Delete Candidate</button></td>";
+		            // echo "</tr><tr><td><div id='candidateError$candidateId'> </div></td></tr></table><br>";
+
+		          }
+		      }
+		      else{
+		          $_SESSION['error'] =  "<div class='alert alert-danger'><strong>Error!</strong> Couldn't connect to the database</div>";
+		        #$_SESSION['error'] = "Couldn't fetch results, check debug section of settings.php";
+		          redirect('../index.php');
+		      }
+		      $conn = null;
+		    ?>
+		    </div>
     </div>
-    </div>
+	</div>
     <footer class="container-fluid">
       <!--info here: logo, copyright, links, login as admin-->
 
