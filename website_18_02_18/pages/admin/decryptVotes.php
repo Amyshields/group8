@@ -175,9 +175,10 @@ try{
                 </body>
                 </html>";
         echo '<meta http-equiv="refresh" content="3;url=index.php">';
+        
         // Delete private keys from database
-        //$sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
-        //$conn->query($sql_clearPrivateKeys);
+        $sql_clearPrivateKeys = "TRUNCATE adminPrivateKeys";
+        $conn->query($sql_clearPrivateKeys);
 
     // If the key is not valid, display to the user
     } else {
