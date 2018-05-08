@@ -15,6 +15,7 @@ if(!isset($_SESSION['admin'])){
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!--For Bootstrap, to load the css information from a CDN-->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"-->
 			<link href="../../css/electago.css" rel="stylesheet" type="text/css">
 			<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
 		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -35,15 +36,15 @@ if(!isset($_SESSION['admin'])){
 	</div>
 	<div class="container-fluid">
 
-			<a href="elections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-plus"></span> &nbsp;Create New Election</a>
+			<a href="elections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-plus"></span> <span class="hidden-xs"> Create New Election</span><span class="hidden-sm hidden-md hidden-lg">Election</span></a>
 
-			<a href="viewElections.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> &nbsp;View and Delete Current Elections</a>
+			<a href="viewElections.php" class="btn btn-lg btn-block btn-warning"  id='selection'><span class="glyphicon glyphicon-list"></span> <span class="hidden-xs">View and Delete Current Elections</span><span class="hidden-sm hidden-md hidden-lg">View Elections</span></a>
 
-			<a href="demographics.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-check"></span> &nbsp;Election Results and Demographics</a>
+			<a href="demographics.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-check"></span> <span class="hidden-xs">Election Results and Demographics</span><span class="hidden-sm hidden-md hidden-lg">Results</span></a>
 
-			<a href="candidates.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-user"></span> &nbsp;Add or Edit Candidates</a>
+			<a href="candidates.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">Add or Edit Candidates</span><span class="hidden-sm hidden-md hidden-lg"> Candidates</span></a>
 
-			<a href="uploadKey.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-upload"></span> &nbsp;Upload Private Key</a>
+			<a href="uploadKey.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-upload"></span> <span class="hidden-xs">Upload </span> Private Key</a>
 
 			<a href="decryptScreen.php" class="btn btn-lg btn-block  btn-warning"  id='selection'><span class="glyphicon glyphicon-lock"></span> &nbsp;Decrypt Votes</a>
 
