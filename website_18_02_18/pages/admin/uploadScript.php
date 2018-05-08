@@ -63,12 +63,10 @@ try{
 
     $num_rows = $query->rowCount();
 
-    // echo $key;
-
     if ($num_rows > 0) {
         $sql = "UPDATE adminPrivateKeys SET privateKey='$key' WHERE adminUsername='$adminUsername'";
         $conn->query($sql);
-        /*echo "<!DOCTYPE html>
+        echo "<!DOCTYPE html>
                 <html lang='en'>
                 <head>
                     <meta charset='utf-8'>
@@ -109,10 +107,10 @@ try{
                     <meta http-equiv='refresh' content='3;url=dashboard.php?voted=y'>
                 </footer>
                 </body>
-                </html>";*/
-        echo "<div class='alert alert-success'>
-                        <strong>Key Changed!</strong> Your existing key has been changed, auto redirecting back in 3 seconds.
-                    </div>>"
+                </html>";
+        // echo "<div class='alert alert-success'>
+        //                 <strong>Key Changed!</strong> Your existing key has been changed, auto redirecting back in 3 seconds.
+        //             </div>>"
         #echo "Your existing key has been changed, auto redirecting back in 3 seconds";
     }
     else {
@@ -189,7 +187,7 @@ catch(PDOException $e){
                     <!--container class used in bootstrap to make a dynamic container of a fixed size-->
                     <div class='alert alert-danger alert-dismissible'>
                         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                        <strong>Error!</strong>". $sql . "<br>" . $e->getMessage();."
+                        <strong>Error!</strong>". $sql . "<br>" . $e->getMessage()."
                     </div>
                     <footer class='container-fluid'>
                     <!--info here: logo, copyright, links, login as admin-->
