@@ -203,7 +203,7 @@ try{
                         </div>
                     </header>
                     <!--Error message here-->
-                    <div class='container'> <p>Incorrect private key parts.</p> </div>
+                    <div class='container'> <p>Invalid private key.</p> </div>
                     <footer class='container-fluid'>
                     <!--info here: logo, copyright, links, login as admin-->
 
