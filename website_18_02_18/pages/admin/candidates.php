@@ -34,29 +34,29 @@
       <div id="addCandidate" class="panel col-sm-8">
 	        <form name="addCandidate" method="POST" action="./addCandidate.php">
 	        	<h2>Add a new Candidate</h2>
-	        	<div class="input-group col-sm-8 center-block">
+	        	<div class="input-group col-sm-6 center-block">
 	              <div class="input-group-prepend">
 	                <span class="input-group-text"> Name: </span>
 	              </div>
 	              <input type="text" class="form-control" name="newName" id="newName">
 	            </div>
 
-	            <div class="input-group">
+	            <div class="input-group col-sm-6 center-block">
 	              <div class="input-group-prepend">
 	                <span class="input-group-text"> Party:  </span>
 	              </div>
 	              <input type="text" class="form-control" name="newParty" id="newParty">
 	            </div>
 
-	            <div class="input-group">
+	            <div class="input-group col-sm-6 center-block">
 	              <div class="input-group-prepend">
 	                <span class="input-group-text"> Area:  </span>
 	              </div>
 	              <input type="text" class="form-control" name="newParty" id="newParty">
 	            </div>
-
+	            <br>
 	            <hr>
-
+	            <br>
 	            <button class="btn btn-info btn-lg" type="button" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> &nbsp;Clear</button>
             	<button class="btn btn-success btn-lg pull-right" type="submit"><span class="glyphicon glyphicon-ok"></span> &nbsp;Create Candidate</button>
             	<br>
@@ -70,7 +70,7 @@
 	        <br>
   		</div>
   		<div class="col-sm-8">
-		    <h2>View Candidates</h2>
+		    <h2 class="center-block col-sm-offset-2"> &nbsp; View Candidates</h2>
 		    <?php
 
 		      $sql_select = "SELECT * FROM candidate";
@@ -87,7 +87,7 @@
 		            $candidateName = $row['candidateName'];
 		            $candidateParty = $row['candidateParty'];
 		            $candidateArea = $row['candidateArea'];
-		            echo "  		<div class='panel panel-default col-sm-9 electionList'>
+		            echo "  		<div class='panel panel-default col-sm-12 electionList'>
                   	<div class='panel-heading info'>
                     <h2 class='text-center'></h2>
                     <table class='table'>
