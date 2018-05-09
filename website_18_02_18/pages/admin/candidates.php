@@ -52,7 +52,7 @@
 	              <div class="input-group-prepend">
 	                <span class="input-group-text"> Area:  </span>
 	              </div>
-	              <input type="text" class="form-control" name="newParty" id="newParty">
+	              <input type="text" class="form-control" name="newArea" id="newArea">
 	            </div>
 	            <br>
 	            <hr>

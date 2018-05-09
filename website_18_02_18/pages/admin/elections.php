@@ -93,8 +93,8 @@
         <br>
       </div>
       <div id="addElection" class="panel col-sm-8">
-          <form class="col-sm-offset-1">
-
+          <form class="col-xs-offset-1">
+            <br>
             <div class="input-group">
               <!--div class="input-group-prepend"-->
                 <!--span class="input-group-text"> Election Database Name: </span-->
