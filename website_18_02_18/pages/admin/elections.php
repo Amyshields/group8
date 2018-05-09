@@ -104,7 +104,7 @@
             </div>
 
             <div class="input-group">
-              <label for="newDispName"> Election Display Name: </label>
+              <label for="newDispName"> Election Display Name/Referendum question: </label>
               <input type="text" class="form-control" name="newDisplayName" id="newDisplayName">
             </div>
 
