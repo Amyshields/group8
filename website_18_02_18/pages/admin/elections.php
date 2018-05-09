@@ -93,33 +93,36 @@
         <br>
       </div>
       <div id="addElection" class="panel col-sm-8">
-          <form>
+          <form class="col-sm-offset-1">
 
             <div class="input-group">
-              <div class="input-group-prepend">
+              <!--div class="input-group-prepend"-->
                 <!--span class="input-group-text"> Election Database Name: </span-->
                 <label for="newName"> Election Database Name: </label>
-              </div>
+              <!--/div-->
               <input type="text" class="form-control" name="newName" id="newName">
+              <br>
             </div>
 
             <div class="input-group">
               <label for="newDispName"> Election Display Name/Referendum question: </label>
               <input type="text" class="form-control" name="newDisplayName" id="newDisplayName">
+              <br>
             </div>
 
             <div class="input-group">
               <label for="newType"> Type: </label>
-              <select name="newType" id="newType">
+              <select class="form-control" name="newType" id="newType">
                 <option value="FPTP">FPTP</option>
                 <option value="REF">Referendum</option>
               </select>
+              <br>
             </div>
 
 
             <div class="input-group">
               <label for="newArea"> Area: </label>
-              <input class="form-control input-lg" type="text" name="newArea" id="newArea">
+              <input class="form-control" type="text" name="newArea" id="newArea">
             </div>
 
             <div class="input-group">
