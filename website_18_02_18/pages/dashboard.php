@@ -19,7 +19,8 @@ if(!isset($_SESSION['logged_in'])){
 
 $votedString = "";
 if(isset($_GET['voted'])){
-    $votedString = "<div class='alert alert-success'>
+    $votedString = "<div class='alert alert-success alert-dismissible'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
                         <strong> Voted!</strong> Vote Recorded.
                     </div>";
 
@@ -28,7 +29,8 @@ if(isset($_GET['voted'])){
 
 $noSelectionString = "";
 if(isset($_GET['noSelection'])){
-    $noSelectionString = "<div class='alert alert-warning'>
+    $noSelectionString = "<div class='alert alert-warning alert-dismissible'>
+                         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
                         <strong> Select an option!</strong> No vote was recorded. Next time, click a radio button to select your choice.
                     </div>";
 

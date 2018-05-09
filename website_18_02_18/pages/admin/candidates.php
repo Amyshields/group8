@@ -34,7 +34,7 @@
       <div id="addCandidate" class="panel col-sm-8">
 	        <form name="addCandidate" method="POST" action="./addCandidate.php">
 	        	<h2>Add a new Candidate</h2>
-	        	<div class="input-group">
+	        	<div class="input-group col-sm-8 center-block">
 	              <div class="input-group-prepend">
 	                <span class="input-group-text"> Name: </span>
 	              </div>
