@@ -1,0 +1,193 @@
+<!--VOTER HELP PAGE-->
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>Home Page</title>
+    <!--For Bootstrap, to make page responsive on mobile-->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--For Bootstrap, to load the css information from a CDN-->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link href='css/electago.css' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Open+Sans' rel='stylesheet'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <!--THese-->
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+    <header class='container-fluid text-center'>
+        <div id='logo'>
+            <img src='images/logo.png' width='300' height='100' alt=''>
+        </div>
+    </header>
+    <!--Welcom to help and intro here-->
+    <div class="container">
+	<div class="container-fluid col-sm-offset-2">
+	<div class="wrap">
+
+
+	<h1>Help Documentation for Voters</h1>
+	<div class="col-sm-8" id="intro">
+				<p>Click on the relevant button below to go to a drop down which will give you more information.</p>
+				<br /> <p>If you can not find the relevant help information anywhere below, please contact your local electoral office for help.</p>
+	</div>
+
+	<div class="col-sm-8" text-center">
+	  <div id="MainMenu">
+	    <div class="list-group panel">
+	    	<!--button data-target="#webHelp" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"></button-->
+	      <a href="#webHelp" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Help With the Website <i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	      <div class="collapse" id="webHelp">
+	        <a href="#login" class="list-group-item" data-toggle="collapse" data-parent="login">Logging In<i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	        <div class="collapse list-group-submenu" id="login">
+	          <!--a href="#" class="list-group-item" data-parent="#login"></a-->
+
+	          <!--National Insurance Number-->
+				<div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#login" href="#whereNum"> What is my national insurance number?</a>
+						</h4>
+					</div>
+					<div id="whereNum" class="panel-collapse collapse">
+						<div class="panel-body">A few weeks or months before your 16 birthday you will be sent a letter from the government containing your national insurance number.
+						<br/>
+						If you have a national insurance number but can not find it or have a problem with it click <a href="https://www.gov.uk/government/organisations/hm-revenue-customs/contact/national-insurance-numbers">here</a>.
+						 If you are new to the UK or have a problem regarding your national insurance number click <a href="https://www.gov.uk/apply-national-insurance-number"> here</a>.</div>
+					</div>
+				</div>
+
+				<!--Password-->
+	         	<div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#login" href="#wherePass"> Where do I find my password?</a>
+						</h4>
+					</div>
+					<div id="wherePass" class="panel-collapse collapse">
+							<div class="panel-body">When you register to vote online you should be sent a letter containing your password. If this letter did not arrive or is lost, please contact your local electoral office to be sent another.</div>
+					</div>
+				</div>
+
+				<!--Using page-->
+				<div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#howtoLogin"> How do I use the login page?</a>
+						</h4>
+					</div>
+					<div id="howtoLogin" class="panel-collapse collapse">
+						<div class="panel-body">Enter your information into the textfields and click the orange login button. If it easier for you to be able to see your password as you type it click the "show password" box to be able to see the password you are typing in. If you make the password visible please ensure you are in a private or secure place and that noone standing behind you can see your information as you input it.</div>
+					</div>
+				</div>
+			</div>
+
+			<a href="#dash" class="list-group-item" data-toggle="collapse" data-parent="#webHelp">Using the Dashboard<i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	        <div class="collapse list-group-submenu" id="dash">
+	          <!--a href="#" class="list-group-item panel" data-parent="#dash">Votin</a-->
+
+	          <div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#dash" href="#dashVoting"> Selecting an election.</a>
+						</h4>
+					</div>
+					<div id="dashVoting" class="panel-collapse collapse">
+						<div class="panel-body">Select an election to vote in by clicking an orange button on the dashboard page. If there are multiple elections you are eligible to vote in they will all be listed here, but there may be only one, or none at all. If you can not see an election which you expect to see on your dashboard, double check the dates where voting is open for those elections, if you still believe you cannot see an election which you should be able to, contact your local electoral office. </div>
+					</div>
+				</div>
+
+	           <div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<!--class="list-group-item" -->
+							<a data-toggle="collapse"  data-parent="#dash" href="#dashLogout"> Logging Out.</a>
+						</h4>
+					</div>
+					<div id="dashLogout" class="panel-collapse collapse">
+						<div class="panel-body">To securely log out of the electago system scroll to the bottom of the page and click the "log out" link. This will redirect you to the login page and clear your session. Changes to your vote will be saved. </div>
+					</div>
+				</div>
+	        </div>
+
+	        <a href="#ballot" class="list-group-item" data-toggle="collapse" data-parent="#webHelp">Filling out the Ballot<i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	        <div class="collapse list-group-submenu" id="ballot">
+	        	 <div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#ballot" href="#voteVoting"> How do I save my vote?</a>
+						</h4>
+					</div>
+					<div id="voteVoting" class="panel-collapse collapse">
+						<div class="panel-body">Select the radio button beside the candidate or option of your choice and click the button labeled "vote" to cast your vote. The vote will then be saved in our database immediately and you can log out of the electago website by clicking the 'log out' button at the bottom of your screen.</div>
+					</div>
+				</div>
+				<div class="list-group-item panel">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#ballot" href="#voteSpoil">What does spoil vote mean? Why would I spoil my vote?</a>
+						</h4>
+					</div>
+					<div id="voteSpoil" class="panel-collapse collapse">
+						<div class="panel-body">Select the radio button labelled "spoil vote" and click the "vote" button to submit a spoilt vote. Spoiling your vote means that you will be counted as having voted but not for any candidate. This is usually used as a form of protest. If you accidentally submit a spoilt vote you can return to the ballot page and change the vote. </div>
+					</div>
+				</div>
+
+	        </div>
+
+	      </div>
+
+	      <a href="#voteLaw" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Voting Law <i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	      <div class="collapse" id="voteLaw">
+	        <a href="" class="list-group-item">Who can vote?</a>
+	        <a href="" class="list-group-item">Subitem 2</a>
+	        <a href="" class="list-group-item">Voting Coersion</a>
+	      </div>
+
+	       <a href="#privacy" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Privacy <i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	      <div class="collapse" id="privacy">
+	        <a href="" class="list-group-item">What information we collect</a>
+	        <a href="" class="list-group-item">How long we keep your information</a>
+	      </div>
+
+	      <a href="#misc" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Other <i class=" glyphicon glyphicon-chevron-down pull-right"></i></a>
+	      <div class="collapse" id="misc">
+	        <a href="" class="list-group-item">Do I have to use the online system to vote?</a>
+	        <a href="" class="list-group-item">Give Feedback</a>
+	        <a href="" class="list-group-item">Report A Bug</a>
+	        <a href="" class="list-group-item">Other Questions</a>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+</div>
+</div>
+</div>
+    <!--container class used in bootstrap to make a dynamic container of a fixed size-->
+
+    <div class='container'> <p>
+           </p> </div>
+    <footer class='container-fluid'>
+    <!--info here: logo, copyright, links, login as admin-->
+
+	    <div id='small_logo' class='media'>
+	        <img src='images/small_logo.png' width='100' height='35' alt=''>
+	    </div>
+	    <div class='media-body'>
+	    <ul class='list-inline pull right'>
+	        <li><a href='#'><i class="glyphicon glyphicon-chevron-up"></i> Back to the top</a></li>
+	        <li><a href='index.php'>Back to voter login</a></li>
+	        <li><p> &copy; 2018, Group 8. All rights reserved.</p></li>
+	    </ul>
+	    </div>
+	</footer>
+</body>
+</html>

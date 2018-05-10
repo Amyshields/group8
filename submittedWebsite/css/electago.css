@@ -1,0 +1,97 @@
+@charset "utf-8"; /*Max,Noah,Amy,Dervla*/
+/*Simplified website so all CSS are in one document*/
+
+/*general*/
+
+html,body{
+	margin: 0;
+	padding: 0px;
+	background-color: #CCCCCC;
+}
+body{
+	/*margin-bottom: 110px;*/
+	/*height: 100%;*/
+}
+label,p{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+}
+
+h1{
+	text-align: center;
+	font-family: 'Montserrat';
+}
+
+h2{
+	font-family: 'Montserrat';
+}
+
+h3{
+	font-family: 'Montserrat';
+
+}
+
+#errorbox{
+	margin-bottom: -20px;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+/* Negative indent footer by it's height */
+margin: 0px auto 110px;
+}
+
+#footerLinks{
+	padding: 0 30px;
+}
+
+footer{
+	margin: 5px;
+	font-weight: bold;
+	padding-top: 25px;
+  	height: 80px; /* Set the fixed height of the footer here */
+  	background-color: #e4e4e4;
+}
+/*This bit is for the Index page*/
+#intro {
+	/*cant work out how to get padding on intro paragraph*/
+	padding-top: 25px;
+}
+
+#logo {
+	padding-top: 50px;
+	padding-bottom: 25px;
+}
+
+#small_logo {
+	float: right;
+	padding-right: 20px;
+}
+
+#login{
+	padding: 10px 100px;
+}
+
+#selection{
+	padding: 10px 100px;
+}
+
+#info{
+	padding-top: 20px;
+}
+
+#electionList{
+	padding-bottom: 20px;
+}
+
+.addCandidate{
+	padding-bottom: 20px;
+}
+/*
+#passwordCheckbox{
+	padding-top: 15px;
+}
+/**/
